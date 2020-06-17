@@ -1,0 +1,30 @@
+# dependencies
+front-end/node_modules
+front-end/.pnp
+front-end/.pnp.js
+
+# testing
+front-end/coverage
+
+# production
+front-end/build
+
+# misc
+front-end/.DS_Store
+front-end/npm-debug.log*
+front-end/yarn-debug.log*
+front-end/yarn-error.log*
+front-end/*.lock
+
+# jetbrains
+front-end/.idea
+back-end/.idea
+
+#python cache and compile files
+back-end/apis/*.pyc
+back-end/resteasy/*.pyc
+back-end/venv
+back-end/__pycache__/
+back-end/apis/__pycache__/
+back-end/resteasy/__pycache__/
+back-end/db.sqlite3

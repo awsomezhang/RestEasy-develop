@@ -1,0 +1,12 @@
+.ant-input:hover {
+    border-color: #4cc247;
+}
+
+.ant-input:focus {
+    border-color: #4cc247;
+}
+
+.ant-btn.ant-input-search-button.ant-btn-primary{
+    background-color: #4cc247;
+    border-color: #4cc247;
+}

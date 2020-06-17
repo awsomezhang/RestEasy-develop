@@ -1,0 +1,34 @@
+a {
+    color: #4a9532;
+}
+
+.ant-input:hover {
+    border-color: #4cc247;
+}
+
+.ant-input:focus {
+    border-color: #4cc247;
+}
+
+.ant-input-password:hover {
+    border-color: #4cc247;
+}
+
+.ant-input-password:focus {
+    border-color: #4cc247;
+}
+
+.ant-btn-primary {
+    background-color: #4cc247;
+    border-color: #4cc247;
+}
+
+.ant-btn-primary:focus {
+    background-color: #4cc247;
+    border-color: #4cc247;
+}
+
+.ant-btn-primary:hover {
+    background-color: #4cc247;
+    border-color: #4cc247;
+}
