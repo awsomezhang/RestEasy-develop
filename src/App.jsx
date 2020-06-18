@@ -1,10 +1,14 @@
 import React, {Component, lazy, Suspense} from 'react';
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 
+
 const Landing = lazy(() => import('./views/Landing/Landing'));
 const Routes = lazy(() => import('./routes/Routes'));
 const Signup = lazy(() => import('./views/SignUp/SignUp'));
 const Login = lazy(() => import('./views/Login/Login'));
+const Contact = lazy(() => import('./views/Contact/Contact'));
+
+
 
 class App extends Component {
     render() {
@@ -41,6 +45,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={withRouter(Landing)}/>
                         <Route exact path="/login" component={withRouter(Login)}/>
+                        <Route exact path="/contact" component={withRouter(Contact)}/>
                         <Route exact path="/signup" component={withRouter(Signup)}/>
                         <PrivateRoute authed={localStorage.getItem('access_token')} path="/my" component={Routes}/>
                     </Switch>

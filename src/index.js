@@ -6,9 +6,10 @@ import './assets/fonts/euphemia.ttf';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {REMOTE_HOST} from "./constants";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const $ = require("jquery");
-
+//test
 // NOTE: All ajax requests will be append to REMOTE_HOST url
 (function($) {
     let xhrPool = [];

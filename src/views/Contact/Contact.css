@@ -1,0 +1,40 @@
+.header{
+    margin-bottom: 20px;
+}
+.form-row{
+    margin-bottom: 10px
+}
+.grey-section {
+    margin-top: 20px;
+    background-color: rgba(235, 235, 235, 0.705);
+    height:150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.join-header {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: rgb(0, 161, 48);
+    text-align: center;
+    
+}
+.emphasis {
+    font-weight: bold;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom{
+    margin-top: 20px;
+    background-color: rgb(235, 235, 235);
+    text-align: center;
+    height:100px;
+}
+.section {
+    margin-top: 25px;
+    margin-bottom: 30px
+}
