@@ -6,6 +6,7 @@ import './assets/fonts/euphemia.ttf';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {REMOTE_HOST} from "./constants";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const $ = require("jquery");
 //test
