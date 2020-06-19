@@ -8,3 +8,11 @@
 .menu-options {
     padding-top: 10px;
 }
+
+.search-bar {
+    padding-right: 20px;
+}
+
+#btnGroupAddon {
+    border-radius: 4px;
+}

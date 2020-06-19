@@ -2,7 +2,7 @@
 
 import React from "react"
 import "./Header.css"
-import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button} from "react-bootstrap"
+import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
 import { withRouter } from "react-router-dom";
 
 
@@ -31,9 +31,26 @@ function Header({ location }){
                         <Nav.Link href="#help">Help a friend in need</Nav.Link>
                         <Nav.Link href="#registry">Registry</Nav.Link>
                     </Nav>
+                    <div className="search-bar">
+                        <Form inline>
+                            <InputGroup>
+                                <FormControl
+                                    type="text"
+                                    placeholder="Search"
+                                    aria-label="Input group example"
+                                    aria-describedby="btnGroupAddon"
+                                />
+                                <InputGroup.Prepend>
+                                    <Button id="btnGroupAddon" variant="outline-success">Search</Button>
+                                </InputGroup.Prepend>
+                            </InputGroup>
+                        </Form>
+                    </div>
+                    
                     <Form inline>
                         <Button variant="outline-success">Login</Button>
                     </Form>
+                    
                 </Navbar.Collapse>
             </Navbar>
         </div>
