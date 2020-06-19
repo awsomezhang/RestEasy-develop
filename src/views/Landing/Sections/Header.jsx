@@ -30,6 +30,7 @@ function Header({ location }){
                         <Nav.Link href="#whatToDo">What to do Now?</Nav.Link>
                         <Nav.Link href="#help">Help a friend in need</Nav.Link>
                         <Nav.Link href="#registry">Registry</Nav.Link>
+                        <Nav.Link href="/contact">Contact Us!</Nav.Link>
                     </Nav>
                     <div className="search-bar">
                         <Form inline>
