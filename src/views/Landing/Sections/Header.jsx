@@ -23,7 +23,7 @@ function Header({ location }){
                 </Navbar.Brand>
                 <span onClick={e => window.location.href = '/'} className="title">RestEasy</span>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" className="menu-options">
                     <Nav className="mr-auto">
                         <Nav.Link href="#home">About</Nav.Link>
                         <Nav.Link href="#faq">FAQ</Nav.Link>
