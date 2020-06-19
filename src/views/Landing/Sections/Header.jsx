@@ -21,7 +21,7 @@ function Header({ location }){
                         alt="RestEasy logo"
                     />
                 </Navbar.Brand>
-                <span className="title">RestEasy</span>
+                <span onClick={e => window.location.href = '/'} className="title">RestEasy</span>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
