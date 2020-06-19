@@ -12,7 +12,7 @@ function Header({ location }){
     return (
         <div>
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         src={require('../../../assets/img/logo192.png')}
                         width="50"
