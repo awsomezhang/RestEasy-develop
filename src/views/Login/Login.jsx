@@ -1,9 +1,8 @@
 import React from 'react';
 import {Form, Input, Button, Layout, Divider, notification} from 'antd';
-import './Login.css';
+//import './Login.css';
 import {tryUserLogin} from "./LoginAPI";
-import Header from "../Landing/Sections/Header";
-
+import PageWrapper from "../../PageWrapper"
 
 const formItemLayout = {
     labelCol: {
@@ -65,8 +64,7 @@ export default function LoginForm() {
     };
 
     return (
-        <Layout>
-            <Header search={false}/>
+        <PageWrapper content={
             <Layout.Content style={{background: "white", paddingTop: "2em"}}>
                 <div style={{ display: "flex", justifyContent: "center"}}>
                     <Form
@@ -133,6 +131,6 @@ export default function LoginForm() {
                     </Form>
                 </div>
             </Layout.Content>
-        </Layout>
+        }/>
     );
 };

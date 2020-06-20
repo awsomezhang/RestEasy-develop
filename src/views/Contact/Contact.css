@@ -17,15 +17,6 @@
     padding-bottom: 25px;
     color: rgb(0, 161, 48);
     text-align: center;
-    
-}
-.emphasis {
-    font-weight: bold;
-}
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .bottom{

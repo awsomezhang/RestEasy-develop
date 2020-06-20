@@ -1,9 +1,8 @@
 import React from 'react';
 import {Form, Input, Checkbox, Button, Layout, notification} from 'antd';
-import './SignUp.css';
+//import './SignUp.css';
 import {tryUserSignUp} from "./SignupAPI";
-import Header from "../Landing/Sections/Header";
-
+import PageWrapper from "../../PageWrapper.js";
 
 const formItemLayout = {
     labelCol: {
@@ -65,8 +64,7 @@ export default function RegistrationForm() {
     };
 
     return (
-        <Layout>
-            <Header search={false}/>
+        <PageWrapper content={
             <Layout.Content style={{background: "white", paddingTop: "2em"}}>
                 <div style={{ display: "flex", justifyContent: "center"}}>
                     <Form
@@ -188,6 +186,6 @@ export default function RegistrationForm() {
                     </Form>
                 </div>
             </Layout.Content>
-        </Layout>
+        }/>
     );
 };

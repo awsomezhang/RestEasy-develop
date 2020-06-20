@@ -1,5 +1,3 @@
-
-
 import React from "react"
 import "./Header.css"
 import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
@@ -14,7 +12,7 @@ function Header({ location }){
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand href="/">
                     <img
-                        src={require('../../../assets/img/logo192.png')}
+                        src={require('../../assets/img/logo192.png')}
                         width="50"
                         height="50"
                         className="d-inline-block align-top"
