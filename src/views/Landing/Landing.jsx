@@ -1,6 +1,8 @@
 import React from 'react';
 import {Divider, Layout} from 'antd';
 
+import "../../styles.css"
+
 import FAQ from "./Sections/FAQ";
 import Samples from "./Sections/Samples";
 import Carousel from "./Sections/Carousel";

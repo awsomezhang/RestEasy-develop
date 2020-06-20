@@ -1,34 +1,36 @@
+@import "../../styles.css";
+
 a {
-    color: #4a9532;
+    color: var(--Color2);
 }
 
 .ant-input:hover {
-    border-color: #4cc247;
+    border-color: var(--Color1);
 }
 
 .ant-input:focus {
-    border-color: #4cc247;
+    border-color: var(--Color1);
 }
 
 .ant-input-password:hover {
-    border-color: #4cc247;
+    border-color: var(--Color1);
 }
 
 .ant-input-password:focus {
-    border-color: #4cc247;
+    border-color: var(--Color1);
 }
 
 .ant-btn-primary {
-    background-color: #4cc247;
-    border-color: #4cc247;
+    background-color: var(--Color1);
+    border-color: var(--Color1);
 }
 
 .ant-btn-primary:focus {
-    background-color: #4cc247;
-    border-color: #4cc247;
+    background-color: var(--Color1);
+    border-color: var(--Color1);
 }
 
 .ant-btn-primary:hover {
-    background-color: #4cc247;
-    border-color: #4cc247;
+    background-color: var(--Color1);
+    border-color: var(--Color1);
 }

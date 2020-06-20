@@ -1,8 +1,8 @@
 import React from 'react';
 import {Form, Input, Checkbox, Button, Layout, notification} from 'antd';
-//import './SignUp.css';
 import {tryUserSignUp} from "./SignupAPI";
 import PageWrapper from "../../PageWrapper.js";
+import "./SignUp.css"
 
 const formItemLayout = {
     labelCol: {

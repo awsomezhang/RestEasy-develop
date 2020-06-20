@@ -1,6 +1,6 @@
 import React, {lazy} from 'react';
 import {Layout, Popover, Steps} from "antd";
-import './Questions.css';
+import "./Questions.css"
 import Header from "../Header/Header";
 
 const Q0 = lazy(() => import('./Sections/Q0'));

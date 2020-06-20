@@ -7,6 +7,9 @@ export const colors = {
 };
 */
 
+/* Just testing things.
+   This file does nothing but we're not allowed to delete it.
+ */
 export const colors = {
     g0: '#0000ff',
     g1: '#0000ff',

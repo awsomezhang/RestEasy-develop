@@ -1,16 +1,18 @@
+@import "../../styles.css";
+
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
-    background: #4cc247;
+    background: var(--Color1);
 }
 
 .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
-    background: #4cc247;
+    background: var(--Color1);
 }
 
 .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail::after {
-    background: #4cc247;
+    background: var(--Color1);
 }
 
 .ant-btn-primary:hover, .ant-btn-primary:focus, .ant-btn-primary {
-    background-color: #4cc247;
-    border-color: #4cc247;
+    background-color: var(--Color1);
+    border-color: var(--Color1);
 }

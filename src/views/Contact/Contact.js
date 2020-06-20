@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { Parallax, Background } from "react-parallax";
 import "./Contact.css"
-import "../../styles.css"
 // import NavbarApp from "./NavbarApp"
 import PageWrapper from '../../PageWrapper'
 import {

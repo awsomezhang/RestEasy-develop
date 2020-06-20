@@ -1,8 +1,8 @@
 import React from 'react';
 import {Form, Input, Button, Layout, Divider, notification} from 'antd';
-//import './Login.css';
 import {tryUserLogin} from "./LoginAPI";
 import PageWrapper from "../../PageWrapper"
+import "./Login.css"
 
 const formItemLayout = {
     labelCol: {
