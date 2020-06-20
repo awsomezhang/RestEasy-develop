@@ -19,4 +19,9 @@ export default [
         URLpath: "/contact",
         dirpath: "./views/Contact/Contact"
     },
+    {
+        id: 5,
+        URLpath: "/my/create",
+        dirpath: "./views/Questions/Questions"
+    },
 ]

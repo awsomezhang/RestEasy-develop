@@ -4,7 +4,9 @@ import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-d
 import './styles.css'
 import RouteList from './routelist.js'
 
-//Need this for SwitchRoutes
+/* From the last dev. Not sure what it does.
+ * I got rid of this directory but it's essentiall SwitchRoutes below
+
 const Routes = lazy(() => import('./routes/Routes'));
 function PrivateRoute({component: Component, authed, ...rest}){
     return (
@@ -18,6 +20,7 @@ function PrivateRoute({component: Component, authed, ...rest}){
         />
     )
 }
+*/
 
 //Automatically load routes fro routelist.js
 function SwitchRoutes(props){
@@ -31,7 +34,6 @@ function SwitchRoutes(props){
         return(
             <Switch>
                 {mappedPropsRoutes}
-                <PrivateRoute authed={localStorage.getItem('access_token')} path="/my" component={Routes}/>
             </Switch>
         )
 }
