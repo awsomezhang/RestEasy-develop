@@ -2,8 +2,7 @@ import React, {useState, useEffect} from "react"
 import { Parallax, Background } from "react-parallax";
 import "./Contact.css"
 // import NavbarApp from "./NavbarApp"
-import Footer from "../Footer/Footer"
-import Header from "../Landing/Sections/Header"
+import PageWrapper from '../../PageWrapper'
 import {
     Button,
     Form,
@@ -66,8 +65,7 @@ export default function Contact() {
     const image1 = require("../../assets/img/ron-otsu-62_2KGyX13E-unsplash.jpg")
     const image2 = require("../../assets/img/1600x900-anti-flash-white-solid-color-background.jpg")
     return (
-        <div>
-            <Header />
+        <PageWrapper content = {
             <div className="main">
                 <Container fluid={true}>
                     <Row className="justify-content-md-center header">
@@ -136,13 +134,8 @@ export default function Contact() {
                             </div>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col style={{ paddingLeft: 0, paddingRight: 0 }}>
-                            <Footer />
-                        </Col>
-                    </Row>
                 </Container>
             </div>
-        </div>
+        }/>
     );
 }

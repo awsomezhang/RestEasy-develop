@@ -1,12 +1,9 @@
 import React from "react"
+import {Divider, Layout} from 'antd';
 import "./Footer.css"
 
 export default function Footer() {
     return (
-        <div>
-            <div className="section-dark"> 
-                <h4>RestEasy</h4>
-            </div>
-        </div>
+        <Layout.Footer style={{textAlign: 'center'}}>RestEasy©2020</Layout.Footer>
     )
 }
