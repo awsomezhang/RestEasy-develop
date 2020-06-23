@@ -28,7 +28,7 @@ code {
     --Color2: #4a9532;
 }
 
-/* Vanilla CSS that many files would be using */
+/* Vanilla CSS for divs that many files would be using */
 .absoluteMiddle{
     position: fixed;
     top: 50%;
@@ -42,6 +42,12 @@ code {
     justify-content: center;
     align-items: center;
 }
-.emphasis {
+
+/* Vanilla CSS for divs that many files would be using */
+.emphasisText {
     font-weight: bold;
+    color: green;
+}
+.centeredText {
+    text-align: center;
 }

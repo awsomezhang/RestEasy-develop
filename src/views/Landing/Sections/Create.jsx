@@ -1,37 +1,105 @@
 import React from 'react';
-import {Card, Col, Row} from "antd";
+//import {Card, Col, Row} from "antd";
+import {Button, Form, Container, Row, Col} from "react-bootstrap";
+import "../../../styles.css"
 
-class HowItWorks extends React.Component {
+function CreateHeader(){
+    return (
+        <div className="centeredText">
+            <h1> <b> Create </b> </h1>
+            <h3> a Forever Memory </h3>
+        </div>
+    )
+}
+
+function CreateText(){
+    return (
+        <div className="centeredText">
+            <Container fluid={true}>
+                <Row className="justify-content-md-center">
+                    <Col md="2" />
+                    <Col md="8">
+                        Traditionally, condolence messages are captured in a Funeral Guest Book at a funeral service.
+                        The book can only be written in and only by those who physically attend a funeral.
+                        It can only be read by the individuals who have the book.
+                    </Col>
+                    <Col md="2" />
+                </Row>
+                <br />
+                <Row className="justify-content-md-center centeredText">
+                    <Col md="2" />
+                    <Col md="8">
+                        A Forever Memory allows everyone who loved your person to contribute not only stories and messages,
+                        but photos, live videos, and music, and it can be viewed at any time
+                        (birthdays, anniversaries, any Tuesday when you really miss them) by all who love them.
+                    </Col>
+                    <Col md="2" />
+                </Row>
+                <br />
+                <Row className="justify-content-md-center centeredText">
+                    <Col md="2" />
+                    <Col md="8">
+                        Sharing your Forever Memory also allows you to move outside the confines of a traditional obituary when announcing a death.
+                        You can share more than just facts about their life and death –
+                        it allows you to capture more of the essence of who they are and share a more personal, true story.
+                    </Col>
+                    <Col md="2" />
+                </Row>
+            </Container>
+        </div>
+    )
+}
+
+function CreateAction(){
+    return (
+        <div className="centeredText">
+            <Container fluid={true}>
+                <Row>
+                    <Col md="2" />
+                    <Col md="4">
+                        <div style={{border: "solid", padding: "60px"}}>
+                            <h3> One time charge. </h3>
+                            <br />
+                            <h3> Remember forever. </h3>
+                        </div>
+                    </Col>
+                    <Col md="4">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h3> {'\u2192'} Build Your Forever Memory Now </h3>
+                    </Col>
+                    <Col md="2" />
+                </Row>
+            </Container>
+        </div>
+    )
+}
+
+function CreateExtras(){
+    return (
+        <div className="centeredText">
+            See the difference for yourself –
+            check out <a href="/">samples</a> or <a href="/">reviews</a>.
+        </div>
+    )
+}
+
+class Create extends React.Component {
     render() {
         return (
-            <Row>
-                <Col offset={4} span={4}>
-                    <Card cover={<img alt="img" src="img/diamond.jpg"/>} bordered={false}>
-                        <b>1. CUSTOMIZE</b>
-                        <p>a digital experience</p>
-                    </Card>
-                </Col>
-                <Col span={4}>
-                    <Card cover={<img alt="img" src="img/diamond.jpg"/>} bordered={false}>
-                        <b>2. DISCOVER</b>
-                        <p>commemorative products and services</p>
-                    </Card>
-                </Col>
-                <Col span={4}>
-                    <Card cover={<img alt="img" src="img/diamond.jpg"/>} bordered={false}>
-                        <b>3. REGISTER</b>
-                        <p>for what you need</p>
-                    </Card>
-                </Col>
-                <Col span={4}>
-                    <Card cover={<img alt="img" src="img/diamond.jpg"/>} bordered={false}>
-                        <b>4. SHARE</b>
-                        <p>to collect memories from family and friends</p>
-                    </Card>
-                </Col>
-            </Row>
+            <div>
+                <CreateHeader />
+                <br />
+                <CreateText />
+                <br />
+                <CreateAction />
+                <br />
+                <CreateExtras />
+            </div>
         )
     }
 }
 
-export default HowItWorks;
+export default Create;
