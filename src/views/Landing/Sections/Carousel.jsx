@@ -19,45 +19,46 @@ export default function Carousel() {
     return (
         <div>
             <Container fluid={true}>
-                    <Row className="justify-content-md-center header">
+                    <Row className="justify-content-md-center">
                         <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
                             <div className="parallax">
-                                <div className="section-parallax">
                                     <Container>
                                         <Row>
                                             <Col>
-                                                <div className="header">We're sorry you're here, but happy you found us!</div>
+                                                <div className="header">We are sorry you are here, <br/> but happy you found us!</div>
                                             </Col>
                                         </Row>
                                         <Row className="middle">
-                                            <Col md="5"></Col>
-                                            <Col md="7">
+                                            <Col sm="0" md="5">
+                                                <div ></div>
+                                            </Col>
+                                            <Col sm="12" md="7" className="line" className="vertical-line">
                                                 <Row>
                                                     <Col>
-                                                        Tell their story
+                                                        Tell their story.
+                                                    </Col>
+                                                </Row>
+                                                <Row >
+                                                    <Col>
+                                                        Fund their resting place.
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col>
-                                                        Fund their Resting Place
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col>
-                                                        Commemorate and celebrate Life with RestEasy
+                                                        Commemorate and celebrate life with RestEasy.
                                                     </Col>
                                                 </Row>
                                             </Col>
                                         </Row>
                                         <Row className="button-row">
-                                            <Col>
-                                                <Button className="button-links" variant="outline-success" >Create A Digital Memory</Button>
+                                            <Col sm="4">
+                                                <Button className="button-links" >Create <br/> <span className="sub-btn">A Digital Memory</span></Button>
                                             </Col>
-                                            <Col>
-                                                <Button className="button-links">Register for what you need</Button>
-                                            </Col>
-                                            <Col>
-                                                <Button className="button-links">Find advice and resources to help</Button>
+                                            <Col sm="4">
+                                                <Button className="button-links">Register <br/> <span className="sub-btn">For What You Need</span></Button>
+                                            </Col >
+                                            <Col sm="4">
+                                                <Button className="button-links">Find <br/> <span className="sub-btn">Advice and Resources</span></Button>
                                             </Col>
                                         
                                         </Row>
@@ -65,17 +66,8 @@ export default function Carousel() {
                                     </Container>
                                     
                                 </div>
-                            </div>
-                            <div className="section-parallax">
 
-                            </div>
-                            <div className="parallax2">
-
-                            </div>
-                            <div className="section-parallax">
-
-                            </div>
-                            <div className="parallax">
+                            <div className="section">
 
                             </div>
                         

@@ -12,7 +12,8 @@ import PageWrapper from "../../PageWrapper"
 class Landing extends React.Component {
     render() {
         return (
-            <PageWrapper content={<Carousel />
+            <PageWrapper content={
+                    <Carousel />
             }/>
         );
     }
