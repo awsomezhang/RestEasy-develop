@@ -12,15 +12,7 @@ import PageWrapper from "../../PageWrapper"
 class Landing extends React.Component {
     render() {
         return (
-            <PageWrapper content={
-                <Layout.Content style={{background: "white"}}>
-                    <Carousel />
-                    <HowItWorks />
-                    <Divider style={{minWidth: "1em", marginLeft: "10%", width: "80%", height: "1.5px"}}/>
-                    <Samples />
-                    <Divider style={{minWidth: "1em", marginLeft: "10%", width: "80%", height: "1.5px"}}/>
-                    <FAQ />
-                </Layout.Content>
+            <PageWrapper content={<Carousel />
             }/>
         );
     }

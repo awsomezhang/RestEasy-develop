@@ -1,33 +1,88 @@
 import React from 'react';
-import {Col, Row, Button} from "antd";
 import './Carousel.css';
+import { Parallax, Background } from "react-parallax";
+import "../../../styles.css"
 
-class Carousel extends React.Component {
-    switchView(){
-        // dont worry. the url is auth protected
-        window.location.href = '/my/create';
-    }
+import {
+    Button,
+    Form,
+    Container,
+    Row,
+    Col,
+  } from "react-bootstrap";
 
-    render() {
-        return (
-            <div style={{position: "relative", borderRadius: "0% 0% 45% 45%/0% 0% 20% 20%", overflow: "hidden"}}>
-                <img alt="banner" src={"img/background.jpg"} style={{maxWidth: "100%"}} />
-                <div style={{position: "absolute", left: "35%", top: "40%"}}>
-                    <Col>
-                        <Row style={{justifyContent: "center"}}>
-                            <b style={{fontSize: "2em", color: "#fff"}}>Create your digital memorial</b>
-                        </Row>
-                        <Row style={{justifyContent: "center"}}>
-                            <Button size={"large"} onClick={this.switchView}>Build Now</Button>
-                        </Row>
-                        <Row style={{justifyContent: "center"}}>
-                            <em style={{fontSize: "1.5em", color: "#fff"}}>Just $20. One time. Forever.</em>
-                        </Row>
-                    </Col>
-                </div>
-            </div>
-        )
-    }
+
+const image1 = require("../../../assets/img/away-3668344_1920_cropped.jpg")
+
+export default function Carousel() {
+
+    return (
+        <div>
+            <Container fluid={true}>
+                    <Row className="justify-content-md-center header">
+                        <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
+                            <div className="parallax">
+                                <div className="section-parallax">
+                                    <Container>
+                                        <Row>
+                                            <Col>
+                                                <div className="header">We're sorry you're here, but happy you found us!</div>
+                                            </Col>
+                                        </Row>
+                                        <Row className="middle">
+                                            <Col md="5"></Col>
+                                            <Col md="7">
+                                                <Row>
+                                                    <Col>
+                                                        Tell their story
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        Fund their Resting Place
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        Commemorate and celebrate Life with RestEasy
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                        <Row className="button-row">
+                                            <Col>
+                                                <Button className="button-links" variant="outline-success" >Create A Digital Memory</Button>
+                                            </Col>
+                                            <Col>
+                                                <Button className="button-links">Register for what you need</Button>
+                                            </Col>
+                                            <Col>
+                                                <Button className="button-links">Find advice and resources to help</Button>
+                                            </Col>
+                                        
+                                        </Row>
+                                    
+                                    </Container>
+                                    
+                                </div>
+                            </div>
+                            <div className="section-parallax">
+
+                            </div>
+                            <div className="parallax2">
+
+                            </div>
+                            <div className="section-parallax">
+
+                            </div>
+                            <div className="parallax">
+
+                            </div>
+                        
+                        </Col>
+                    </Row>
+            </Container>
+
+        </div>
+    )
 }
-
-export default Carousel;

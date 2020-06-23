@@ -1,4 +1,68 @@
-.ant-btn:hover, .ant-btn:focus {
-    color: #4cc247;
-    border-color: #4cc247;
+.header {
+    color: #4C6C0A;
+    text-shadow: black;
+    text-align: center;
+    margin-bottom: 35px
 }
+.section-parallax{
+    display: flex;
+    align-items: center;
+    height: 550px;
+}
+.middle {
+    font-size: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px
+}
+
+/* If the screen size is 601px wide or more (standard)*/
+@media screen and (min-width: 601px) {
+    .header {
+        font-size: 45px;
+    }
+    .button-row{
+        margin-top: 55px
+    }
+    .button-links {
+        border-color: white;
+        font-size: 30px
+    }
+}
+  
+/* If the screen size is 600px wide or less (mobile)*/
+@media screen and (max-width: 600px) {
+    .header {
+        font-size: 25px;
+    }
+    .button-links {
+        border-color: white;
+        font-size: 15px
+    }
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("../../../assets/img/green-1072828_whiteOverlay.jpg");
+  
+    /* Set a specific height */
+    min-height: 500px; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .parallax2 {
+    /* The image used */
+    background-image: url("../../../assets/img/green-1072828.jpg");
+  
+    /* Set a specific height */
+    min-height: 500px; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
