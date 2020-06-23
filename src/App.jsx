@@ -45,7 +45,7 @@ class App extends Component {
                 <BrowserRouter>
                 <Suspense
                     fallback={
-                        <div className="absoluteMiddle">
+                        <div className="absolute-middle">
                             Loading...
                         </div>
                     }

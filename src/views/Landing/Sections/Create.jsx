@@ -5,7 +5,7 @@ import "../../../styles.css"
 
 function CreateHeader(){
     return (
-        <div className="centeredText">
+        <div className="centered-text">
             <h1> <b> Create </b> </h1>
             <h3> a Forever Memory </h3>
         </div>
@@ -14,7 +14,7 @@ function CreateHeader(){
 
 function CreateText(){
     return (
-        <div className="centeredText">
+        <div className="centered-text">
             <Container fluid={true}>
                 <Row className="justify-content-md-center">
                     <Col md="2" />
@@ -52,7 +52,7 @@ function CreateText(){
 
 function CreateAction(){
     return (
-        <div className="centeredText">
+        <div className="centered-text">
             <Container fluid={true}>
                 <Row>
                     <Col md="2" />
@@ -79,7 +79,7 @@ function CreateAction(){
 
 function CreateExtras(){
     return (
-        <div className="centeredText">
+        <div className="centered-text">
             See the difference for yourself –
             check out <a href="/">samples</a> or <a href="/">reviews</a>.
         </div>

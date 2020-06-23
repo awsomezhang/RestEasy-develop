@@ -29,7 +29,7 @@ code {
 }
 
 /* Vanilla CSS for divs that many files would be using */
-.absoluteMiddle{
+.absolute-middle{
     position: fixed;
     top: 50%;
     bottom: 50%;
@@ -44,10 +44,10 @@ code {
 }
 
 /* Vanilla CSS for divs that many files would be using */
-.emphasisText {
+.emphasis-text {
     font-weight: bold;
     color: green;
 }
-.centeredText {
+.centered-text {
     text-align: center;
 }

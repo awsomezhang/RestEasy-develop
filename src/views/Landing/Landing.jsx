@@ -12,7 +12,12 @@ import Resources from "./Sections/Resources"
 
 import PageWrapper from "../../PageWrapper"
 function LandingDivider(){
-    return( <Divider style={{minWidth: "1em", marginLeft: "10%", width: "80%", height: "1.5px"}}/> )
+    return( <Divider style={{
+        minWidth: "1em",
+        marginLeft: "10%",
+        width: "80%",
+        height: "5px",
+    }}/> )
 }
 
 class Landing extends React.Component {
