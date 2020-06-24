@@ -21,24 +21,35 @@ function LandingDivider(){
 }
 
 class Landing extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            createRef: React.createRef(),
+            registerRef: React.createRef(),
+            resourcesRef: React.createRef(),
+        }
+    }
+
     render() {
         return (
             <PageWrapper content={
-                //<Layout.Content style={{background: "white"}}>
-                <div style={{background: "white"}}>
-                    <Welcome />
+                <div style={{backgroundColor: "white"}}>
+                    <Welcome 
+                        createScroll={() => this.state.createRef.current.scrollIntoView({behavior: "smooth"})}
+                        registerScroll={() => this.state.registerRef.current.scrollIntoView({behavior: "smooth"})}
+                        resourcesScroll={() => this.state.resourcesRef.current.scrollIntoView({behavior: "smooth"})}
+                    />
                     <LandingDivider />
                     <HowItWorks />
                     <LandingDivider />
-                    <Create />
+                    <div ref={this.state.createRef}> <Create /> </div>
                     <LandingDivider />
-                    <Register />
+                    <div ref={this.state.registerRef}> <Register /> </div>
                     <LandingDivider />
-                    <Resources />
+                    <div ref={this.state.resourcesRef}> <Resources /> </div>
                     <LandingDivider />
                     <FAQ />
                 </div>
-                //</Layout.Content>
             }/>
         );
     }

@@ -1,32 +1,90 @@
 import React from 'react';
-import {Col, Row, Button} from "antd";
+import './Carousel.css';
+import { Parallax, Background } from "react-parallax";
+import "../../../styles.css"
 
-class Carousel extends React.Component {
-    switchView(){
-        // dont worry. the url is auth protected
-        window.location.href = '/my/create';
+import {
+    Button,
+    Form,
+    Container,
+    Row,
+    Col,
+  } from "react-bootstrap";
+
+
+const image1 = require("../../../assets/img/away-3668344_1920_cropped.jpg")
+
+export default class Carousel extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            createScroll: this.props.createScroll,
+            registerScroll: this.props.registerScroll,
+            resourcesScroll: this.props.resourcesScroll,
+        }
     }
 
-    render() {
-        return (
-            <div style={{position: "relative", borderRadius: "0% 0% 45% 45%/0% 0% 20% 20%", overflow: "hidden"}}>
-                <img alt="banner" src={"img/background.jpg"} style={{maxWidth: "100%"}} />
-                <div style={{position: "absolute", left: "35%", top: "40%"}}>
-                    <Col>
-                        <Row style={{justifyContent: "center"}}>
-                            <b style={{fontSize: "2em", color: "#fff"}}>Create your digital memorial</b>
-                        </Row>
-                        <Row style={{justifyContent: "center"}}>
-                            <Button size={"large"} onClick={this.switchView}>Build Now</Button>
-                        </Row>
-                        <Row style={{justifyContent: "center"}}>
-                            <em style={{fontSize: "1.5em", color: "#fff"}}>Just $20. One time. Forever.</em>
-                        </Row>
-                    </Col>
-                </div>
-            </div>
-        )
+    render(){
+    return (
+        <div>
+            <Container fluid={true}>
+                    <Row className="justify-content-md-center">
+                        <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
+                            <div className="parallax">
+                                    <Container>
+                                        <Row>
+                                            <Col>
+                                                <div className="header">We are sorry you are here, <br/> but happy you found us!</div>
+                                            </Col>
+                                        </Row>
+                                        <Row className="middle">
+                                            <Col sm="0" md="5">
+                                                <div ></div>
+                                            </Col>
+                                            <Col sm="12" md="7" className="line" className="vertical-line">
+                                                <Row>
+                                                    <Col>
+                                                        Tell their story.
+                                                    </Col>
+                                                </Row>
+                                                <Row >
+                                                    <Col>
+                                                        Fund their resting place.
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        Commemorate and celebrate life with RestEasy.
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                        <Row className="button-row">
+                                            <Col sm="4">
+                                                <Button className="button-links" onClick={this.state.createScroll}>Create <br/> <span className="sub-btn">A Digital Memory</span></Button>
+                                            </Col>
+                                            <Col sm="4">
+                                                <Button className="button-links" onClick={this.state.registerScroll}>Register <br/> <span className="sub-btn">For What You Need</span></Button>
+                                            </Col >
+                                            <Col sm="4">
+                                                <Button className="button-links" onClick={this.state.resourcesScroll}>Find <br/> <span className="sub-btn">Advice and Resources</span></Button>
+                                            </Col>
+                                        
+                                        </Row>
+                                    
+                                    </Container>
+                                    
+                                </div>
+
+                            <div className="section">
+
+                            </div>
+                        
+                        </Col>
+                    </Row>
+            </Container>
+
+        </div>
+    )
     }
 }
-
-export default Carousel;
