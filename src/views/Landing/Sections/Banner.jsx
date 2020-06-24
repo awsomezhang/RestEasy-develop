@@ -1,5 +1,5 @@
 import React from 'react';
-import './Welcome.css';
+import './Banner.css';
 import { Parallax, Background } from "react-parallax";
 
 import {
@@ -29,7 +29,7 @@ export default class Carousel extends React.Component{
             <Container fluid={true}>
                     <Row className="justify-content-md-center">
                         <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
-                            <div className="parallax">
+                            <div className="image-section">
                                 <Container>
                                     <Row>
                                         <Col>
@@ -59,13 +59,13 @@ export default class Carousel extends React.Component{
                                         </Col>
                                     </Row>
                                     <Row className="button-row">
-                                        <Col sm="4">
+                                        <Col sm="4" className="text-center">
                                             <Button className="button-links" onClick={this.state.createScroll}>CREATE <br/> <span className="sub-btn">A Digital Memory</span></Button>
                                         </Col>
-                                        <Col sm="4">
+                                        <Col sm="4" className="text-center">
                                             <Button className="button-links" onClick={this.state.registerScroll}>REGISTER <br/> <span className="sub-btn">For What You Need</span></Button>
                                         </Col >
-                                        <Col sm="4">
+                                        <Col sm="4" className="text-center">
                                             <Button className="button-links" onClick={this.state.resourcesScroll}>FIND <br/> <span className="sub-btn">Advice and Resources</span></Button>
                                         </Col>
                                     </Row>
