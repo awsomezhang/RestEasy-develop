@@ -12,8 +12,6 @@ import {
   } from "react-bootstrap";
 
 
-const image1 = require("../../../assets/img/away-3668344_1920_cropped.jpg")
-
 export default function Carousel() {
 
     return (
