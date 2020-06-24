@@ -60,13 +60,13 @@ export default class Carousel extends React.Component{
                                     </Row>
                                     <Row className="button-row">
                                         <Col sm="4">
-                                            <Button className="button-links" onClick={this.state.createScroll}>Create <br/> <span className="sub-btn">A Digital Memory</span></Button>
+                                            <Button className="button-links" onClick={this.state.createScroll}>CREATE <br/> <span className="sub-btn">A Digital Memory</span></Button>
                                         </Col>
                                         <Col sm="4">
-                                            <Button className="button-links" onClick={this.state.registerScroll}>Register <br/> <span className="sub-btn">For What You Need</span></Button>
+                                            <Button className="button-links" onClick={this.state.registerScroll}>REGISTER <br/> <span className="sub-btn">For What You Need</span></Button>
                                         </Col >
                                         <Col sm="4">
-                                            <Button className="button-links" onClick={this.state.resourcesScroll}>Find <br/> <span className="sub-btn">Advice and Resources</span></Button>
+                                            <Button className="button-links" onClick={this.state.resourcesScroll}>FIND <br/> <span className="sub-btn">Advice and Resources</span></Button>
                                         </Col>
                                     </Row>
                                 </Container>
