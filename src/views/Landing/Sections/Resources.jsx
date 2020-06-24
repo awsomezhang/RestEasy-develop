@@ -1,13 +1,13 @@
 import React from 'react';
 //import {Card, Col, Row} from "antd";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
-import "../../../styles.css"
+import "../../../styles/stylesWithButtons.css"
 
 function ResourcesHeader(){
     return (
         <div className="centered-text">
-            <h1> <b> Find </b> </h1>
-            <h3> advice and resources to help </h3>
+            <h1 className="color1-text"> <b> Find </b> </h1>
+            <h3 className="color3-text"> advice and resources to help </h3>
         </div>
     )
 }
@@ -38,12 +38,16 @@ function ResourcesAction(){
                     <Col md="8">
                         <Row className="justify-content-md-center ">
                             <Col md="1" />
-                            <Col className="center" md="4" style={{border: "solid", paddingTop: "30px", paddingBottom: "30px"}}>
-                                I lost someone I love and I don’t know what to do next
+                            <Col className="center" md="4">
+                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%", fontSize: "20px"}}>
+                                    I lost someone I love and I don’t know what to do next
+                                </Button>
                             </Col>
                             <Col md="2" />
-                            <Col className="center" md="4" style={{border: "solid", paddingTop: "30px", paddingBottom: "30px"}}>
-                                Someone I know and care about has lost someone they love and I don’t know how to help
+                            <Col className="center" md="4">
+                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%", fontSize: "20px"}}>
+                                    Someone I know and care about has lost someone they love and I don’t know how to help
+                                </Button>
                             </Col>
                             <Col md="1" />
                         </Row>

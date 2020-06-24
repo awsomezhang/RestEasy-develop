@@ -1,13 +1,13 @@
 import React from 'react';
 //import {Card, Col, Row} from "antd";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
-import "../../../styles.css"
+import "../../../styles/stylesWithButtons.css"
 
 function RegisterHeader(){
     return (
         <div className="centered-text">
-            <h1> <b> Register </b> </h1>
-            <h3> for what you need </h3>
+            <h1 className="color1-text"> <b> Register </b> </h1>
+            <h3 className="color3-text"> for what you need </h3>
         </div>
     )
 }
@@ -63,23 +63,23 @@ function RegisterButtons(){
                 <Row className="justify-content-md-center">
                     <Col md="2" />
                     <Col md="8">
-                        <Row className="justify-content-md-center">
+                        <Row className="justify-content-md-center" >
                             <Col md="3" style={{padding: "0px"}}>
-                                <button style={{width: "100%", height: "100%"}} className="center">
+                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%"}}>
                                     Create a Registry
-                                </button>
+                                </Button>
                             </Col>
                             <Col md="1" />
                             <Col md="3" style={{padding: "0px"}}>
-                                <button style={{width: "100%", height: "100%"}} className="center">
+                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%"}}>
                                     Find a Registry
-                                </button>
+                                </Button>
                             </Col>
                             <Col md="1" />
                             <Col md="3" style={{padding: "0px"}}>
-                                <button style={{width: "100%", height: "100%"}} className="center">
+                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%"}}>
                                     Browse Creative Commemoration
-                                </button>
+                                </Button>
                             </Col>
                         </Row>
                     </Col>

@@ -1,13 +1,13 @@
 import React from 'react';
 //import {Card, Col, Row} from "antd";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
-import "../../../styles.css"
+import "../../../styles/stylesWithButtons.css"
 
 function CreateHeader(){
     return (
         <div className="centered-text">
-            <h1> <b> Create </b> </h1>
-            <h3> a Forever Memory </h3>
+            <h1 className="color1-text"> <b> Create </b> </h1>
+            <h3 className="color3-text"> a Forever Memory </h3>
         </div>
     )
 }
@@ -57,11 +57,13 @@ function CreateAction(){
                 <Row>
                     <Col md="2" />
                     <Col md="4">
-                        <div style={{border: "solid", padding: "60px"}}>
-                            <h3> One time charge. </h3>
+                        <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%", padding: "60px"}}>
+                            One time charge.
                             <br />
-                            <h3> Remember forever. </h3>
-                        </div>
+                            <br />
+                            <br />
+                            Remember forever.
+                        </Button>
                     </Col>
                     <Col md="4">
                         <br />

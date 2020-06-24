@@ -1,7 +1,6 @@
 import React from 'react';
-import './Carousel.css';
+import './Welcome.css';
 import { Parallax, Background } from "react-parallax";
-import "../../../styles.css"
 
 import {
     Button,

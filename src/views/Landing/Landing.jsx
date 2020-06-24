@@ -1,7 +1,7 @@
 import React from 'react';
 import {Divider, Layout} from 'antd';
 
-import "../../styles.css"
+import "../../styles/styles.css"
 
 import FAQ from "./Sections/FAQ";
 import Welcome from "./Sections/Welcome";
