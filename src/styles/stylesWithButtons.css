@@ -52,7 +52,7 @@ a:hover {
 /* even smaller */
 @media screen and (max-width: 582px) {
     .button-links {
-        margin-top: 3px;
+        margin-top: 8px;
         border-width: 3px;
     }
 }
