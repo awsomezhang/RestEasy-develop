@@ -1,5 +1,5 @@
 import React from 'react';
-import './Carousel.css';
+import './Banner.css';
 import { Parallax, Background } from "react-parallax";
 import "../../../styles.css"
 
@@ -20,7 +20,7 @@ export default function Carousel() {
         <div>
                 <Row className="justify-content-md-center">
                     <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
-                        <div className="parallax">
+                        <div className="image-section">
                             <Container>
                                 <Row>
                                     <Col>
@@ -50,14 +50,14 @@ export default function Carousel() {
                                     </Col>
                                 </Row>
                                 <Row className="button-row">
-                                    <Col sm="4">
-                                        <Button className="btn-primary" >CREATE <br/> <span className="sub-btn">A Digital Memory</span></Button>
+                                    <Col sm="4" className="text-center">
+                                        <Button className="header-btn" >CREATE<br/> <span className="sub-btn">A Digital Memory</span></Button>
                                     </Col>
-                                    <Col sm="4">
-                                        <Button className="btn-primary">REGISTER <br/> <span className="sub-btn">For What You Need</span></Button>
+                                    <Col sm="4" className="text-center">
+                                        <Button className="header-btn">REGISTER<br/> <span className="sub-btn">For What You Need</span></Button>
                                     </Col >
-                                    <Col sm="4">
-                                        <Button className="btn-primary">FIND <br/> <span className="sub-btn">Advice and Resources</span></Button>
+                                    <Col sm="4" className="text-center">
+                                        <Button className="header-btn">FIND<br/> <span className="sub-btn">Advice and Resources</span></Button>
                                     </Col>
                                 
                                 </Row>

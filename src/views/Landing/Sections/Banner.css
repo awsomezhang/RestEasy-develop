@@ -7,10 +7,6 @@
     text-align: left;
 
 }
-.section {
-    background-color: white;
-    height: 100%
-}
 .middle {
     font-size: 25px;
     margin-top: 5px;
@@ -23,7 +19,7 @@
 
 }
 
-.parallax {
+.image-section {
     padding-top: 4%;
     background-image: url("../../../assets/img/green-1072828_gradientDarker.jpg");
     visibility: visible;
@@ -43,7 +39,7 @@
         display: flex;
         margin-top: 55px
     }
-    .btn-primary {
+    .header-btn {
         border-color: rgba(16, 131, 16, 0.74);
         font-weight: bold;
         background-color: transparent;
@@ -52,18 +48,19 @@
         font-size: 35px;
         line-height: 1;
         width: 250px;
+
     }
-    .btn-primary:hover {
+    .header-btn:hover {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
     }
-    .btn-primary:focus {
+    .header-btn:focus {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
     }
-    .btn-primary:active {
+    .header-btn:active {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
@@ -84,15 +81,16 @@
     .header {
         font-size: 25px;
     }
-    .btn-primary {
+    .header-btn {
         border-color: rgba(16, 131, 16, 0.74);
         font-weight: bold;
         background-color: transparent;
         border-width: 5px;
         font-size: 18px;
         line-height: 1.5;
+        
     }
-    .btn-primary:hover {
+    .header-btn:hover {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
@@ -108,7 +106,7 @@
         font-weight: normal;
         font-size: 14px;
     }
-    .parallax {
+    .image-section {
         padding-top: 4%;
         background-image: url("../../../assets/img/green-1072828_gradientDarker.jpg");
         visibility: visible;
@@ -125,14 +123,14 @@
 }
 /* even smaller */
 @media screen and (max-width: 582px) {
-    .btn-primary {
+    .header-btn {
         margin-top: 8px;
         border-width: 3px;
     }
     .vertical-line {
         border-left: 6px solid rgba(16, 131, 16, 0.74);
     }
-    .parallax {
+    .image-section {
         min-height: 600px;
       }
 }

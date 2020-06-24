@@ -5,7 +5,7 @@ import "../../styles.css"
 
 import FAQ from "./Sections/FAQ";
 import Samples from "./Sections/Samples";
-import Carousel from "./Sections/Carousel";
+import Banner from "./Sections/Banner";
 import HowItWorks from "./Sections/HowItWorks";
 import PageWrapper from "../../PageWrapper"
 import {
@@ -23,8 +23,11 @@ class Landing extends React.Component {
             <PageWrapper content={
                     <div>
                         <Container fluid={true}>
-                            <Carousel />
-                            <HowItWorks />
+                            <Banner />
+                            <div className="section">
+                                <HowItWorks />
+                            </div>
+                            
                         </Container>
                         
                     </div>
