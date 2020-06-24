@@ -8,12 +8,27 @@ import Samples from "./Sections/Samples";
 import Carousel from "./Sections/Carousel";
 import HowItWorks from "./Sections/HowItWorks";
 import PageWrapper from "../../PageWrapper"
+import {
+    Button,
+    Form,
+    Container,
+    Row,
+    Col,
+  } from "react-bootstrap";
+
 
 class Landing extends React.Component {
     render() {
         return (
             <PageWrapper content={
-                    <Carousel />
+                    <div>
+                        <Container fluid={true}>
+                            <Carousel />
+                            <HowItWorks />
+                        </Container>
+                        
+                    </div>
+                    
             }/>
         );
     }

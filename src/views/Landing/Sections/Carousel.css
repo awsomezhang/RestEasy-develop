@@ -9,7 +9,7 @@
 }
 .section {
     background-color: white;
-    height: 500px
+    height: 100%
 }
 .middle {
     font-size: 25px;
@@ -27,8 +27,8 @@
     padding-top: 4%;
     background-image: url("../../../assets/img/green-1072828_gradientDarker.jpg");
     visibility: visible;
-    max-height: none;
-    height: 87%;
+    min-height: 900px;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     background-size: 100% 100%;
@@ -43,30 +43,32 @@
         display: flex;
         margin-top: 55px
     }
-    .button-links {
+    .btn-primary {
         border-color: rgba(16, 131, 16, 0.74);
         font-weight: bold;
         background-color: transparent;
         border-width: 5px;
+        border-radius: 9px;
         font-size: 35px;
         line-height: 1;
-        width: 37vh;
+        width: 250px;
     }
-    .button-links:hover {
+    .btn-primary:hover {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
     }
-    .button-links:focus {
+    .btn-primary:focus {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
     }
-    .button-links:active {
+    .btn-primary:active {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
     }
+    
     .sub-btn {
         font-weight: normal;
         font-size: 15px;
@@ -82,7 +84,7 @@
     .header {
         font-size: 25px;
     }
-    .button-links {
+    .btn-primary {
         border-color: rgba(16, 131, 16, 0.74);
         font-weight: bold;
         background-color: transparent;
@@ -90,7 +92,7 @@
         font-size: 18px;
         line-height: 1.5;
     }
-    .button-links:hover {
+    .btn-primary:hover {
         background-color: white;
         color: rgba(16, 131, 16, 0.74);
         border-color: white;
@@ -111,7 +113,8 @@
         background-image: url("../../../assets/img/green-1072828_gradientDarker.jpg");
         visibility: visible;
         max-height: none;
-        height: 60%;
+        min-height: 500px;
+        height: 100%;
         width: 100%;
         overflow: hidden;
       }
@@ -122,11 +125,14 @@
 }
 /* even smaller */
 @media screen and (max-width: 582px) {
-    .button-links {
-        margin-top: 3px;
+    .btn-primary {
+        margin-top: 8px;
         border-width: 3px;
     }
     .vertical-line {
         border-left: 6px solid rgba(16, 131, 16, 0.74);
     }
+    .parallax {
+        min-height: 600px;
+      }
 }
