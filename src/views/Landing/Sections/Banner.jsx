@@ -22,7 +22,7 @@ export default function Carousel() {
                             <Container>
                                 <Row>
                                     <Col>
-                                        <div className="header">We are sorry you are here, <br/> but happy you found us!</div>
+                                        <div className="headerText">We are sorry you are here, <br/> but happy you found us!</div>
                                     </Col>
                                 </Row>
                                 <Row className="middle">
@@ -49,7 +49,7 @@ export default function Carousel() {
                                 </Row>
                                 <Row className="button-row">
                                     <Col sm="4" className="text-center">
-                                        <Button className="header-btn" >CREATE<br/> <span className="sub-btn">A Digital Memory</span></Button>
+                                        <button className="header-btn" >CREATE<br/> <span className="sub-btn">A Digital Memory</span></button>
                                     </Col>
                                     <Col sm="4" className="text-center">
                                         <Button className="header-btn">REGISTER<br/> <span className="sub-btn">For What You Need</span></Button>
