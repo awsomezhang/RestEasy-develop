@@ -45,7 +45,7 @@
     width: 250px;
     border-color: var(--Color1);
     color: var(--Color1);
-    background-color: transparent;
+    background-color: var(--Color5);
     border: solid;
     padding: 15px 32px;
     text-decoration: none;

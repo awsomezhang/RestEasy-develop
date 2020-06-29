@@ -11,6 +11,14 @@ import Register from "./Sections/Register"
 import Resources from "./Sections/Resources"
 
 import PageWrapper from "../../PageWrapper"
+import {
+    Button,
+    Form,
+    Container,
+    Row,
+    Col,
+  } from "react-bootstrap";
+
 function LandingDivider(){
     return( <Divider style={{
         minWidth: "1em",
