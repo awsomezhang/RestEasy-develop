@@ -1,4 +1,4 @@
-@import "../../../styles.css";
+@import "../../../styles/styles.css";
 
 .headerText {
     color: white;
@@ -75,7 +75,7 @@
     font-size: 15px;
 }
 .vertical-line {
-    border-left: 6px solid rgba(16, 131, 16, 0.74);
+    border-left: 6px solid var(--Color1);
 }
     
   
