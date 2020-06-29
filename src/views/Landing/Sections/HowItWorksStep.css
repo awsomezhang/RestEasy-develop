@@ -43,3 +43,8 @@
       margin: 10px
     }
 }
+@media only screen and (max-width: 366px) {
+    .box{
+      height: 260px;
+    }
+  }

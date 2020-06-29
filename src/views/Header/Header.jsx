@@ -8,7 +8,7 @@ function Header({ location }){
     const { pathname } = location;
 
     return (
-        <div>
+        <div className="header">
             <Navbar fixed="top" bg="light" expand="lg">
                 <Navbar.Brand href="/">
                     <img
