@@ -23,7 +23,6 @@
 }
 
 .image-section {
-    margin-top: 76px;
     background-image: url("../../../assets/img/tree_light_green_gradient.jpg");
     visibility: visible;
     height: 500px;
@@ -45,7 +44,6 @@
     width: 250px;
     border-color: var(--Color1);
     color: var(--Color1);
-    background-color: var(--Color5);
     border: solid;
     padding: 15px 32px;
     text-decoration: none;
