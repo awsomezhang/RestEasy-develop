@@ -8,7 +8,7 @@ function PageWrapper(props){
     return(
         <div style={{backgroundColor: "white"}}>
             <Header search={true}/>
-            {props.content}
+            <div style={{minHeight: "calc(100vh - 70px)"}}> {props.content} </div>
             <Footer />
         </div>
     )
