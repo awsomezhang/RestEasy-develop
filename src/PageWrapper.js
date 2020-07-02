@@ -6,7 +6,7 @@ import Footer from './views/Footer/Footer'
 
 function PageWrapper(props){
     return(
-        <div>
+        <div style={{backgroundColor: "white"}}>
             <Header search={true}/>
             {props.content}
             <Footer />
