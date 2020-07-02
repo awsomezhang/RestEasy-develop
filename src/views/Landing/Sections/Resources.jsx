@@ -62,15 +62,17 @@ function ResourcesAction(){
 class Resources extends React.Component {
     render() {
         return (
-            <div style={{backgroundColor: "var(--Color4)"}}>
-                <br />
-                <ResourcesHeader />
-                <br />
-                <ResourcesText />
-                <br />
-                <br />
-                <ResourcesAction />
-                <br />
+            <div style={{marginTop: "-50px", paddingTop: "60px"}}>
+                <div style={{backgroundColor: "var(--Color4)"}}>
+                    <br />
+                    <ResourcesHeader />
+                    <br />
+                    <ResourcesText />
+                    <br />
+                    <br />
+                    <ResourcesAction />
+                    <br />
+                </div>
             </div>
         )
     }

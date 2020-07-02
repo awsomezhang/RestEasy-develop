@@ -6,9 +6,9 @@ import Footer from './views/Footer/Footer'
 
 function PageWrapper(props){
     return(
-        <div style={{backgroundColor: "white"}}>
+        <div style={{height: "100%", backgroundColor: "white"}}>
             <Header search={true}/>
-            <div style={{minHeight: "calc(100vh - 70px)"}}> {props.content} </div>
+            <div style={{minHeight: "calc(100vh - 70px)", margin: "0"}}> {props.content} </div>
             <Footer />
         </div>
     )
