@@ -23,11 +23,11 @@ function Header({ location }){
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="menu-options">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">About</Nav.Link>
-                        <Nav.Link href="#faq">FAQ</Nav.Link>
-                        <Nav.Link href="#whatToDo">What to do Now?</Nav.Link>
-                        <Nav.Link href="#help">Help a friend in need</Nav.Link>
-                        <Nav.Link href="#registry">Registry</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
+                        <Nav.Link href="">FAQ</Nav.Link>
+                        <Nav.Link href="">What to do Now?</Nav.Link>
+                        <Nav.Link href="">Help a friend in need</Nav.Link>
+                        <Nav.Link href="/my/create">Registry</Nav.Link>
                         <Nav.Link href="/contact">Contact Us!</Nav.Link>
                     </Nav>
                     <div className="search-bar">
@@ -47,7 +47,7 @@ function Header({ location }){
                     </div>
                     
                     <Form inline>
-                        <Button variant="outline-success">Login</Button>
+                        <Button variant="outline-success" href="/login">Login</Button>
                     </Form>
                     
                 </Navbar.Collapse>

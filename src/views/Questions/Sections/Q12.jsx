@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography} from "antd";
+import {Typography, Button} from "antd";
 
 export default class Q13 extends React.Component {
     render() {
@@ -13,9 +13,13 @@ export default class Q13 extends React.Component {
                         URL
                     </Typography.Title>
                 </div>
-                <div style={{textAlign: "center", fontSize: "1.5em", marginTop: "0.5em", width: "30em"}}>
+                <div style={{textAlign: "center", fontSize: "1.5em", marginTop: "0.5em"}}>
                     Share this link with family and friends so that they
                     can add their own memories and contribute
+                </div>
+                <br />
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <Button type="primary" onClick={this.props.next}>Finish!</Button>
                 </div>
             </div>);
     }

@@ -16,26 +16,26 @@ export default function Footer() {
                         <img src={require('../../assets/img/linkedin.png')} style={{margin: "5px", maxWidth: "15%", maxHeight: "15%"}} />
                     </Col>
                     <Col md="1" className="center">
-                        <a href="/"> #resteasier </a>
+                        <a style={{color: "var(--Color1)"}} href="/"> #resteasier </a>
                     </Col>
                     <Col md="8" />
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col md="1" />
                     <Col md="2">
-                        <a href="/"> About RestEasy </a>
+                        <a style={{color: "var(--Color1)"}} href="/about"> About RestEasy </a>
                     </Col>
                     <Col md="9">
-                        <a href="/"> Privacy Policy / Terms & Conditions </a>
+                        <a style={{color: "var(--Color1)"}} href="/privacypolicy"> Privacy Policy / Terms & Conditions </a>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col md="1" />
                     <Col md="2">
-                        <a href="/"> Our Story </a>
+                        <a style={{color: "var(--Color1)"}} href="/story"> Our Story </a>
                     </Col>
                     <Col md="9">
-                        <a href="/"> Press </a>
+                        <a style={{color: "var(--Color1)"}} href="/press"> Press </a>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">

@@ -88,16 +88,18 @@ function CreateExtras(){
 class Create extends React.Component {
     render() {
         return (
-            <div style={{backgroundColor: "var(--Color4)"}}>
-                <br />
-                <CreateHeader />
-                <br />
-                <CreateText />
-                <br />
-                <CreateAction />
-                <br />
-                <CreateExtras />
-                <br />
+            <div style={{marginTop: "-50px", paddingTop: "60px"}}>
+                <div style={{backgroundColor: "var(--Color4)"}}>
+                    <br />
+                    <CreateHeader style={{marginTop: "-50px", paddingTop: "50px"}} />
+                    <br />
+                    <CreateText />
+                    <br />
+                    <CreateAction />
+                    <br />
+                    <CreateExtras />
+                    <br />
+                </div>
             </div>
         )
     }

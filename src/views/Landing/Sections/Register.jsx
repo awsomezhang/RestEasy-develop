@@ -93,14 +93,16 @@ function RegisterButtons(){
 class Register extends React.Component {
     render() {
         return (
-            <div>
+            <div style={{marginTop: "-50px", paddingTop: "60px"}}>
+                <div>
+                    <br />
+                    <RegisterHeader />
+                    <br />
+                    <RegisterDescriptions />
                 <br />
-                <RegisterHeader />
-                <br />
-                <RegisterDescriptions />
-                <br />
-                <RegisterButtons />
-                <br />
+                    <RegisterButtons />
+                    <br />
+                </div>
             </div>
         )
     }
