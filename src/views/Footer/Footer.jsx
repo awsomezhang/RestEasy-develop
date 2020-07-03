@@ -23,19 +23,19 @@ export default function Footer() {
                 <Row className="justify-content-md-center">
                     <Col md="1" />
                     <Col md="2">
-                        <a style={{color: "var(--Color1)"}} href="/"> About RestEasy </a>
+                        <a style={{color: "var(--Color1)"}} href="/about"> About RestEasy </a>
                     </Col>
                     <Col md="9">
-                        <a style={{color: "var(--Color1)"}} href="/"> Privacy Policy / Terms & Conditions </a>
+                        <a style={{color: "var(--Color1)"}} href="/privacypolicy"> Privacy Policy / Terms & Conditions </a>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col md="1" />
                     <Col md="2">
-                        <a style={{color: "var(--Color1)"}} href="/"> Our Story </a>
+                        <a style={{color: "var(--Color1)"}} href="/story"> Our Story </a>
                     </Col>
                     <Col md="9">
-                        <a style={{color: "var(--Color1)"}} href="/"> Press </a>
+                        <a style={{color: "var(--Color1)"}} href="/press"> Press </a>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
