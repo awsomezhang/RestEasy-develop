@@ -52,6 +52,9 @@ a:hover {
 
 
 /* Vanilla CSS for div text that many files would be using */
+.underline-text {
+    text-decoration: underline;
+}
 .emphasis-text {
     font-weight: bold;
 }

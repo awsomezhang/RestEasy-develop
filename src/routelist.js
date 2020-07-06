@@ -44,4 +44,14 @@ export default [
         URLpath: "/story",
         dirpath: "./views/OurStory/OurStory"
     },
+    {
+        id: 10,
+        URLpath: "/registry",
+        dirpath: "./views/Registry/Registry"
+    },
+    {
+        id: 11,
+        URLpath: "/whattodonow",
+        dirpath: "./views/WhatToDoNow/WhatToDoNow"
+    },
 ]
