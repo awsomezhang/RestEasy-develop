@@ -21,3 +21,7 @@
 .header {
     margin-bottom: 76px;
 }
+
+.navBar-custom {
+    background-color: rgba(0, 0, 0, 0.555);
+}
