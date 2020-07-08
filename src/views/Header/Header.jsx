@@ -25,9 +25,10 @@ function Header({ location }){
                     <Nav className="mr-auto">
                         <Nav.Link href="/about">About</Nav.Link>
                         <Nav.Link href="">FAQ</Nav.Link>
-                        <Nav.Link href="">What to do Now?</Nav.Link>
+                        <Nav.Link href="/whattodonow">What to do Now?</Nav.Link>
                         <Nav.Link href="">Help a friend in need</Nav.Link>
-                        <Nav.Link href="/my/create">Registry</Nav.Link>
+                        <Nav.Link href="/registry">Registry</Nav.Link>
+                        <Nav.Link href="/my/create">Create</Nav.Link>
                         <Nav.Link href="/contact">Contact Us!</Nav.Link>
                     </Nav>
                     <div className="search-bar">
