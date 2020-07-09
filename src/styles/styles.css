@@ -1,5 +1,5 @@
 /* Relating to font format */
- @font-face {
+  @font-face {
   font-family: 'Euphemia';
   src: local('Euphemia'), url(../assets/fonts/euphemia.ttf) format('woff');
 }
@@ -8,17 +8,17 @@
   font-family: Euphemia, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
-} 
-/* @font-face {
+}  
+ /* @font-face {
     font-family: "Poppins";
-    src: url("https://fonts.googleapis.com/css?family=Poppins");
+    src: url("https://fonts.googleapis.com/css?family=Montserrat");
   }
 
 * {
     font-family: Poppins -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-}  */
+}   */
 
 /* Colors for consistency */
 :root{
