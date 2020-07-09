@@ -54,7 +54,7 @@ function Header({ location }){
                     </div>
                     
                     <Form inline>
-                        <Button variant="outline-success" href="/login">Login</Button>
+                        <Button variant="success" href="/login">Login</Button>
                     </Form>
                     
                 </Navbar.Collapse>
