@@ -2,14 +2,21 @@ import React from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import PageWrapper from "../../PageWrapper"
 import "../../styles/styles.css"
+import "./Registry.css"
 
 export default function LoginForm() {
     return (
         <PageWrapper content={
             <div>
-                <br />
-                <h1 className="emphasis-text centered-text" style={{color: "var(--Color1)"}}> Registry </h1>
-                <br />
+                <Container fluid={true} className="header-banner">
+                    <Row className="justify-content-center">
+                        <Col className="d-flex justify-content-center" style={{ "paddingLeft": 0, "paddingRight": 0 }}>
+                            <div className="sub-header-top">
+                                Registry
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
                 <Container fluid={true}>
                     <Row className="justify-content-md-center">
                         <Col md="2" />
