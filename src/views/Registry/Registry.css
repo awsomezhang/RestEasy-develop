@@ -26,6 +26,7 @@
     /* identical to box height */
 
     color: #FFFFFF;
+}
 .image-section {
     height: 375px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.37) 99.99%, rgba(255, 255, 255, 0) 100%);
