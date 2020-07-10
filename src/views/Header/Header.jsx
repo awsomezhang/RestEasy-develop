@@ -18,7 +18,7 @@ function Header({ location }){
                 setScroll(scrollCheck)
             }
         })
-        console.log(scroll)
+        
     })
 
     return (
