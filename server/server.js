@@ -5,6 +5,8 @@ const cors = require('cors')
 
 // Setup express app
 const app = express();
+app.use(express.json());
+
 
 app.use(
     bodyParser.urlencoded({
@@ -23,16 +25,24 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 next();
 });
-// Configure Mongo
-// const db = "mongodb://localhost/313-demo-mern-db";
 
-// Connect to Mongo with Mongoose
-// mongoose.connect(
-//         db,
-//         { useNewUrlParser: true }
-//     )
-//     .then(() => console.log("Mongo connected"))
-//     .catch(err => console.log(err));
+
+// Configure Mongo
+
+// loading my personal URI for testing purposes. Keep file private (.gitignore)
+var mongoCreds = require('./mongoCreds.json');
+
+mongoose.connect(
+    mongoCreds.URI, { 
+        useNewUrlParser: true, 
+        useCreateIndex: true 
+    }
+);
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 
 // Specify the Port where the backend server can be accessed and start listening on that port
 const port = process.env.PORT || 5000;
