@@ -26,7 +26,7 @@ function Header({ location }){
             <Navbar className={scroll ?  null : "navBar-custom-dark"} fixed="top" expand="lg">
                 <Navbar.Brand href="/">
                     <img
-                        src={require('../../assets/img/Logo.png')}
+                        src={require('../../assets/img/logo.png')}
                         width="99px"
                         height="79px"
                         className="d-inline-block align-top"
