@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "latest",
+    "@types/uuid": "^8.0.0",
     "antd": "^4.0.1",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "concurrently": "^5.2.0",
@@ -22,7 +24,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.4.0",
     "react-spinners": "^0.8.0",
-    "react-stripe-checkout": "^2.6.3"
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^6.0.8",
+    "stripe": "^8.69.0"
   },
   "scripts": {
     "start": "react-scripts start",
