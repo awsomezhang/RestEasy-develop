@@ -4,6 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {tryUserSignUp} from "./SignupAPI";
 import PageWrapper from "../../PageWrapper.js";
 import "./SignUp.css"
+import axios from 'axios'
 
 const formItemLayout = {
     labelCol: {
@@ -41,27 +42,38 @@ export default function RegistrationForm() {
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        tryUserSignUp(values.name, values.email, values.password)
-            .done((response) => {
-                if (response.success) {
-                    localStorage.setItem("access_token", response.access_token);
-                    localStorage.setItem('user', JSON.stringify(response.user_data));
-                    window.location.href = "/";  // back to landing page
-                } else {
-                    notification.error({
-                        message: 'SignUp Failed',
-                        description: response.message,
-                        placement: 'bottomRight',
-                    });
-                }
-            })
-            .fail((error) => {
-                notification.error({
-                    message: 'SignUp Failed',
-                    description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
-                    placement: 'bottomRight',
-                });
-            });
+
+        const newUser = {
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }
+
+        console.log(newUser)
+        axios.post('http://localhost:5000/users/register', newUser)
+            .then(res => console.log(res.data));
+
+        // tryUserSignUp(values.name, values.email, values.password)
+        //     .done((response) => {
+        //         if (response.success) {
+        //             localStorage.setItem("access_token", response.access_token);
+        //             localStorage.setItem('user', JSON.stringify(response.user_data));
+        //             window.location.href = "/";  // back to landing page
+        //         } else {
+        //             notification.error({
+        //                 message: 'SignUp Failed',
+        //                 description: response.message,
+        //                 placement: 'bottomRight',
+        //             });
+        //         }
+        //     })
+        //     .fail((error) => {
+        //         notification.error({
+        //             message: 'SignUp Failed',
+        //             description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
+        //             placement: 'bottomRight',
+        //         });
+        //     });
     };
 
     return (

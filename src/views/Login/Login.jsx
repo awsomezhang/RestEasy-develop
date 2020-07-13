@@ -4,6 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {tryUserLogin} from "./LoginAPI";
 import PageWrapper from "../../PageWrapper"
 import "./Login.css"
+import axios from 'axios'
 
 const formItemLayout = {
     labelCol: {
@@ -41,21 +42,21 @@ export default function LoginForm() {
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        tryUserLogin(values.email, values.password)
-            .done(function(response) {
-                if (response.success) {
-                    localStorage.setItem("access_token", response.access_token);
-                    localStorage.setItem('user', JSON.stringify(response.user_data));
-                    window.location.href = "/";  // back to landing page
-                } else {
-                    notification.error({
-                        message: 'Login Failed',
-                        description: response.message,
-                        placement: 'bottomRight'
-                    });
-                }
-            })
-            .fail((error) => {
+
+        const user = {
+            email: values.email,
+            password: values.password,
+        }
+
+        axios.post('http://localhost:5000/users/authenticate', user)
+            .then(
+                res => {
+                    console.log(res.data)
+                    localStorage.setItem("access_token", res.token);
+                    localStorage.setItem('user', JSON.stringify(res.name));
+                    window.location.href = "/";
+                })
+            .catch((error) => {
                 notification.error({
                     message: 'Login Failed',
                     description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
