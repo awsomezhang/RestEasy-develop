@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.9.23"
+    "bcryptjs": "^2.4.3",
+    "express-jwt": "^6.0.0",
+    "mongoose": "^5.9.23",
+    "rootpath": "^0.1.2"
   }
 }
