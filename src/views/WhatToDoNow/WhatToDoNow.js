@@ -79,8 +79,8 @@ export default function LoginForm() {
                             <br />
 
                             Although not your only option,
-                            we think a <a className="color1-text underline-text" href="/my/create">Digital Memory </a>
-                            is a great way to accomplish all this – that’s why we built it.
+                            we think a <a className="color1-text underline-text" href="/templatedigitalmemory">Digital Memory</a> is
+                            a great way to accomplish all this – that’s why we built it.
                             <Row className="justify-content-md-center">
                                 <Col md="1" style={{textAlign: "right"}}> 1) </Col>
                                 <Col md="11">
