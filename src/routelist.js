@@ -54,4 +54,9 @@ export default [
         URLpath: "/whattodonow",
         dirpath: "./views/WhatToDoNow/WhatToDoNow"
     },
+    {
+        id: 12,
+        URLpath: "/templatedigitalmemory",
+        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory"
+    },
 ]
