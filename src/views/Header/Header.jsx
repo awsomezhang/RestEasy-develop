@@ -53,9 +53,19 @@ function Header({ location }){
                         </Form>
                     </div>
                     
-                    <Form inline>
-                        <Button variant="success" href="/login">Login</Button>
-                    </Form>
+                    <div>
+                        <Form inline>
+                            <Button variant="success" href="/login">Login</Button>
+                        </Form>
+                    </div>
+
+                                        
+                    <div style={{marginLeft:"15px"}}>
+                        <Form inline>
+                            <Button variant="success" href="/signup">Signup</Button>
+                        </Form>
+                    </div>
+
                     
                 </Navbar.Collapse>
             </Navbar>
