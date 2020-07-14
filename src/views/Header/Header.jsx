@@ -3,15 +3,17 @@ import "./Header.css"
 import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
 import { withRouter } from "react-router-dom";
 import { Input } from 'antd';
+import { withContext } from "../../AppContext"
 
 const { Search } = Input;
 
-function Header({ location }){
-    const { pathname } = location;
+function Header(props){
 
+    
     const [scroll, setScroll] = useState(true)
 
     useEffect(() => {
+        console.log(props.user)
         document.addEventListener("scroll", () => {
             const scrollCheck = window.scrollY < 100
             if (scrollCheck !== scroll) {
@@ -47,14 +49,17 @@ function Header({ location }){
                     <div className="search-area">
                         <Form inline>
                             <FormControl className="search-bar"
-                                    type="text"
-                                    placeholder="Search"
+                                type="text"
+                                placeholder="Search"
                             />
                         </Form>
                     </div>
                     
                     <Form inline>
-                        <Button variant="success" href="/login">Login</Button>
+
+                        {props.user ? <span className="username"> Hello {props.user.firstName}!</span> : null}
+                        {props.token ? <Button variant="success" onClick={() => props.logout()}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
+                        
                     </Form>
                     
                 </Navbar.Collapse>
@@ -63,4 +68,4 @@ function Header({ location }){
     )
 }
 
-export default withRouter(Header)
+export default withContext(Header)

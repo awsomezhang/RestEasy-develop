@@ -13,8 +13,8 @@ module.exports = {
     delete: _delete
 };
 
-async function authenticate({ username, password }) {
-    const user = await User.findOne({ username });
+async function authenticate({ email, password }) {
+    const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
         return {
@@ -35,11 +35,12 @@ async function getById(id) {
 async function create(userParam) {
     // validate
     console.log("validating")
-    if (await User.findOne({ username: userParam.username })) {
-        throw 'Username "' + userParam.username + '" is already taken';
+    console.log(userParam)
+    if (await User.findOne({ email: userParam.email })) {
+        console.log("username taken")
+        throw 'Email "' + userParam.email + '" is already taken';
     }
     console.log("validation successful")
-    console.log("userParam: " + JSON. stringify(userParam))
 
     const user = new User(userParam);
 
@@ -48,8 +49,17 @@ async function create(userParam) {
         user.hash = bcrypt.hashSync(userParam.password, 10);
     }
 
+    console.log("password hashed")
+
     // save user
-    await user.save();
+    await user.save()
+
+    const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+    return {
+        ...user.toJSON(),
+        token
+    };
+
 }
 
 async function update(id, userParam) {

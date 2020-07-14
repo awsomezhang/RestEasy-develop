@@ -4,7 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {tryUserLogin} from "./LoginAPI";
 import PageWrapper from "../../PageWrapper"
 import "./Login.css"
-import axios from 'axios'
+import { withContext } from "../../AppContext"
 
 const formItemLayout = {
     labelCol: {
@@ -37,32 +37,28 @@ const tailFormItemLayout = {
     },
 };
 
-export default function LoginForm() {
+function LoginForm(props) {
     const [form] = Form.useForm();
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
 
-        const user = {
-            email: values.email,
-            password: values.password,
-        }
+        props.login(values.email, values.password).then(() => props.history.push("/"))
 
-        axios.post('http://localhost:5000/users/authenticate', user)
-            .then(
-                res => {
-                    console.log(res.data)
-                    localStorage.setItem("access_token", res.token);
-                    localStorage.setItem('user', JSON.stringify(res.name));
-                    window.location.href = "/";
-                })
-            .catch((error) => {
-                notification.error({
-                    message: 'Login Failed',
-                    description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
-                    placement: 'bottomRight'
-                });
-            });
+        // axios.post('http://localhost:5000/users/authenticate', user)
+        //     .then(
+        //         res => {
+        //             console.log(res.data)
+        //             localStorage.setItem('user', JSON.stringify(res.data));
+        //             window.location.href = "/";
+        //         })
+        //     .catch((error) => {
+        //         notification.error({
+        //             message: 'Login Failed',
+        //             description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
+        //             placement: 'bottomRight'
+        //         });
+        //     });
     };
 
     return (
@@ -150,3 +146,5 @@ export default function LoginForm() {
         }/>
     );
 };
+
+export default withContext(LoginForm);

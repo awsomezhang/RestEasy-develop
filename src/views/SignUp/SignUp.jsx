@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Form, Input, Checkbox, Button, Layout, notification} from 'antd';
 import {Container, Row, Col} from "react-bootstrap";
 import {tryUserSignUp} from "./SignupAPI";
 import PageWrapper from "../../PageWrapper.js";
 import "./SignUp.css"
-import axios from 'axios'
+
+
+import { withContext } from "../../AppContext"
 
 const formItemLayout = {
     labelCol: {
@@ -37,21 +39,18 @@ const tailFormItemLayout = {
     },
 };
 
-export default function RegistrationForm() {
+function RegistrationForm(props)  {
+
     const [form] = Form.useForm();
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
 
-        const newUser = {
-            name: values.name,
-            email: values.email,
-            password: values.password
-        }
+        props.signup(values.firstName,values.lastName, values.email,values.password)
 
-        console.log(newUser)
-        axios.post('http://localhost:5000/users/register', newUser)
-            .then(res => console.log(res.data));
+        // console.log(newUser)
+        // axios.post('http://localhost:5000/users/register', newUser)
+        //     .then(res => console.log(res.data));
 
         // tryUserSignUp(values.name, values.email, values.password)
         //     .done((response) => {
@@ -99,8 +98,21 @@ export default function RegistrationForm() {
                                         Create an account
                                     </div>
                                     <Form.Item
-                                        name="name"
-                                        label="Name"
+                                        name="firstName"
+                                        label="First Name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input your name!',
+                                                whitespace: true,
+                                            },
+                                        ]}
+                                    >
+                                        <Input style={{width: "20em"}}/>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="lastName"
+                                        label="Last Name"
                                         rules={[
                                             {
                                                 required: true,
@@ -213,3 +225,5 @@ export default function RegistrationForm() {
         }/>
     );
 };
+
+export default withContext(RegistrationForm)
