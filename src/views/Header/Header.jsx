@@ -13,7 +13,6 @@ function Header(props){
     const [scroll, setScroll] = useState(true)
 
     useEffect(() => {
-        console.log(props.user)
         document.addEventListener("scroll", () => {
             const scrollCheck = window.scrollY < 100
             if (scrollCheck !== scroll) {
@@ -22,6 +21,9 @@ function Header(props){
         })
         
     })
+    const handleLogout = () => {
+        props.logout()
+    }
 
     return (
         <div className="header">
@@ -58,7 +60,7 @@ function Header(props){
                     <Form inline>
 
                         {props.user ? <span className="username"> Hello {props.user.firstName}!</span> : null}
-                        {props.token ? <Button variant="success" onClick={() => props.logout()}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
+                        {props.token ? <Button variant="success" onClick={() => {handleLogout()}}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
                         
                     </Form>
                     
