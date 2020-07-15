@@ -22,7 +22,8 @@ export default [
     {
         id: 5,
         URLpath: "/my/create",
-        dirpath: "./views/Questions/Questions"
+        dirpath: "./views/Questions/Questions",
+        status: "protected"
     },
     {
         id: 6,

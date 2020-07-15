@@ -13,7 +13,7 @@ import {
 export default function Step(props) {
     return (
         <div>
-            <Container flex={true}>
+            <Container flex="true">
                 <Row className="text-center">
                     <Col>
                         <div className="box">

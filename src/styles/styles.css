@@ -93,3 +93,8 @@ code {
 .landing-sections {
     margin-bottom: 50px
 }
+
+.link {
+    color: var(--Color1);
+    cursor: pointer;
+}
