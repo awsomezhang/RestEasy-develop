@@ -2,15 +2,23 @@ import React from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
-import LayoutRow from './LayoutRow.js'
+import LayoutRowEditor from './LayoutRowEditor.js'
 
-export default class ProcessedLayout extends React.Component{
+export default class ProcessedLayoutEditor extends React.Component{
     constructor(props){
         super(props)
+
         this.state = {
             templateLayout: props.templateLayout,
         }
+        console.log(this.state.templateLayout)
+
         this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
+        this.swapTemplateItems = this.swapTemplateItems.bind(this)
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({templateLayout : nextProps.templateLayout})
     }
 
     handleChangeTemplate = async(layout) => {
@@ -19,6 +27,7 @@ export default class ProcessedLayout extends React.Component{
             {layout}
         );
         const { status } = response.data
+
         if (status === "success") {
             toast("Success! Check email for details", { type: "success" })
         }
@@ -27,12 +36,31 @@ export default class ProcessedLayout extends React.Component{
         }
     }
 
+    swapTemplateItems = (rowi, coli, rowj, colj) => {
+        const tempimg = this.state.templateLayout[rowi]["items"][coli]["img"]
+        var tempTemplateLayout = this.state.templateLayout
+
+        tempTemplateLayout[rowi]["items"][coli]["img"] = this.state.templateLayout[rowj]["items"][colj]["img"]
+        tempTemplateLayout[rowj]["items"][colj]["img"] = tempimg
+
+        this.setState({
+            templateLayout: tempTemplateLayout
+        })
+
+        this.handleChangeTemplate(this.state.templateLayout)
+    }
+
     render(){
         const LayoutRows = this.state.templateLayout.map((rowinfo) => {
-            return <LayoutRow rowinfo={rowinfo.items} key={rowinfo.row} />
+            return(
+                <LayoutRowEditor
+                    rownum={rowinfo.row}
+                    rowinfo={rowinfo.items}
+                    key={rowinfo.row}
+                    handleChangeTemplate={this.swapTemplateItems}
+                />
+            )
         })
-        
-        this.handleChangeTemplate(this.state.templateLayout)
 
         return(
             <Container fluid={true}>
