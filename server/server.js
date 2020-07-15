@@ -85,6 +85,29 @@ app.post("/checkout", async (req, res) => {
     res.json({ error, status });
 });
 
+app.post("/changetemplate", async(req, res) => {
+    console.log("Request: change template")
+
+    let error;
+    let status;
+
+    try {
+        var fs = require('fs');
+        fs.writeFile(
+            '../src/views/TemplateDigitalMemory/temp.txt',
+            JSON.stringify(req.body["layout"]),
+            function(err){
+                if (err) throw err;
+                console.log("Template changed!")
+            }
+        );
+    } catch (error) {
+        console.error("Error: ", error);
+        status = "failure";
+    }
+
+    res.json({error, status});
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port}.`));

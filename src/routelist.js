@@ -60,4 +60,9 @@ export default [
         //dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory"
         dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryModular"
     },
+    {
+        id: 13,
+        URLpath: "/templatedigitalmemoryeditor",
+        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryModularEditor"
+    },
 ]

@@ -4,7 +4,7 @@ import PageWrapper from "../../PageWrapper"
 import "./TemplateDigitalMemory.css"
 import "../../styles/styles.css"
 import templateLayout from './layout.js'
-import ProcessedLayout from './TemplateComponents/ProcessedLayout.js'
+import ProcessedLayoutEditor from './TemplateComponents/ProcessedLayoutEditor.js'
 
 export default function LoginForm() {
     return (
@@ -15,7 +15,7 @@ export default function LoginForm() {
                 <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
                 <h3 className="centered-text"> date - date </h3>
                 <br />
-                <ProcessedLayout templateLayout={templateLayout} />
+                <ProcessedLayoutEditor templateLayout={templateLayout} />
                 <br />
             </div>
         }/>
