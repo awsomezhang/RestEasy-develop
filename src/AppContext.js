@@ -6,12 +6,13 @@ const authAxios = axios.create();
 
 const API_URL = REMOTE_HOST;
 
+
+// intercepts the outgoing request and attaches the jwt token to the header
 authAxios.interceptors.request.use((config)=>{
     const token = localStorage.getItem("token");
     config.headers.Authorization = `Bearer ${token}`;
     return config;
 })
-
 
 const AppContext = React.createContext();
 
@@ -20,7 +21,8 @@ export class AppContextProvider extends Component {
         super()
         this.state = {
             user: JSON.parse(localStorage.getItem("user")) || null,
-            token: localStorage.getItem("token") || ""
+            token: localStorage.getItem("token") || "",
+            routeAttempted: null
         }
     }
 
@@ -37,9 +39,10 @@ export class AppContextProvider extends Component {
                 localStorage.setItem("token", token);
                 localStorage.setItem("user", JSON.stringify(response.data));
                 this.setState({
-                    email,
-                    token
+                    user: response.data,
+                    token: token
                 });
+
                 return response;
             })
     }
@@ -59,7 +62,7 @@ export class AppContextProvider extends Component {
                     token: token
                 });
                 return response;
-            })
+            }).catch(e => console.log(e))
     }
 
     logout = () => {
@@ -71,6 +74,14 @@ export class AppContextProvider extends Component {
         })
     }
 
+    routeUpdate = (route) => {
+        console.log(this.state)
+        console.log(route)
+        this.setState({
+            routeAttempted: route,
+        })
+    }
+
     render() {
         return (
             <AppContext.Provider
@@ -78,6 +89,7 @@ export class AppContextProvider extends Component {
                     signup: this.signup,
                     login: this.login,
                     logout: this.logout,
+                    routeUpdate: this.routeUpdate,
                     ...this.state
                 }}
             >

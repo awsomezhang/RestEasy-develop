@@ -39,11 +39,12 @@ const tailFormItemLayout = {
 
 function LoginForm(props) {
     const [form] = Form.useForm();
+    console.log(props)
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
 
-        props.login(values.email, values.password).then(() => props.history.push("/"))
+        props.login(values.email, values.password).then(() => props.history.push(props.routeAttempted ? props.routeAttempted : "/"))
 
         // axios.post('http://localhost:5000/users/authenticate', user)
         //     .then(
@@ -122,7 +123,7 @@ function LoginForm(props) {
                                             </Button>
                                         </Form.Item>
                                         <div style={{textAlign: "center"}}>
-                                            Have no account? <a href="/signup">Create one</a>
+                                            Have no account? <span className="link" onClick={()=>{props.history.push("/signup")}}>Create one</span>
                                         </div>
                                         <Divider />
                                         <div style={{textAlign: "center", marginBottom: "1em"}}>
