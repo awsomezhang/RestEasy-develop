@@ -3,7 +3,9 @@ import PageWrapper from "../../PageWrapper"
 import axios from "axios";
 import "./TemplateDigitalMemory.css"
 import "../../styles/styles.css"
-import ProcessedLayoutEditor from './TemplateComponents/ProcessedLayoutEditor.js'
+import ProcessedLayoutEditor from './TemplateComponentsEditor/ProcessedLayoutEditor.js'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export default class TemplateDigitalMemoryModularEditor extends React.Component{
     constructor(props){
@@ -31,7 +33,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     render(){
         return (
             <PageWrapper content={
-                <div>
+                <DndProvider backend={HTML5Backend}>
                     <div style={{height: "100px", backgroundColor:"grey"}} />
                     <br />
                     <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
@@ -39,7 +41,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
                     <br />
                     <ProcessedLayoutEditor templateLayout={this.state.templateLayout} />
                     <br />
-                </div>
+                </DndProvider>
             }/>
         )
     }

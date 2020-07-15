@@ -11,7 +11,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.state = {
             templateLayout: props.templateLayout,
         }
-        console.log(this.state.templateLayout)
 
         this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
         this.swapTemplateItems = this.swapTemplateItems.bind(this)
@@ -57,7 +56,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                     rownum={rowinfo.row}
                     rowinfo={rowinfo.items}
                     key={rowinfo.row}
-                    handleChangeTemplate={this.swapTemplateItems}
+                    swapTemplateItems={this.swapTemplateItems}
                 />
             )
         })

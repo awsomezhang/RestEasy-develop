@@ -13,16 +13,16 @@ export default function LayoutRow(props){
                 <Col md={"" + (2 * item.width)} key={item.col} />
             )
         }
+        const h = (200 + (220 * (item.height - 1)))
         if(item.img == 'placeholder'){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
-                    <div className = "center" style={{zIndex: "-100", height: "100%", textAlign: "center", backgroundColor: "lightgrey"}}>
+                    <div className = "center" style={{zIndex: "-100", height: h, textAlign: "center", backgroundColor: "lightgrey"}}>
                         memories (text) shared go here
                     </div>
                 </Col>
             )
         }
-        const h = (200 + (220 * (item.height - 1)))
         return(
             <Col md={2 * item.width} className="padded" key={item.col}>
                 <img
