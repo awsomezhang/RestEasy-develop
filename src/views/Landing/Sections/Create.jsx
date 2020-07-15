@@ -80,7 +80,7 @@ function CreateExtras(){
     return (
         <div className="centered-text">
             See the difference for yourself –
-            check out <a href="/">samples</a> or <a href="/">reviews</a>.
+            check out <a href="/templatedigitalmemory">samples</a> or <a href="/">reviews</a>.
         </div>
     )
 }
