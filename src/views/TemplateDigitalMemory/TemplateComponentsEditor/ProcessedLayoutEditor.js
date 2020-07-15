@@ -57,6 +57,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                     rowinfo={rowinfo.items}
                     key={rowinfo.row}
                     swapTemplateItems={this.swapTemplateItems}
+                    zIndex={"" + (this.state.templateLayout.length - rowinfo.row)}
                 />
             )
         })

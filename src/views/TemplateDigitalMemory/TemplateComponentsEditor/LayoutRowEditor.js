@@ -11,7 +11,7 @@ export default function LayoutRowEditor(props){
         }
         if(item.img == ''){
             return(
-                <Col md={"" + (2 * item.width)} key={item.col} />
+                <Col md={"" + (2 * item.width)} key={item.col} style={{height: "0px"}}/>
             )
         }
         const h = (200 + (220 * (item.height - 1)))
@@ -21,7 +21,7 @@ export default function LayoutRowEditor(props){
                     <DraggableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col}>
                         <div
                             className = "center"
-                            style={{zIndex: "-100", height: h, textAlign: "center", backgroundColor: "lightgrey"}}
+                            style={{height: h, textAlign: "center", backgroundColor: "lightgrey"}}
                         >
                             memories (text) shared go here
                         </div>
@@ -31,10 +31,10 @@ export default function LayoutRowEditor(props){
         }
         return(
             <Col md={2 * item.width} className="padded" key={item.col}>
-                <DraggableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col}>
+                <DraggableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} height={h} style={{zIndex: 99999}}>
                     <img
                         src={item.img}
-                        style={{height: h, width: "100%", objectFit: "cover", position: "relative", zIndex: "100"}}
+                        style={{height: h, width: "100%", objectFit: "cover"}}
                     />
                 </DraggableComponent>
             </Col>
@@ -42,10 +42,10 @@ export default function LayoutRowEditor(props){
     })
 
     return(
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-md-center" style={{zIndex: props.zIndex}}>
             <Col md="1" />
-            <Col md="10">
-                <Row className="justify-content-md-center">
+            <Col md="10" style={{zIndex: props.zIndex}}>
+                <Row className="justify-content-md-center" style={{zIndex: props.zIndex}}>
                     {LayoutCols}
                 </Row>
             </Col>

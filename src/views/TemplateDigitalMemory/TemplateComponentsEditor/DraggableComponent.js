@@ -26,11 +26,11 @@ export default function DraggableComponent(props){
 
     return(
         <div
-            style={{height: "100%"}}
+            style={{height: (props.height ? props.height : "100%")}}
             ref = {drag}
         >
             <div
-                style={{height: "100%"}}
+                style={{height: "100%", filter: "blur(" + (isOver ? "5px" : "0px") + ") sepia(" + (isOver ? "100%" : "0%") + ")"}}
                 ref = {drop}
             >
                 {props.children}
