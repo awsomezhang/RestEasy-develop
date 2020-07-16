@@ -22,6 +22,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.clearLastClicked = this.clearLastClicked.bind(this)
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
         this.addRow = this.addRow.bind(this)
+        this.resetTemplate = this.resetTemplate.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -40,8 +41,9 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({templateLayout : nextProps.templateLayout})
     }
 
-    handleChangeTemplate = async(layout) => {
-        const response = await axios.post(
+    handleChangeTemplate = async() => {
+        const layout = this.state.templateLayout
+        await axios.post(
             "http://localhost:5000/changetemplate",
             {layout}
         );
@@ -58,7 +60,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout
         })
 
-        this.handleChangeTemplate(this.state.templateLayout)
+        this.handleChangeTemplate()
     }
 
     clearLastClicked = () => {
@@ -68,7 +70,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout,
             lastClickedImg: "",
         })
-        this.handleChangeTemplate(this.state.templateLayout)
+        this.handleChangeTemplate()
     }
 
     addRow = () => {
@@ -87,7 +89,20 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             templateLayout: tempTemplateLayout
         })
-        this.handleChangeTemplate(this.state.templateLayout)
+        this.handleChangeTemplate()
+    }
+
+    resetTemplate = () => {
+        axios.get("http://localhost:5000/getresettemplate")
+            .then((response) => {
+                this.setState({
+                    templateLayout: response["data"]
+                })
+                this.handleChangeTemplate()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     render(){
@@ -107,6 +122,13 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         return(
             <div>
+                <button
+                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
+                    onClick={() => {this.resetTemplate()}}
+                >
+                    RESET
+                </button>
+                <br />
                 <Container fluid={true}>
                     {LayoutRows}
                 </Container>

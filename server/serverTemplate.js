@@ -141,5 +141,29 @@ app.get("/gettemplate", async(req, res) => {
 
 })
 
+app.get("/getresettemplate", async(req, res) => {
+    console.log("Request: get template")
+
+    let error
+    let status
+
+    try{
+        var fs = require('fs');
+        fs.readFile(
+            '../src/views/TemplateDigitalMemory/layout_backup2.js',
+            "utf8",
+            function read(err, data){
+                if (err) throw err;
+                console.log("Template read!")
+                res.send(data.substr(14))
+            }
+        );
+    }
+    catch (error) {
+        console.error("Error: ", error);
+    }
+
+})
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port}.`));
