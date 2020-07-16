@@ -23,6 +23,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
         this.addRow = this.addRow.bind(this)
         this.resetTemplate = this.resetTemplate.bind(this)
+        this.deleteRow = this.deleteRow.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -105,6 +106,19 @@ export default class ProcessedLayoutEditor extends React.Component{
             })
     }
 
+    deleteRow = (rownum) => {
+        var tempTemplateLayout = this.state.templateLayout
+        tempTemplateLayout.splice(rownum, 1)
+        var i
+        for(i = 0; i < tempTemplateLayout.length; i++){
+            tempTemplateLayout[i]["row"] = i
+        }
+        this.setState({
+            templateLayout: tempTemplateLayout
+        })
+        this.handleChangeTemplate()
+    }
+
     render(){
         const LayoutRows = this.state.templateLayout.map((rowinfo) => {
             return(
@@ -116,6 +130,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     sendClickedInfo={this.sendClickedInfo}
                     zIndex={"" + (this.state.templateLayout.length - rowinfo.row)}
+                    deleteRow={this.deleteRow}
                 />
             )
         })

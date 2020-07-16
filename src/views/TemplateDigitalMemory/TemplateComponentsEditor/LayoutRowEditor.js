@@ -58,7 +58,16 @@ export default function LayoutRowEditor(props){
                     {LayoutCols}
                 </Row>
             </Col>
-            <Col md="1" />
+            <Col md="1">
+                <button
+                    style={{marginTop: "50%"}}
+                    onClick={() => {
+                        props.deleteRow(props.rownum)
+                    }}
+                >
+                    Delete row
+                </button>
+            </Col>
         </Row>
     )
 }
