@@ -23,6 +23,15 @@ export default function LayoutRow(props){
                 </Col>
             )
         }
+        if(item.img == 'insert'){
+            return(
+                <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
+                    <div className = "center" style={{zIndex: "-100", height: h, textAlign: "center", backgroundColor: "lightgreen"}}>
+                        Insert memory or media here
+                    </div>
+                </Col>
+            )
+        }
         return(
             <Col md={2 * item.width} className="padded" key={item.col}>
                 <img
