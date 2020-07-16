@@ -42,13 +42,24 @@ export default class Q12 extends React.Component {
     // };
 
     handleToken = async(token, addresses) => {
+
+        console.log(token, addresses )
+
+        const jwt = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        }
+        console.log("token: " + jwt)
         const response = await axios.post(
-            "http://localhost:5000/checkout",
-            { token }
+            constants.REMOTE_HOST+"/payment/checkout",
+            { token }, config
+
         );
-        const { status } = response.data;
-        console.log("Response:", response.data);
-        if (status === "success") {
+        const { message } = response.data;
+        console.log("Response:", message);
+        if (message === "success") {
             toast("Success! Check email for details", { type: "success" });
         } else {
             toast("Something went wrong", { type: "error" });
