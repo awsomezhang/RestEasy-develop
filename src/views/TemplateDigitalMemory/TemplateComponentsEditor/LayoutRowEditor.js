@@ -9,11 +9,6 @@ export default function LayoutRowEditor(props){
         if(!item.exists){
             return(null)   
         }
-        if(item.img == ''){
-            return(
-                <Col md={"" + (2 * item.width)} key={item.col} style={{height: "0px"}}/>
-            )
-        }
         const h = (200 + (220 * (item.height - 1)))
         if(item.img == 'nonimage'){
             return(
@@ -29,7 +24,7 @@ export default function LayoutRowEditor(props){
                 </Col>
             )
         }
-        if(item.img == 'insert'){
+        if(item.img == ''){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
                     <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo}>

@@ -8,7 +8,7 @@ export default function LayoutRow(props){
         if(!item.exists){
             return(null)   
         }
-        if(item.img == '' || item.img == 'insert'){
+        if(item.img == ''){
             return(
                 <Col md={"" + (2 * item.width)} key={item.col} />
             )
@@ -23,6 +23,7 @@ export default function LayoutRow(props){
                 </Col>
             )
         }
+        console.log(item.img)
         return(
             <Col md={2 * item.width} className="padded" key={item.col}>
                 <img

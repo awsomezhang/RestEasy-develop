@@ -39,7 +39,7 @@ function NonimagePopup(props){
 
 function CustomPopup(props){
     const img = props.img
-    if(img == "insert"){
+    if(img == ""){
         return(<InsertPopup />)
     }
     if(img == "nonimage"){

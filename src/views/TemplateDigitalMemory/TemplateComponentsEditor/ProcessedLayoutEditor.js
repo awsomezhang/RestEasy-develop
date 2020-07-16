@@ -21,6 +21,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.togglePopupIsOpen = this.togglePopupIsOpen.bind(this)
         this.clearLastClicked = this.clearLastClicked.bind(this)
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
+        this.addRow = this.addRow.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -62,10 +63,29 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     clearLastClicked = () => {
         var tempTemplateLayout = this.state.templateLayout
-        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = "insert"
+        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = ""
         this.setState({
             templateLayout: tempTemplateLayout,
-            lastClickedImg: "insert",
+            lastClickedImg: "",
+        })
+        this.handleChangeTemplate(this.state.templateLayout)
+    }
+
+    addRow = () => {
+        var tempTemplateLayout = this.state.templateLayout
+        tempTemplateLayout.push({
+            row: tempTemplateLayout.length,
+            items: [
+                {col: 0, width: 1, height: 1, img: "", exists: true},
+                {col: 1, width: 1, height: 1, img: "", exists: true},
+                {col: 2, width: 1, height: 1, img: "", exists: true},
+                {col: 3, width: 1, height: 1, img: "", exists: true},
+                {col: 4, width: 1, height: 1, img: "", exists: true},
+                {col: 5, width: 1, height: 1, img: "", exists: true},
+            ]
+        })
+        this.setState({
+            templateLayout: tempTemplateLayout
         })
         this.handleChangeTemplate(this.state.templateLayout)
     }
@@ -90,6 +110,14 @@ export default class ProcessedLayoutEditor extends React.Component{
                 <Container fluid={true}>
                     {LayoutRows}
                 </Container>
+                <br />
+                <button
+                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
+                    onClick={() => {this.addRow()}}
+                >
+                    Add row
+                </button>
+                <br />
                 <EditorPopup
                     popupIsOpen={this.state.popupIsOpen}
                     togglePopupIsOpen={this.togglePopupIsOpen}
