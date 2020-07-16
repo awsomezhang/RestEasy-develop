@@ -15,7 +15,7 @@ export default function LayoutRowEditor(props){
             )
         }
         const h = (200 + (220 * (item.height - 1)))
-        if(item.img == 'placeholder'){
+        if(item.img == 'nonimage'){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
                     <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo}>
@@ -37,7 +37,7 @@ export default function LayoutRowEditor(props){
                             className = "center"
                             style={{height: h, textAlign: "center", backgroundColor: "lightgreen"}}
                         >
-                            Insert memory or media here
+                            Insert memory or media here, or drag to merge with another item
                         </div>
                     </EditableComponent>
                 </Col>

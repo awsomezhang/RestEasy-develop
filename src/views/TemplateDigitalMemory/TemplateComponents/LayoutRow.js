@@ -8,26 +8,17 @@ export default function LayoutRow(props){
         if(!item.exists){
             return(null)   
         }
-        if(item.img == ''){
+        if(item.img == '' || item.img == 'insert'){
             return(
                 <Col md={"" + (2 * item.width)} key={item.col} />
             )
         }
         const h = (200 + (220 * (item.height - 1)))
-        if(item.img == 'placeholder'){
+        if(item.img == 'nonimage'){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
                     <div className = "center" style={{zIndex: "-100", height: h, textAlign: "center", backgroundColor: "lightgrey"}}>
                         memories (text) shared go here
-                    </div>
-                </Col>
-            )
-        }
-        if(item.img == 'insert'){
-            return(
-                <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
-                    <div className = "center" style={{zIndex: "-100", height: h, textAlign: "center", backgroundColor: "lightgreen"}}>
-                        Insert memory or media here
                     </div>
                 </Col>
             )
@@ -46,7 +37,7 @@ export default function LayoutRow(props){
         <Row className="justify-content-md-center">
             <Col md="1" />
             <Col md="10">
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center" style={{height: "220px"}}>
                     {LayoutCols}
                 </Row>
             </Col>

@@ -1,48 +1,8 @@
 import React from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import axios from "axios";
-import { toast } from "react-toastify";
 import LayoutRowEditor from './LayoutRowEditor.js'
-import Popup from "reactjs-popup"
-
-function InsertPopup(props){
-    return(
-        <div>
-            Insert
-        </div>
-    )
-}
-
-function ImagePopup(props){
-    return(
-        <div>
-            <button onClick={() => {props.clearLastClicked()}}>
-                Delete this.
-            </button>
-        </div>
-    )
-}
-
-function PlaceholderPopup(props){
-    return(
-        <div>
-            <button onClick={() => {props.clearLastClicked()}}>
-                Delete this.
-            </button>
-        </div>
-    )
-}
-
-function CustomPopup(props){
-    const img = props.img
-    if(img == "insert"){
-        return(<InsertPopup />)
-    }
-    if(img == "placeholder"){
-        return(<PlaceholderPopup clearLastClicked={props.clearLastClicked} />)
-    }
-    return(<ImagePopup clearLastClicked={props.clearLastClicked} />)
-}
+import EditorPopup from './EditorPopup.js'
 
 export default class ProcessedLayoutEditor extends React.Component{
     constructor(props){
@@ -84,14 +44,6 @@ export default class ProcessedLayoutEditor extends React.Component{
             "http://localhost:5000/changetemplate",
             {layout}
         );
-        const { status } = response.data
-
-        if (status === "success") {
-            toast("Success! Check email for details", { type: "success" })
-        }
-        else {
-            toast("Something went wrong", { type: "error" })
-        }
     }
 
     swapTemplateItems = (rowi, coli, rowj, colj) => {
@@ -100,7 +52,6 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         tempTemplateLayout[rowi]["items"][coli]["img"] = this.state.templateLayout[rowj]["items"][colj]["img"]
         tempTemplateLayout[rowj]["items"][colj]["img"] = tempimg
-        console.log(tempimg)
 
         this.setState({
             templateLayout: tempTemplateLayout
@@ -116,6 +67,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout,
             lastClickedImg: "insert",
         })
+        this.handleChangeTemplate(this.state.templateLayout)
     }
 
     render(){
@@ -138,16 +90,12 @@ export default class ProcessedLayoutEditor extends React.Component{
                 <Container fluid={true}>
                     {LayoutRows}
                 </Container>
-                <Popup
-                    open={(this.state.popupIsOpen)}
-                    onClose={() => {this.togglePopupIsOpen()}}
-                    style={{zIndex: "999999"}}
-                >
-                    <CustomPopup
-                        img={this.state.lastClickedImg}
-                        clearLastClicked={this.clearLastClicked}
-                    />
-                </Popup>
+                <EditorPopup
+                    popupIsOpen={this.state.popupIsOpen}
+                    togglePopupIsOpen={this.togglePopupIsOpen}
+                    lastClickedImg={this.state.lastClickedImg}
+                    clearLastClicked={this.clearLastClicked}
+                />
             </div>
         )
     }

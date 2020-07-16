@@ -107,7 +107,7 @@ export default [
                 col: 1,
                 width: 3,
                 height: 1,
-                img: 'placeholder',
+                img: 'nonimage',
                 exists: true,
             },
             {
@@ -201,7 +201,7 @@ export default [
                 col: 1,
                 width: 5,
                 height: 1,
-                img: 'placeholder',
+                img: 'nonimage',
                 exists: true,
             },
             {

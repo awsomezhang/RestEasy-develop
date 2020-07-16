@@ -53,6 +53,15 @@ export default class EditableComponent extends React.Component{
         this.sendClickedInfo = props.sendClickedInfo.bind(this)
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            height: nextProps.height,
+            rownum: nextProps.rownum,
+            colnum: nextProps.colnum,
+            img: nextProps.img,
+        })
+    }
+
     render(){
         return(
             <div>
