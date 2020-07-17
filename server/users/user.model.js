@@ -6,7 +6,8 @@ const schema = new Schema({
     lastName: { type: String, required: true },
     hash: { type: String, required: true },
     email: { type: String, unique: true, required: true },
-    createdDate: { type: Date, default: Date.now }
+    createdDate: { type: Date, default: Date.now },
+    digitalMemories: {type: Object }
 });
 
 schema.set('toJSON', {
