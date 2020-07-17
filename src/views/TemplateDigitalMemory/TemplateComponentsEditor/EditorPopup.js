@@ -4,9 +4,26 @@ import Popup from "reactjs-popup"
 function InsertPopup(props){
     return(
         <div>
-            <button> Add image </button>
-            <button> Add Memory </button>
-            <button> Add Spotify playlist </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+            >
+                Add image
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("nonimage")}}
+            >
+                Add Memory
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+            >
+                Add Spotify playlist
+            </button>
+            <button
+                onClick={() => {props.breakInsert()}}
+            >
+                Break this section up.
+            </button>
         </div>
     )
 }
@@ -14,12 +31,26 @@ function InsertPopup(props){
 function ImagePopup(props){
     return(
         <div>
-            <button onClick={() => {props.clearLastClicked()}}>
+            <button
+                onClick={() => {props.clearLastClicked()}}
+            >
                 Delete this.
             </button>
-            <button> Show a different image </button>
-            <button> Change to Memory </button>
-            <button> Change to Spotify playlist </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+            >
+                Show a different image
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("nonimage")}}
+            >
+                Change to Memory
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+            >
+                Change to Spotify playlist
+            </button>
         </div>
     )
 }
@@ -27,12 +58,26 @@ function ImagePopup(props){
 function NonimagePopup(props){
     return(
         <div>
-            <button onClick={() => {props.clearLastClicked()}}>
+            <button
+                onClick={() => {props.clearLastClicked()}}
+            >
                 Delete this.
             </button>
-            <button> Change to image </button>
-            <button> Show a different Memory </button>
-            <button> Change to Spotify playlist </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+            >
+                Change to image
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("nonimage")}}
+            >
+                Show a different Memory
+            </button>
+            <button
+                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+            >
+                Change to Spotify playlist
+            </button>
         </div>
     )
 }
@@ -40,12 +85,29 @@ function NonimagePopup(props){
 function CustomPopup(props){
     const img = props.img
     if(img == ""){
-        return(<InsertPopup />)
+        return(
+            <InsertPopup
+                changeLastImg={props.changeLastImg}
+                breakInsert={props.breakInsert}
+            />
+        )
     }
     if(img == "nonimage"){
-        return(<NonimagePopup clearLastClicked={props.clearLastClicked} />)
+        return(
+            <NonimagePopup
+                clearLastClicked={props.clearLastClicked}
+                changeLastImg={props.changeLastImg}
+            />
+        )
     }
-    return(<ImagePopup clearLastClicked={props.clearLastClicked} />)
+    else{
+        return(
+            <ImagePopup
+                clearLastClicked={props.clearLastClicked}
+                changeLastImg={props.changeLastImg}
+            />
+        )
+    }
 }
 
 export default function EditorPopup (props){
@@ -58,6 +120,8 @@ export default function EditorPopup (props){
             <CustomPopup
                 img={props.lastClickedImg}
                 clearLastClicked={props.clearLastClicked}
+                changeLastImg={props.changeLastImg}
+                breakInsert={props.breakInsert}
             />
         </Popup>
     )

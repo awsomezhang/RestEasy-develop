@@ -36,8 +36,8 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
                 <DndProvider backend={HTML5Backend}>
                     <div style={{height: "100px", backgroundColor:"grey"}} />
                     <br />
-                    <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
-                    <h3 className="centered-text"> date - date </h3>
+                    <h1 className="centered-text emphasis-text"> Template Digital Memory Editor </h1>
+                    <h3 className="centered-text"> Click on items to interact, or drag and drop to swap/merge </h3>
                     <br />
                     <ProcessedLayoutEditor templateLayout={this.state.templateLayout} />
                     <br />

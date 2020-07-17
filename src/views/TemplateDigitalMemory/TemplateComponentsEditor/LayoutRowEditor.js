@@ -5,7 +5,6 @@ import "../../../styles/styles.css"
 import EditableComponent from "./EditableComponent.js"
 
 export default function LayoutRowEditor(props){
-    console.log(props.rowinfo)
     const LayoutCols = props.rowinfo.map((item) => {
         if(!item.exists){
             return(null)   

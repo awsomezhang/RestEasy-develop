@@ -24,6 +24,9 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.addRow = this.addRow.bind(this)
         this.resetTemplate = this.resetTemplate.bind(this)
         this.deleteRow = this.deleteRow.bind(this)
+        this.breakAndDeleteLarge = this.breakAndDeleteLarge.bind(this)
+        this.breakInsert = this.breakInsert.bind(this)
+        this.changeLastImg = this.changeLastImg.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -65,13 +68,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     clearLastClicked = () => {
-        var tempTemplateLayout = this.state.templateLayout
-        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = ""
-        this.setState({
-            templateLayout: tempTemplateLayout,
-            lastClickedImg: "",
-        })
-        this.handleChangeTemplate()
+        this.changeLastImg("")
     }
 
     addRow = () => {
@@ -111,38 +108,14 @@ export default class ProcessedLayoutEditor extends React.Component{
         var i
         for(i = 0; i < 6; i++){
             if(tempTemplateLayout[rownum]["items"][i]["under"] != null){
-                var topRowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][1]
-                var topColStart = i - tempTemplateLayout[rownum]["items"][i]["under"][0]
-                var topRowEnd = topRowStart + tempTemplateLayout[topRowStart]["items"][topColStart]["height"]
-                var topColEnd = topColStart + tempTemplateLayout[topRowStart]["items"][topColStart]["width"]
-                var j
-                var k
-                for(j = topRowStart; j < topRowEnd; j++){
-                    for(k = topColStart; k < topColEnd; k++){
-                        tempTemplateLayout[j]["items"][k]["img"] = ""
-                        tempTemplateLayout[j]["items"][k]["exists"] = true
-                        tempTemplateLayout[j]["items"][k]["height"] = 1
-                        tempTemplateLayout[j]["items"][k]["width"] = 1
-                        tempTemplateLayout[j]["items"][k]["under"] = null
-                    }
-                }
+                var rowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][1]
+                var colStart = i - tempTemplateLayout[rownum]["items"][i]["under"][0]
+                console.log(tempTemplateLayout)
+                this.breakAndDeleteLarge(tempTemplateLayout, rowStart, colStart)
             }
             if(tempTemplateLayout[rownum]["items"][i]["height"] != 1 || tempTemplateLayout[rownum]["items"][i]["width"] != 1){
-                var topRowStart = rownum
-                var topColStart = i
-                var topRowEnd = topRowStart + tempTemplateLayout[topRowStart]["items"][topColStart]["height"]
-                var topColEnd = topColStart + tempTemplateLayout[topRowStart]["items"][topColStart]["width"]
-                var j
-                var k
-                for(j = topRowStart; j < topRowEnd; j++){
-                    for(k = topColStart; k < topColEnd; k++){
-                        tempTemplateLayout[j]["items"][k]["img"] = ""
-                        tempTemplateLayout[j]["items"][k]["exists"] = true
-                        tempTemplateLayout[j]["items"][k]["height"] = 1
-                        tempTemplateLayout[j]["items"][k]["width"] = 1
-                        tempTemplateLayout[j]["items"][k]["under"] = null
-                    }
-                }
+                console.log(tempTemplateLayout)
+                this.breakAndDeleteLarge(tempTemplateLayout, rownum, i)
             }
         }
 
@@ -153,6 +126,42 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         this.setState({
             templateLayout: tempTemplateLayout
+        })
+        this.handleChangeTemplate()
+    }
+
+    breakAndDeleteLarge = (tempTemplateLayout, rowStart, colStart) => {
+        var rowEnd = rowStart + tempTemplateLayout[rowStart]["items"][colStart]["height"]
+        var colEnd = colStart + tempTemplateLayout[rowStart]["items"][colStart]["width"]
+        var j
+        var k
+        for(j = rowStart; j < rowEnd; j++){
+            for(k = colStart; k < colEnd; k++){
+                tempTemplateLayout[j]["items"][k]["img"] = ""
+                tempTemplateLayout[j]["items"][k]["exists"] = true
+                tempTemplateLayout[j]["items"][k]["height"] = 1
+                tempTemplateLayout[j]["items"][k]["width"] = 1
+                tempTemplateLayout[j]["items"][k]["under"] = null
+            }
+        }
+        console.log(tempTemplateLayout)
+    }
+
+    breakInsert = () => {
+        var tempTemplateLayout = this.state.templateLayout
+        this.breakAndDeleteLarge(tempTemplateLayout, this.state.lastClickedRow, this.state.lastClickedCol)
+        this.setState({
+            templateLayout: tempTemplateLayout
+        })
+        this.handleChangeTemplate()
+    }
+
+    changeLastImg(img){
+        var tempTemplateLayout = this.state.templateLayout
+        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = img
+        this.setState({
+            templateLayout: tempTemplateLayout,
+            lastClickedImg: img,
         })
         this.handleChangeTemplate()
     }
@@ -175,6 +184,15 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         return(
             <div>
+                <a href="/templatedigitalmemory">
+                    <button
+                        style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
+                    >
+                        View page
+                    </button>
+                </a>
+                <br />
+                <br />
                 <button
                     style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     onClick={() => {this.resetTemplate()}}
@@ -198,6 +216,8 @@ export default class ProcessedLayoutEditor extends React.Component{
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     lastClickedImg={this.state.lastClickedImg}
                     clearLastClicked={this.clearLastClicked}
+                    changeLastImg={this.changeLastImg}
+                    breakInsert={this.breakInsert}
                 />
             </div>
         )
