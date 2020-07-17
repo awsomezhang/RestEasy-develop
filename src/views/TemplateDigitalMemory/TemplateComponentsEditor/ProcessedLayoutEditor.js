@@ -14,6 +14,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             lastClickedRow: -1,
             lastClickedCol: -1,
             lastClickedImg: "",
+            lastClickedLarge: false,
         }
 
         this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
@@ -34,10 +35,12 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     sendClickedInfo(row, col, img){
+        var large = (this.state.templateLayout[row]["items"][col]["height"] > 1 || this.state.templateLayout[row]["items"][col]["width"] > 1)
         this.setState({
             lastClickedRow: row,
             lastClickedCol: col,
             lastClickedImg: img,
+            lastClickedLarge: large,
         })
     }
 
@@ -99,7 +102,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                 this.handleChangeTemplate()
             })
             .catch((error) => {
-                console.log(error)
+                console.err(error)
             })
     }
 
@@ -110,11 +113,9 @@ export default class ProcessedLayoutEditor extends React.Component{
             if(tempTemplateLayout[rownum]["items"][i]["under"] != null){
                 var rowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][1]
                 var colStart = i - tempTemplateLayout[rownum]["items"][i]["under"][0]
-                console.log(tempTemplateLayout)
                 this.breakAndDeleteLarge(tempTemplateLayout, rowStart, colStart)
             }
             if(tempTemplateLayout[rownum]["items"][i]["height"] != 1 || tempTemplateLayout[rownum]["items"][i]["width"] != 1){
-                console.log(tempTemplateLayout)
                 this.breakAndDeleteLarge(tempTemplateLayout, rownum, i)
             }
         }
@@ -144,7 +145,6 @@ export default class ProcessedLayoutEditor extends React.Component{
                 tempTemplateLayout[j]["items"][k]["under"] = null
             }
         }
-        console.log(tempTemplateLayout)
     }
 
     breakInsert = () => {
@@ -160,7 +160,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         var tempTemplateLayout = this.state.templateLayout
         tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = img
         this.setState({
-            templateLayout: tempTemplateLayout,
             lastClickedImg: img,
         })
         this.handleChangeTemplate()
@@ -215,6 +214,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                     popupIsOpen={this.state.popupIsOpen}
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     lastClickedImg={this.state.lastClickedImg}
+                    lastClickedLarge={this.state.lastClickedLarge}
                     clearLastClicked={this.clearLastClicked}
                     changeLastImg={this.changeLastImg}
                     breakInsert={this.breakInsert}

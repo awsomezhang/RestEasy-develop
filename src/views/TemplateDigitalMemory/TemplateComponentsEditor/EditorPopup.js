@@ -2,6 +2,16 @@ import React from 'react';
 import Popup from "reactjs-popup"
 
 function InsertPopup(props){
+    let button = null
+    if(props.large){
+        button=(
+            <button
+                onClick={() => {props.breakInsert()}}
+            >
+                Break this section up.
+            </button>
+        )
+    }
     return(
         <div>
             <button
@@ -19,11 +29,7 @@ function InsertPopup(props){
             >
                 Add Spotify playlist
             </button>
-            <button
-                onClick={() => {props.breakInsert()}}
-            >
-                Break this section up.
-            </button>
+            {button}
         </div>
     )
 }
@@ -87,6 +93,7 @@ function CustomPopup(props){
     if(img == ""){
         return(
             <InsertPopup
+                large={props.large}
                 changeLastImg={props.changeLastImg}
                 breakInsert={props.breakInsert}
             />
@@ -119,6 +126,7 @@ export default function EditorPopup (props){
         >
             <CustomPopup
                 img={props.lastClickedImg}
+                large={props.lastClickedLarge}
                 clearLastClicked={props.clearLastClicked}
                 changeLastImg={props.changeLastImg}
                 breakInsert={props.breakInsert}
