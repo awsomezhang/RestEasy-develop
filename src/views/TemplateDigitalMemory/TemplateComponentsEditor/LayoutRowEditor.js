@@ -5,6 +5,7 @@ import "../../../styles/styles.css"
 import EditableComponent from "./EditableComponent.js"
 
 export default function LayoutRowEditor(props){
+    console.log(props.rowinfo)
     const LayoutCols = props.rowinfo.map((item) => {
         if(!item.exists){
             return(null)   
@@ -33,6 +34,7 @@ export default function LayoutRowEditor(props){
                             style={{height: h, textAlign: "center", backgroundColor: "lightgreen"}}
                         >
                             Insert memory or media here, or drag to merge with another item
+                            {item.height != 1 || item.width != 1 ? ", or click to break up this section" : ""}
                         </div>
                     </EditableComponent>
                 </Col>

@@ -108,11 +108,49 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     deleteRow = (rownum) => {
         var tempTemplateLayout = this.state.templateLayout
-        tempTemplateLayout.splice(rownum, 1)
         var i
+        for(i = 0; i < 6; i++){
+            if(tempTemplateLayout[rownum]["items"][i]["under"] != null){
+                var topRowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][1]
+                var topColStart = i - tempTemplateLayout[rownum]["items"][i]["under"][0]
+                var topRowEnd = topRowStart + tempTemplateLayout[topRowStart]["items"][topColStart]["height"]
+                var topColEnd = topColStart + tempTemplateLayout[topRowStart]["items"][topColStart]["width"]
+                var j
+                var k
+                for(j = topRowStart; j < topRowEnd; j++){
+                    for(k = topColStart; k < topColEnd; k++){
+                        tempTemplateLayout[j]["items"][k]["img"] = ""
+                        tempTemplateLayout[j]["items"][k]["exists"] = true
+                        tempTemplateLayout[j]["items"][k]["height"] = 1
+                        tempTemplateLayout[j]["items"][k]["width"] = 1
+                        tempTemplateLayout[j]["items"][k]["under"] = null
+                    }
+                }
+            }
+            if(tempTemplateLayout[rownum]["items"][i]["height"] != 1 || tempTemplateLayout[rownum]["items"][i]["width"] != 1){
+                var topRowStart = rownum
+                var topColStart = i
+                var topRowEnd = topRowStart + tempTemplateLayout[topRowStart]["items"][topColStart]["height"]
+                var topColEnd = topColStart + tempTemplateLayout[topRowStart]["items"][topColStart]["width"]
+                var j
+                var k
+                for(j = topRowStart; j < topRowEnd; j++){
+                    for(k = topColStart; k < topColEnd; k++){
+                        tempTemplateLayout[j]["items"][k]["img"] = ""
+                        tempTemplateLayout[j]["items"][k]["exists"] = true
+                        tempTemplateLayout[j]["items"][k]["height"] = 1
+                        tempTemplateLayout[j]["items"][k]["width"] = 1
+                        tempTemplateLayout[j]["items"][k]["under"] = null
+                    }
+                }
+            }
+        }
+
+        tempTemplateLayout.splice(rownum, 1)
         for(i = 0; i < tempTemplateLayout.length; i++){
             tempTemplateLayout[i]["row"] = i
         }
+
         this.setState({
             templateLayout: tempTemplateLayout
         })
