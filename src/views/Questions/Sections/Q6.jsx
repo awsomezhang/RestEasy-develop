@@ -51,7 +51,7 @@ export default class Q6 extends React.Component {
             }
         }
 
-        axios.post("http://localhost:5000/aws/signS3",{
+        axios.post("http://localhost:5000/aws/signS3_upload",{
             bucket : "resteasy-user-uploads",
             fileName : fileName,
             fileType : fileType
@@ -74,8 +74,13 @@ export default class Q6 extends React.Component {
             .then(result => {
                 console.log("Response from s3" + JSON.stringify(result))
                 this.setState({success: true});
+                
                 // upon successful upload, add the file data into the userImages index in mongoDB
                 console.log("add to database")
+                axios.post("http://localhost:5000/aws/addImgDB", {
+                    memoryName: "testMemory",
+                    imgID: file.name
+                }, config)
             })
             .catch(error => {
                 console.log("ERROR " + JSON.stringify(error));
