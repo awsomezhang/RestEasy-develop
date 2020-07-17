@@ -31,6 +31,9 @@ export default function LoginForm() {
 
     console.log(imgs)
 
+    if(!imgs) return (<span>loading...</span>);
+
+    const listItems = imgs.map((img) => <Col md="2" className="padded"> <img src={img} className="normal-height" /></Col>)
 
     return (
         <PageWrapper content={
@@ -44,7 +47,9 @@ export default function LoginForm() {
                     <Row className="justify-content-md-center">
                         <Col md="1" />
                         <Col md="10">
+                            
                             <Row className="justify-content-md-center">
+                            {listItems}
                                 <Col md="2" className="padded">
                                     <img src={require('../../assets/img/TemplateDigitalMemoryPictures/image1.jpg')} className="normal-height" />
                                 </Col>
