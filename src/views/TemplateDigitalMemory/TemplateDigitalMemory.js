@@ -1,10 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import PageWrapper from "../../PageWrapper"
 import "./TemplateDigitalMemory.css"
 import "../../styles/styles.css"
+import axios from "axios"
 
 export default function LoginForm() {
+
+    const [imgs, setImgs] = useState(null)
+
+    const jwt = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwt}`,
+        }
+    }
+
+    useEffect(() => {
+        axios.post("http://localhost:5000/aws/signS3_get",{
+            memoryName: "testMemory",
+        }, config)
+        .then(response => {
+            console.log("response: " + JSON.stringify(response))
+            setImgs(response.data)
+        })
+        .catch(error => {
+            console.log("ERROR " + JSON.stringify(error));
+        })
+    }, []);
+
+    console.log(imgs)
+
+
     return (
         <PageWrapper content={
             <div>

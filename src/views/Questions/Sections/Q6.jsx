@@ -4,6 +4,7 @@ import InboxOutlined from "@ant-design/icons/lib/icons/InboxOutlined";
 import {uploadMedia} from "../QuestionsAPI";
 import axios from "axios";
 import PictureWall from "../PictureWall"
+import { json } from "body-parser";
 
 function renameFile(file) {
     var date = Date.now()
@@ -22,7 +23,8 @@ export default class Q6 extends React.Component {
         super(props);
         this.state = {
           success : false,
-          url : ""
+          url : "",
+          fileName: ""
         }
       }
     
@@ -36,12 +38,15 @@ export default class Q6 extends React.Component {
 
         var file = renameFile(file)
 
+        var fileToAddDB = ""
+
         console.log("new file")
         console.log(file)
         // Split the filename to get the name and type
         let fileParts = file.name.split('.');
         let fileName = fileParts[0];
         let fileType = fileParts[1];
+        
         console.log("Preparing the upload");
 
         const jwt = localStorage.getItem("token");
@@ -57,12 +62,15 @@ export default class Q6 extends React.Component {
             fileType : fileType
         }, config)
         .then(response => {
-            console.log("response: " + JSON.stringify(response))
+            console.log("---------")
+            console.log(response)
             var returnData = response.data
             var signedRequest = returnData.signedRequest;
             var url = returnData.url;
             this.setState({url: url})
+            fileToAddDB = returnData.fileName
             console.log("Recieved a signed request " + signedRequest);
+            console.log(fileToAddDB)
         
             // Put the fileType in the headers for the upload
             var options = {
@@ -72,15 +80,19 @@ export default class Q6 extends React.Component {
             };
             axios.put(signedRequest,file,options)
             .then(result => {
-                console.log("Response from s3" + JSON.stringify(result))
                 this.setState({success: true});
                 
                 // upon successful upload, add the file data into the userImages index in mongoDB
-                console.log("add to database")
+                console.log("add to database: " + fileToAddDB)
                 axios.post("http://localhost:5000/aws/addImgDB", {
                     memoryName: "testMemory",
-                    imgID: file.name
+                    imgID: fileToAddDB
                 }, config)
+                .then( result => {
+                    console.log(result)
+                }).catch(error => {
+                    console.log("error " + JSON.stringify(error))
+                })
             })
             .catch(error => {
                 console.log("ERROR " + JSON.stringify(error));

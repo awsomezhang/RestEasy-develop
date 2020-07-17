@@ -18,7 +18,7 @@ function signS3_upload(req, res, next) {
 
 function addImgDB(req, res, next) {
   s3Service.addImgDB(req)
-      .then(data => res.json(data))
+      .then(user => user ? res.json(user) : res.status(400).json({ message: 'Error Adding to DB' }))
       .catch(err => next(err));
 }
 

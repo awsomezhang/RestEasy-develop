@@ -39,7 +39,7 @@ async function signS3_upload(req) {
     // sending to the S3
     const s3Params = {
         Bucket: S3_BUCKET,
-        Key: userInfo._id+"/"+fileName,
+        Key: (userInfo._id)+"/"+fileName,
         Expires: 500,
         ContentType: fileType,
     };
@@ -51,7 +51,8 @@ async function signS3_upload(req) {
 
     const returnData = {
         signedRequest: signedRequest,
-        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+        fileName: fileName + "." + fileType
     };
 
     return returnData;
@@ -63,33 +64,40 @@ async function addImgDB(req) {
     const digitalMemoryID = req.body.memoryName
     console.log(digitalMemoryID)
 
-    const user = await User.findById(id);
+    var user = await User.findById(id);
     var newUser = user
     console.log(user)
 
     // validate
     if (!user) throw 'User not found';
 
+    var newMemoryList = {}
 
-    if (user.digitalMemories) {
-        if(!user.digitalMemories[digitalMemoryID]){
-            newUser.digitalMemories[digitalMemoryID] = [req.body.imgID]
+    if (newUser.digitalMemories) {
+         newMemoryList = newUser.digitalMemories
+
+        console.log(newMemoryList)
+        if(!newMemoryList[digitalMemoryID]){
+            console.log("create new memory")
+            newMemoryList[digitalMemoryID] = [req.body.imgID]
+            console.log(newMemoryList)
+
         }
         else{
-            console.log("adding img to: " + JSON.stringify(newUser.digitalMemories))
-            newUser.digitalMemories[digitalMemoryID].push(req.body.imgID)
+            console.log("adding img to: " + JSON.stringify(newMemoryList))
+            console.log(req.body.imgID)
+            newMemoryList[digitalMemoryID].push(req.body.imgID)
         }
-            
     }else{
         console.log("no digitalMemories in the db, creating it and adding the imgID")
-        newUser["digitalMemories"] = {}
-        newUser.digitalMemories[digitalMemoryID] =  [req.body.imgID]
+        newMemoryList[digitalMemoryID] =  [req.body.imgID]
     }
 
-    // copy userParam properties to user
-    Object.assign(user, newUser);
-
-    await user.save();
+    await User.update({_id :id },{$set : {digitalMemories: newMemoryList}})
+    
+    // confirm user was updated properly
+    user = await User.findById(id);
+    console.log(user)
 
     return user
 }
