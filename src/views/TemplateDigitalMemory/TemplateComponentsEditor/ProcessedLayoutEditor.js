@@ -80,10 +80,14 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     mergeTemplateItems = () => {
+        var draggedHeight = this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["height"]
+        var draggedWidth = this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["width"]
+        var droppedHeight = this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["height"]
+        var droppedWidth = this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["width"]
         var rowStart = Math.min(this.state.lastDraggedRow, this.state.lastDroppedRow)
-        var rowEnd = Math.max(this.state.lastDraggedRow, this.state.lastDroppedRow)
+        var rowEnd = Math.max(this.state.lastDraggedRow + draggedHeight - 1, this.state.lastDroppedRow + droppedHeight - 1)
         var colStart = Math.min(this.state.lastDraggedCol, this.state.lastDroppedCol)
-        var colEnd = Math.max(this.state.lastDraggedCol, this.state.lastDroppedCol)
+        var colEnd = Math.max(this.state.lastDraggedCol + draggedWidth - 1, this.state.lastDroppedCol + droppedWidth - 1)
         var img = (this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] ? this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] : this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["img"])
         var i
         var j
@@ -191,7 +195,8 @@ export default class ProcessedLayoutEditor extends React.Component{
         var tempTemplateLayout = this.state.templateLayout
         this.breakAndDeleteLarge(tempTemplateLayout, this.state.lastClickedRow, this.state.lastClickedCol)
         this.setState({
-            templateLayout: tempTemplateLayout
+            templateLayout: tempTemplateLayout,
+            lastClickedLarge: false,
         })
         this.handleChangeTemplate()
     }
@@ -206,6 +211,18 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     isMergeable(rowi, coli, rowj, colj){
+        if(this.state.templateLayout[rowi]["items"][coli]["under"] != null){
+            var underRow = this.state.templateLayout[rowi]["items"][coli]["under"][0]
+            var underCol = this.state.templateLayout[rowi]["items"][coli]["under"][1]
+            rowi -= underRow
+            coli -= underCol
+        }
+        if(this.state.templateLayout[rowj]["items"][colj]["under"] != null){
+            var underRow = this.state.templateLayout[rowj]["items"][colj]["under"][0]
+            var underCol = this.state.templateLayout[rowj]["items"][colj]["under"][1]
+            rowj -= underRow
+            colj -= underCol
+        }
         const imgi = this.state.templateLayout[rowi]["items"][coli]["img"]
         const imgj = this.state.templateLayout[rowj]["items"][colj]["img"]
         if(imgi != "" && imgj != ""){
@@ -213,8 +230,8 @@ export default class ProcessedLayoutEditor extends React.Component{
         }
         var rowStart = Math.min(rowi, rowj)
         var colStart = Math.min(coli, colj)
-        var rowEnd = Math.max(rowi, rowj)
-        var colEnd = Math.max(coli, colj)
+        var rowEnd = Math.max(rowi + this.state.templateLayout[rowi]["items"][coli]["height"] - 1, rowj + this.state.templateLayout[rowj]["items"][colj]["height"] - 1)
+        var colEnd = Math.max(coli + this.state.templateLayout[rowi]["items"][coli]["width"] - 1, colj + this.state.templateLayout[rowj]["items"][colj]["width"] - 1)
         var r
         var c
         for(r = rowStart; r <= rowEnd; r++){
