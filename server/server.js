@@ -1,7 +1,7 @@
 const express = require("express");
 //const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const stripe = require("stripe")("insert stripe secret key here");
+const stripe = require("stripe")("sk_test_51GdM6cKpjNQvxncimdyAUcPhOOStR0h9FmUhsCdEVE7txFZP5ogRnvmkmjT7djeUGRLA321cqzPY7Eh5LId0HYDw000ppwCmm4");
 const cors = require('cors')
 const uuid = require("uuid/v4");
 
