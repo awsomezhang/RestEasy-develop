@@ -25,6 +25,7 @@ app.use(jwt());
 // api routes
 app.use('/users', require('./users/users.controller'));
 app.use('/payment', require('./payment/payment.controller'))
+app.use('/aws', require('./aws/aws.controller.js'))
 
 app.use(errorHandler);
 
