@@ -13,7 +13,7 @@ export default function LayoutRowEditor(props){
         if(item.img == 'nonimage'){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
                         <div
                             className = "center"
                             style={{height: h, textAlign: "center", backgroundColor: "lightgrey"}}
@@ -27,7 +27,7 @@ export default function LayoutRowEditor(props){
         if(item.img == ''){
             return(
                 <Col md={"" + (2 * item.width)} className="padded" key={item.col}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} img={item.img} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
                         <div
                             className = "center"
                             style={{height: h, textAlign: "center", backgroundColor: "lightgreen"}}
@@ -41,7 +41,7 @@ export default function LayoutRowEditor(props){
         }
         return(
             <Col md={2 * item.width} className="padded" key={item.col}>
-                <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} height={h} style={{zIndex: 99999}} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} img={item.img}>
+                <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} colnum={item.col} height={h} style={{zIndex: 99999}} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} img={item.img} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
                     <img
                         src={item.img}
                         style={{height: h, width: "100%", objectFit: "cover"}}

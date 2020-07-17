@@ -118,12 +118,25 @@ function CustomPopup(props){
 }
 
 export default function EditorPopup (props){
-    return(
-        <Popup
-            open={(props.popupIsOpen)}
-            onClose={() => {props.togglePopupIsOpen()}}
-            style={{zIndex: "999999"}}
-        >
+    let popup
+    if(props.popupCanMergeSwap){
+        popup = (
+            <div>
+                <button
+                    onClick={() => {props.mergeTemplateItems()}}
+                >
+                    Merge
+                </button>
+                <button
+                    onClick={() => {props.swapTemplateItems()}}
+                >
+                    Swap
+                </button>
+            </div>
+        )
+    }
+    else{
+        popup=( 
             <CustomPopup
                 img={props.lastClickedImg}
                 large={props.lastClickedLarge}
@@ -131,6 +144,15 @@ export default function EditorPopup (props){
                 changeLastImg={props.changeLastImg}
                 breakInsert={props.breakInsert}
             />
+        )
+    }
+    return(
+        <Popup
+            open={(props.popupIsOpen)}
+            onClose={() => {props.togglePopupIsOpen()}}
+            style={{zIndex: "999999"}}
+        >
+            {popup}
         </Popup>
     )
 }

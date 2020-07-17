@@ -11,14 +11,20 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.state = {
             templateLayout: props.templateLayout,
             popupIsOpen: false,
+            popupCanMergeSwap : false,
             lastClickedRow: -1,
             lastClickedCol: -1,
             lastClickedImg: "",
             lastClickedLarge: false,
+            lastDraggedRow: -1,
+            lastDraggedCol: -1,
+            lastDroppedRow: -1,
+            lastDroppedCol: -1,
         }
 
         this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
         this.swapTemplateItems = this.swapTemplateItems.bind(this)
+        this.mergeTemplateItems = this.mergeTemplateItems.bind(this)
         this.togglePopupIsOpen = this.togglePopupIsOpen.bind(this)
         this.clearLastClicked = this.clearLastClicked.bind(this)
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
@@ -28,6 +34,8 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.breakAndDeleteLarge = this.breakAndDeleteLarge.bind(this)
         this.breakInsert = this.breakInsert.bind(this)
         this.changeLastImg = this.changeLastImg.bind(this)
+        this.isMergeable = this.isMergeable.bind(this)
+        this.promptMerge = this.promptMerge.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -41,6 +49,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             lastClickedCol: col,
             lastClickedImg: img,
             lastClickedLarge: large,
+            popupCanMergeSwap: false,
         })
     }
 
@@ -51,12 +60,12 @@ export default class ProcessedLayoutEditor extends React.Component{
     handleChangeTemplate = async() => {
         const layout = this.state.templateLayout
         await axios.post(
-            "http://localhost:5000/changetemplate",
+            "http://localhost:5001/changetemplate",
             {layout}
         );
     }
 
-    swapTemplateItems = (rowi, coli, rowj, colj) => {
+    swapTemplateItems = (rowi = this.state.lastDraggedRow, coli = this.state.lastDraggedCol, rowj = this.state.lastDroppedRow, colj = this.state.lastDroppedCol) => {
         const tempimg = this.state.templateLayout[rowi]["items"][coli]["img"]
         var tempTemplateLayout = this.state.templateLayout
 
@@ -67,6 +76,37 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout
         })
 
+        this.handleChangeTemplate()
+    }
+
+    mergeTemplateItems = () => {
+        var rowStart = Math.min(this.state.lastDraggedRow, this.state.lastDroppedRow)
+        var rowEnd = Math.max(this.state.lastDraggedRow, this.state.lastDroppedRow)
+        var colStart = Math.min(this.state.lastDraggedCol, this.state.lastDroppedCol)
+        var colEnd = Math.max(this.state.lastDraggedCol, this.state.lastDroppedCol)
+        var img = (this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] ? this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] : this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["img"])
+        var i
+        var j
+        var tempTemplateLayout = this.state.templateLayout
+        for(i = rowStart; i <= rowEnd; i++){
+            for(j = colStart; j <= colEnd; j++){
+                tempTemplateLayout[i]["items"][j]["img"] = ""
+                tempTemplateLayout[i]["items"][j]["exists"] = (i == rowStart) ? false : true
+                tempTemplateLayout[i]["items"][j]["under"] = [i-rowStart, j-colStart]
+            }
+        }
+        tempTemplateLayout[rowStart]["items"][colStart]["img"] = img
+        tempTemplateLayout[rowStart]["items"][colStart]["exists"] = true
+        tempTemplateLayout[rowStart]["items"][colStart]["under"] = null
+        tempTemplateLayout[rowStart]["items"][colStart]["height"] = rowEnd - rowStart + 1
+        tempTemplateLayout[rowStart]["items"][colStart]["width"] = colEnd - colStart + 1
+        this.setState({
+            templateLayout: tempTemplateLayout,
+            popupCanMergeSwap: false,
+            lastClickedRow: rowStart,
+            lastClickedCol: colStart,
+            lastClickedImg: img,
+        })
         this.handleChangeTemplate()
     }
 
@@ -94,7 +134,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     resetTemplate = () => {
-        axios.get("http://localhost:5000/getresettemplate")
+        axios.get("http://localhost:5001/getresettemplate")
             .then((response) => {
                 this.setState({
                     templateLayout: response["data"]
@@ -102,7 +142,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                 this.handleChangeTemplate()
             })
             .catch((error) => {
-                console.err(error)
+                console.log(error)
             })
     }
 
@@ -111,8 +151,8 @@ export default class ProcessedLayoutEditor extends React.Component{
         var i
         for(i = 0; i < 6; i++){
             if(tempTemplateLayout[rownum]["items"][i]["under"] != null){
-                var rowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][1]
-                var colStart = i - tempTemplateLayout[rownum]["items"][i]["under"][0]
+                var rowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][0]
+                var colStart = i - tempTemplateLayout[rownum]["items"][i]["under"][1]
                 this.breakAndDeleteLarge(tempTemplateLayout, rowStart, colStart)
             }
             if(tempTemplateLayout[rownum]["items"][i]["height"] != 1 || tempTemplateLayout[rownum]["items"][i]["width"] != 1){
@@ -165,6 +205,59 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.handleChangeTemplate()
     }
 
+    isMergeable(rowi, coli, rowj, colj){
+        const imgi = this.state.templateLayout[rowi]["items"][coli]["img"]
+        const imgj = this.state.templateLayout[rowj]["items"][colj]["img"]
+        if(imgi != "" && imgj != ""){
+            return false
+        }
+        var rowStart = Math.min(rowi, rowj)
+        var colStart = Math.min(coli, colj)
+        var rowEnd = Math.max(rowi, rowj)
+        var colEnd = Math.max(coli, colj)
+        var r
+        var c
+        for(r = rowStart; r <= rowEnd; r++){
+            for(c = colStart; c <= colEnd; c++){
+                if(this.state.templateLayout[r]["items"][c]["img"] != ""){
+                    if(!(r == rowi && c == coli) && !(r == rowj && c == colj)){
+                        return false
+                    }
+                }
+                if(this.state.templateLayout[r]["items"][c]["under"] != null){
+                    const rOver = r - this.state.templateLayout[r]["items"][c]["under"][0]
+                    const cOver = c - this.state.templateLayout[r]["items"][c]["under"][1]
+                    if(rOver < rowStart){
+                        return false
+                    }
+                    if(cOver < colStart){
+                        return false
+                    }
+                }
+                var rHeight = this.state.templateLayout[r]["items"][c]["height"] + r - 1
+                var cWidth = this.state.templateLayout[r]["items"][c]["width"] + c - 1
+                if(rHeight > rowEnd){
+                    return false;
+                }
+                if(cWidth > colEnd){
+                    return false;
+                }
+            }
+        }
+        return true
+    }
+
+    promptMerge = (dragRow, dragCol, dropRow, dropCol) => {
+        this.setState({
+            popupIsOpen: true,
+            popupCanMergeSwap: true,
+            lastDraggedRow: dragRow,
+            lastDraggedCol: dragCol,
+            lastDroppedRow: dropRow,
+            lastDroppedCol: dropCol,
+        })
+    }
+
     render(){
         const LayoutRows = this.state.templateLayout.map((rowinfo) => {
             return(
@@ -177,6 +270,8 @@ export default class ProcessedLayoutEditor extends React.Component{
                     sendClickedInfo={this.sendClickedInfo}
                     zIndex={"" + (this.state.templateLayout.length - rowinfo.row)}
                     deleteRow={this.deleteRow}
+                    isMergeable={this.isMergeable}
+                    promptMerge={this.promptMerge}
                 />
             )
         })
@@ -212,12 +307,15 @@ export default class ProcessedLayoutEditor extends React.Component{
                 <br />
                 <EditorPopup
                     popupIsOpen={this.state.popupIsOpen}
+                    popupCanMergeSwap={this.state.popupCanMergeSwap}
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     lastClickedImg={this.state.lastClickedImg}
                     lastClickedLarge={this.state.lastClickedLarge}
                     clearLastClicked={this.clearLastClicked}
                     changeLastImg={this.changeLastImg}
                     breakInsert={this.breakInsert}
+                    swapTemplateItems={this.swapTemplateItems}
+                    mergeTemplateItems={this.mergeTemplateItems}
                 />
             </div>
         )

@@ -19,7 +19,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     }
 
     componentDidMount(){
-        axios.get("http://localhost:5000/gettemplate")
+        axios.get("http://localhost:5001/gettemplate")
             .then((response) => {
                 this.setState({
                     templateLayout: response["data"]

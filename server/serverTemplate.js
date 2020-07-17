@@ -165,5 +165,5 @@ app.get("/getresettemplate", async(req, res) => {
 
 })
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Server up and running on port ${port}.`));

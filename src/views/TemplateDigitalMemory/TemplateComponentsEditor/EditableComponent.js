@@ -18,7 +18,10 @@ function Draggable(props){
 
     const[{isOver}, drop] = useDrop({
         accept: DragItemTypes.IMAGE,
-        drop: (item, monitor) => props.swapTemplateItems(item.rownum, item.colnum, props.rownum, props.colnum),
+        drop: (item, monitor) => (props.isMergeable(item.rownum, item.colnum, props.rownum, props.colnum) ? 
+            props.promptMerge(item.rownum, item.colnum, props.rownum, props.colnum) : 
+            props.swapTemplateItems(item.rownum, item.colnum, props.rownum, props.colnum)
+        ),
         collect: monitor => ({
             isOver: !!monitor.isOver(),
         }),
@@ -51,6 +54,8 @@ export default class EditableComponent extends React.Component{
         this.swapTemplateItems = props.swapTemplateItems.bind(this)
         this.togglePopupIsOpen = props.togglePopupIsOpen.bind(this)
         this.sendClickedInfo = props.sendClickedInfo.bind(this)
+        this.isMergeable = props.isMergeable.bind(this)
+        this.promptMerge = props.promptMerge.bind(this)
     }
 
     componentWillReceiveProps(nextProps){
@@ -78,6 +83,8 @@ export default class EditableComponent extends React.Component{
                         colnum={this.state.colnum}
                         swapTemplateItems={this.swapTemplateItems}
                         style={{positiong: "relative", zIndex: "-1"}}
+                        isMergeable={this.isMergeable}
+                        promptMerge={this.promptMerge}
                     >
                         {this.props.children}
                     </Draggable>
