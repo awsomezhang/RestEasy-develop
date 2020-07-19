@@ -1,10 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import PageWrapper from "../../PageWrapper"
 import "./TemplateDigitalMemory.css"
 import "../../styles/styles.css"
+import axios from "axios"
 
 export default function LoginForm() {
+
+    const [imgs, setImgs] = useState(null)
+
+    const jwt = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwt}`,
+        }
+    }
+
+    useEffect(() => {
+        axios.post("http://localhost:5000/aws/signS3_get",{
+            memoryName: "testMemory",
+        }, config)
+        .then(response => {
+            console.log("response: " + JSON.stringify(response))
+            setImgs(response.data)
+        })
+        .catch(error => {
+            console.log("ERROR " + JSON.stringify(error));
+        })
+    }, []);
+
+    console.log(imgs)
+
+    if(!imgs) return (<span>loading...</span>);
+
+    const listItems = imgs.map((img) => <Col md="2" className="padded"> <img src={img} className="normal-height" /></Col>)
+
     return (
         <PageWrapper content={
             <div>
@@ -17,7 +47,9 @@ export default function LoginForm() {
                     <Row className="justify-content-md-center">
                         <Col md="1" />
                         <Col md="10">
+                            
                             <Row className="justify-content-md-center">
+                            {listItems}
                                 <Col md="2" className="padded">
                                     <img src={require('../../assets/img/TemplateDigitalMemoryPictures/image1.jpg')} className="normal-height" />
                                 </Col>

@@ -47,10 +47,10 @@ async function checkout(body) {
             }
         );
         console.log("Charge:", { charge });
-        status = "success";
+        status = true;
     } catch (error) {
         console.error("Error:", error);
-        status = "failure";
+        status = false;
     }
 
     return status

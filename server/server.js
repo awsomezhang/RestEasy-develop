@@ -21,10 +21,12 @@ app.use(cors())
 
 // use JWT auth to secure the api
 app.use(jwt());
+console.log("authenticated")
 
 // api routes
 app.use('/users', require('./users/users.controller'));
 app.use('/payment', require('./payment/payment.controller'))
+app.use('/aws', require('./aws/aws.controller.js'))
 
 app.use(errorHandler);
 
