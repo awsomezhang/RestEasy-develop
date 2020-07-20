@@ -19,7 +19,7 @@ const Q10_5 = lazy(() => import('./Sections/Q10_5')); //registry tour start
 const Q11 = lazy(() => import('./Sections/Q11')); //cash flow
 const Q12 = lazy(() => import('./Sections/Q12')); //registry URL
 const Q13 = lazy(() => import('./Sections/Q13')); //pay (slide 14 and 15 in ppt)
-const Q14 = lazy(() => import('./Sections/Q14')); //share
+
 
 
 
@@ -89,9 +89,7 @@ class Questions extends React.Component {
         else if (this.state.curr === 12)
             return <Q12 next={this.next.bind(this)} prev={this.prev.bind(this)}/>;
         else if (this.state.curr === 13)
-            return <Q13 next={this.next.bind(this)} prev={this.prev.bind(this)}/>;
-        else if (this.state.curr === 14)
-            return <Q14 />;
+            return <Q13 prev={this.prev.bind(this)}/>;
     }
 
     next() {
@@ -133,17 +131,18 @@ class Questions extends React.Component {
         return (
             <PageWrapper content={
                 <div>
+                    <Container fluid={true} className="header-banner"></Container>
                     {this.state.curr === 0 ? (
-                        <div style={{textAlign: "center", marginTop: "175px"}}>
+                        <div style={{textAlign: "center", marginTop: "80px"}}>
                             <h2 style = {{fontWeight: "bold"}}>We're sorry you're here, but happy you found us</h2>
                             <br/>
                             <h4> You've taken the first step to capture and preserve your favorite memories</h4>
                         </div>
                     ) : (
-                            <div style={{height: "90px"}}></div>
+                            <div style={{height: "50px"}}></div>
                         )}
 
-                    <Container fluid={true} className="header-banner"></Container>
+                    {/* <Container fluid={true} className="header-banner"></Container> */}
                     <Steps progressDot={customDot} current={this.getCurrProgress()} style={{ padding: "2.5% 5%", position: "relative" }}>
                         <Steps.Step title="Info" />
                         <Steps.Step title="Design" />

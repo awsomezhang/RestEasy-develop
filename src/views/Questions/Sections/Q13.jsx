@@ -17,7 +17,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <Typography.Title>
-                    {"https://resteasy2.herokuapp.com/registry/"+ this.state.url}
+                    <a href="/templatedigitalmemory">{"https://resteasy2.herokuapp.com/registry/"+ this.state.url}</a>
                     </Typography.Title>
                 </div>
                 <div style={{textAlign: "center", fontSize: "1.5em", marginTop: "0.5em"}}>
@@ -26,7 +26,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <br />
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.next}>Finish!</Button>
+                    <Button type="primary" style={{borderRadius: "10px"}}><a href="/">Finish!</a></Button>
                 </div>
             </div>);
     }

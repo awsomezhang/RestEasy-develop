@@ -54,7 +54,7 @@ export default class Q11 extends React.Component {
                                     {this.state.story}
                                 </Typography.Paragraph>
                             </div>
-                            <div style={{ paddingLeft: "2em", width: "500px", height: "300px" }}>
+                            <div style={{ paddingLeft: "2em", width: "500px", height: "300px", display: "flex", justifyContent: "center"}}>
                                 <img id="template-select" src={this.setImage()} style={{ maxWidth: "100%", maxHeight: "100%" }} />
                             </div>
                         </div>

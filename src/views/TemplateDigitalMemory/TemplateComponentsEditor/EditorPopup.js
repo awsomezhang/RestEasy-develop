@@ -90,7 +90,7 @@ function NonimagePopup(props){
 
 function CustomPopup(props){
     const img = props.img
-    if(img == ""){
+    if(img === ""){
         return(
             <InsertPopup
                 large={props.large}
@@ -99,7 +99,7 @@ function CustomPopup(props){
             />
         )
     }
-    if(img == "nonimage"){
+    if(img === "nonimage"){
         return(
             <NonimagePopup
                 clearLastClicked={props.clearLastClicked}

@@ -58,8 +58,8 @@ export default [
     {
         id: 12,
         URLpath: "/templatedigitalmemory",
-        //dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory"
-        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryModular"
+        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory",
+        status: "protected"
     },
     {
         id: 13,
