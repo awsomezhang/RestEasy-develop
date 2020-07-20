@@ -22,7 +22,8 @@ export default [
     {
         id: 5,
         URLpath: "/my/create",
-        dirpath: "./views/Questions/Questions"
+        dirpath: "./views/Questions/Questions",
+        status: "protected"
     },
     {
         id: 6,
@@ -53,5 +54,16 @@ export default [
         id: 11,
         URLpath: "/whattodonow",
         dirpath: "./views/WhatToDoNow/WhatToDoNow"
+    },
+    {
+        id: 12,
+        URLpath: "/templatedigitalmemory",
+        //dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory"
+        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryModular"
+    },
+    {
+        id: 13,
+        URLpath: "/templatedigitalmemoryeditor",
+        dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryModularEditor"
     },
 ]

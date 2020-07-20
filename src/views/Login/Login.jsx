@@ -4,6 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {tryUserLogin} from "./LoginAPI";
 import PageWrapper from "../../PageWrapper"
 import "./Login.css"
+import { withContext } from "../../AppContext"
 
 const formItemLayout = {
     labelCol: {
@@ -36,32 +37,29 @@ const tailFormItemLayout = {
     },
 };
 
-export default function LoginForm() {
+function LoginForm(props) {
     const [form] = Form.useForm();
+    console.log(props)
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        tryUserLogin(values.email, values.password)
-            .done(function(response) {
-                if (response.success) {
-                    localStorage.setItem("access_token", response.access_token);
-                    localStorage.setItem('user', JSON.stringify(response.user_data));
-                    window.location.href = "/";  // back to landing page
-                } else {
-                    notification.error({
-                        message: 'Login Failed',
-                        description: response.message,
-                        placement: 'bottomRight'
-                    });
-                }
-            })
-            .fail((error) => {
-                notification.error({
-                    message: 'Login Failed',
-                    description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
-                    placement: 'bottomRight'
-                });
-            });
+
+        props.login(values.email, values.password).then(() => props.history.push(props.routeAttempted ? props.routeAttempted : "/"))
+
+        // axios.post('http://localhost:5000/users/authenticate', user)
+        //     .then(
+        //         res => {
+        //             console.log(res.data)
+        //             localStorage.setItem('user', JSON.stringify(res.data));
+        //             window.location.href = "/";
+        //         })
+        //     .catch((error) => {
+        //         notification.error({
+        //             message: 'Login Failed',
+        //             description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
+        //             placement: 'bottomRight'
+        //         });
+        //     });
     };
 
     return (
@@ -125,7 +123,7 @@ export default function LoginForm() {
                                             </Button>
                                         </Form.Item>
                                         <div style={{textAlign: "center"}}>
-                                            Have no account? <a href="/signup">Create one</a>
+                                            Have no account? <span className="link" onClick={()=>{props.history.push("/signup")}}>Create one</span>
                                         </div>
                                         <Divider />
                                         <div style={{textAlign: "center", marginBottom: "1em"}}>
@@ -149,3 +147,5 @@ export default function LoginForm() {
         }/>
     );
 };
+
+export default withContext(LoginForm);

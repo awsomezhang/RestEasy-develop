@@ -3,12 +3,13 @@ import "./Header.css"
 import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
 import { withRouter } from "react-router-dom";
 import { Input } from 'antd';
+import { withContext } from "../../AppContext"
 
 const { Search } = Input;
 
-function Header({ location }){
-    const { pathname } = location;
+function Header(props){
 
+    
     const [scroll, setScroll] = useState(true)
 
     useEffect(() => {
@@ -20,13 +21,16 @@ function Header({ location }){
         })
         
     })
+    const handleLogout = () => {
+        props.logout()
+    }
 
     return (
         <div className="header">
             <Navbar className={scroll ?  null : "navBar-custom-dark"} fixed="top" expand="lg">
                 <Navbar.Brand href="/">
                     <img
-                        src={require('../../assets/img/Logo.png')}
+                        src={require('../../assets/img/logo.png')}
                         width="99px"
                         height="79px"
                         className="d-inline-block align-top"
@@ -47,25 +51,18 @@ function Header({ location }){
                     <div className="search-area">
                         <Form inline>
                             <FormControl className="search-bar"
-                                    type="text"
-                                    placeholder="Search"
+                                type="text"
+                                placeholder="Search"
                             />
                         </Form>
                     </div>
                     
-                    <div>
-                        <Form inline>
-                            <Button variant="success" href="/login">Login</Button>
-                        </Form>
-                    </div>
+                    <Form inline>
 
-                                        
-                    <div style={{marginLeft:"15px"}}>
-                        <Form inline>
-                            <Button variant="success" href="/signup">Signup</Button>
-                        </Form>
-                    </div>
-
+                        {props.user ? <span className="username"> Hello {props.user.firstName}!</span> : null}
+                        {props.token ? <Button variant="success" onClick={() => {handleLogout()}}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
+                        
+                    </Form>
                     
                 </Navbar.Collapse>
             </Navbar>
@@ -73,4 +70,4 @@ function Header({ location }){
     )
 }
 
-export default withRouter(Header)
+export default withContext(Header)

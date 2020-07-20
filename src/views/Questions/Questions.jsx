@@ -2,6 +2,7 @@ import React, {lazy} from 'react';
 import {Layout, Popover, Steps} from "antd";
 import "./Questions.css"
 import PageWrapper from "../../PageWrapper"
+import {Container, Row, Col} from "react-bootstrap";
 
 const Q0 = lazy(() => import('./Sections/Q0')); //getting started
 const Q1 = lazy(() => import('./Sections/Q1')); //name
@@ -142,6 +143,7 @@ class Questions extends React.Component {
                             <div style={{height: "90px"}}></div>
                         )}
 
+                    <Container fluid={true} className="header-banner"></Container>
                     <Steps progressDot={customDot} current={this.getCurrProgress()} style={{ padding: "2.5% 5%", position: "relative" }}>
                         <Steps.Step title="Info" />
                         <Steps.Step title="Design" />
