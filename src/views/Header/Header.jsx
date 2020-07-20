@@ -27,7 +27,7 @@ function Header(props){
 
     return (
         <div className="header">
-            <Navbar className={scroll ?  null : "navBar-custom-dark"} fixed="top" expand="lg">
+            <Navbar className={scroll ?  "navBar-custom" : "navBar-custom-dark"} fixed="top" expand="lg">
                 <Navbar.Brand href="/">
                     <img
                         src={require('../../assets/img/logo.png')}
