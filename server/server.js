@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
 const uuid = require("uuid/v4");
+const https = require("https");
+const fs = require("fs");
 
 // Setup express app
 app.use(express.json());
@@ -31,4 +33,8 @@ app.use('/aws', require('./aws/aws.controller.js'))
 app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server up and running on port ${port}.`));
+https.createServer({
+    key: fs.readFileSync("../../domain.key"),
+    cert: fs.readFileSync("../../domain.crt"),
+}, app).listen(port, () => console.log(`Server up and running on port ${port}.`))
+//app.listen(port, () => console.log(`Server up and running on port ${port}.`));

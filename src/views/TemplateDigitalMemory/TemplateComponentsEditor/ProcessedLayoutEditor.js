@@ -60,7 +60,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     handleChangeTemplate = async() => {
         const layout = this.state.templateLayout
         await axios.post(
-            "http://localhost:5001/changetemplate",
+            "https://www.resteasy.live:5001/changetemplate",
             {layout}
         );
     }
@@ -138,7 +138,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     resetTemplate = () => {
-        axios.get("http://localhost:5001/getresettemplate")
+        axios.get("https://www.resteasy.live:5001/getresettemplate")
             .then((response) => {
                 this.setState({
                     templateLayout: response["data"]

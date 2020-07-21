@@ -7,6 +7,8 @@ const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
 const stripe = require("stripe")("insert stripe secret key here");
 const uuid = require("uuid/v4");
+const fs = require("fs")
+const https = require("https")
 
 // Setup express app
 app.use(express.json());
@@ -100,7 +102,6 @@ app.post("/changetemplate", async(req, res) => {
 
     try {
         //console.log(req.body["layout"][0]["items"][0]);
-        var fs = require('fs');
         fs.writeFile(
             '../src/views/TemplateDigitalMemory/layout.js',
             "export default" + JSON.stringify(req.body["layout"]),
@@ -124,7 +125,6 @@ app.get("/gettemplate", async(req, res) => {
     let status
 
     try{
-        var fs = require('fs');
         fs.readFile(
             '../src/views/TemplateDigitalMemory/layout.js',
             "utf8",
@@ -148,7 +148,6 @@ app.get("/getresettemplate", async(req, res) => {
     let status
 
     try{
-        var fs = require('fs');
         fs.readFile(
             '../src/views/TemplateDigitalMemory/layout_backup2.js',
             "utf8",
@@ -166,4 +165,8 @@ app.get("/getresettemplate", async(req, res) => {
 })
 
 const port = process.env.PORT || 5001;
-app.listen(port, () => console.log(`Server up and running on port ${port}.`));
+https.createServer({
+    key: fs.readFileSync("../../domain.key"),
+    cert: fs.readFileSync("../../domain.crt"),
+}, app).listen(port, () => console.log(`Server up and running on port ${port}.`))
+//app.listen(port, () => console.log(`Server up and running on port ${port}.`));
