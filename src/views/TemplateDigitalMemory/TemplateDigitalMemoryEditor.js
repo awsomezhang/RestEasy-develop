@@ -6,6 +6,7 @@ import "../../styles/styles.css"
 import ProcessedLayoutEditor from './TemplateComponentsEditor/ProcessedLayoutEditor.js'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { REMOTE_HOST } from "../../constants.js"
 
 export default class TemplateDigitalMemoryModularEditor extends React.Component{
     constructor(props){
@@ -19,8 +20,9 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     }
 
     componentDidMount(){
-        axios.get("http://localhost:5001/gettemplate")
+        axios.get(REMOTE_HOST + "/templates/gettemplate")
             .then((response) => {
+                console.log(response)
                 this.setState({
                     templateLayout: response["data"]
                 })
