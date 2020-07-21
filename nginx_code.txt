@@ -1,0 +1,48 @@
+server {
+    listen 80;
+    server_name www.resteasy.live resteasy.live;
+    return 301 https://$host$request_uri;
+}
+
+server{
+    listen 5000;
+    listen [::]:5000;
+    server_name www.resteasy.live resteasy.live;
+    access_log /var/log/nginx/nginx.vhost.access.log;
+    error_log /var/log/nginx/nginx.vhost.error.log;
+
+    location / {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass https://localhost:5000;
+    }
+}
+
+server{
+    listen 5001;
+    listen [::]:5001;
+    server_name www.resteasy.live resteasy.live;
+    access_log /var/log/nginx/nginx.vhost.access.log;
+    error_log /var/log/nginx/nginx.vhost.error.log;
+
+    location / {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass https://localhost:5001;
+    }
+}
+
+server{
+    listen 443 default_server ssl;
+    server_name www.resteasy.live resteasy.live;
+    access_log /var/log/nginx/nginx.vhost.access.log;
+    error_log /var/log/nginx/nginx.vhost.error.log;
+    ssl_certificate /home/ubuntu/certification/domain.crt;
+    ssl_certificate_key /home/ubuntu/certification/domain.key;
+
+    location / {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass http://localhost:3000;
+    }
+}
