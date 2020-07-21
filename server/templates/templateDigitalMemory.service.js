@@ -33,23 +33,10 @@ async function saveTemplate(body){
 async function getTemplate(){
     console.log("Request: get template")
 
-    let error
-    let status
-
-    try{
-        fs.readFile(
-            '../src/views/TemplateDigitalMemory/layout.js',
-            "utf8",
-            function read(err, data){
-                if (err) throw err;
-                console.log("Template read!")
-                return(data.substr(14))
-            }
-        );
-    }
-    catch (error) {
-        console.error("Error: ", error);
-    }
+    return await JSON.parse(fs.readFileSync(
+        '../src/views/TemplateDigitalMemory/layout.js',
+        "utf8",
+    ).substring(14))
 
 }
 

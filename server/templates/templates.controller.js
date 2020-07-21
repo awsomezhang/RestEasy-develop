@@ -17,10 +17,7 @@ function saveTemplate(req, res, next) {
 
 function getTemplate(req, res, next) {
     templateDigitalMemory.getTemplate()
-        .then((template) => {
-            console.log(template)
-            res.json(template)
-        })
+        .then((template) => {res.json(template)})
         .catch(err => next(err));
 }
 
