@@ -23,7 +23,6 @@ function getTemplate(req, res, next) {
 
 function getResetTemplate(req, res, next) {
     templateDigitalMemory.getResetTemplate()
-        .then((status) => {
-            status ? res.json({message: "success"}) : res.json({message: "failed"})})
+        .then((template) => {res.json(template)})
         .catch(err => next(err));
 }

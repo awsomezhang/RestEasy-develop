@@ -22,7 +22,6 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     componentDidMount(){
         axios.get(REMOTE_HOST + "/templates/gettemplate")
             .then((response) => {
-                console.log(response)
                 this.setState({
                     templateLayout: response["data"]
                 })
