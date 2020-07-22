@@ -7,6 +7,8 @@ const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
 const uuid = require("uuid/v4");
 
+const mongoose = require("mongoose");
+//const stripe = require("stripe")("sk_test_51GdM6cKpjNQvxncimdyAUcPhOOStR0h9FmUhsCdEVE7txFZP5ogRnvmkmjT7djeUGRLA321cqzPY7Eh5LId0HYDw000ppwCmm4");
 // Setup express app
 app.use(express.json());
 

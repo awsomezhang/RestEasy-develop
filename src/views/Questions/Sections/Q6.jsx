@@ -141,10 +141,10 @@ export default class Q6 extends React.Component {
 
                 <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
                 <button onClick={this.handleUpload}>UPLOAD</button>
-
-                <div style={{display: "flex", justifyContent: "space-between", marginTop: "1em"}}>
-                    <Button type="primary" onClick={this.props.prev}>Previous</Button>
-                    <Button type="primary" onClick={this.props.next}>Skip/Next</Button>
+                <br/>
+                <div style={{display: "flex", justifyContent: "center", marginTop: "1em"}}>
+                    <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
+                    <Button type="primary" onClick={this.props.next} style={{marginLeft: "10px", borderRadius: "10px"}}>Skip/Next</Button>
                 </div>
             </div>);
     }
