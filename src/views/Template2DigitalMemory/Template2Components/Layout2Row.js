@@ -9,7 +9,6 @@ const h = 600
 function DisplayItem(props){
     console.log(props)
     if(props.item.type == "img"){
-        console.log("img")
         return (
             <img src={props.item.img} style={imgStyle} />
         )

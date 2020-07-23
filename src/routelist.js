@@ -70,4 +70,9 @@ export default [
         URLpath: "/template2digitalmemory",
         dirpath: "./views/Template2DigitalMemory/Template2DigitalMemory"
     },
+    {
+        id: 15,
+        URLpath: "/template2digitalmemoryeditor",
+        dirpath: "./views/Template2DigitalMemory/Template2DigitalMemoryEditor"
+    },
 ]

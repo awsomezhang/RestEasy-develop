@@ -20,7 +20,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     }
 
     componentDidMount(){
-        axios.get(REMOTE_HOST + "/templates/gettemplate")
+        axios.get(REMOTE_HOST + "/templates/gettemplate2")
             .then((response) => {
                 this.setState({
                     templateLayout: response["data"]
@@ -38,7 +38,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
                     <div style={{height: "100px", backgroundColor:"grey"}} />
                     <br />
                     <h1 className="centered-text emphasis-text"> Template Digital Memory Editor </h1>
-                    <h3 className="centered-text"> Click on items to interact, or drag and drop to swap/merge </h3>
+                    <h3 className="centered-text"> Click on items to interact, or drag and drop to swap </h3>
                     <br />
                     <ProcessedLayoutEditor templateLayout={this.state.templateLayout} />
                     <br />

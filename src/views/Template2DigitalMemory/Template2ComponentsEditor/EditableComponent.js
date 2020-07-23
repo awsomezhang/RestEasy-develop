@@ -9,7 +9,7 @@ function Draggable(props){
         item: {
             type: DragItemTypes.IMAGE,
             rownum: props.rownum,
-            colnum: props.colnum,
+            index: props.index,
         },
         collect: monitor => ({
             isDragging: !!monitor.isDragging(),
@@ -18,10 +18,7 @@ function Draggable(props){
 
     const[{isOver}, drop] = useDrop({
         accept: DragItemTypes.IMAGE,
-        drop: (item, monitor) => (props.isMergeable(item.rownum, item.colnum, props.rownum, props.colnum) ? 
-            props.promptMerge(item.rownum, item.colnum, props.rownum, props.colnum) : 
-            props.swapTemplateItems(item.rownum, item.colnum, props.rownum, props.colnum)
-        ),
+        drop: (item, monitor) => props.swapTemplateItems(item.rownum, item.index, props.rownum, props.index),
         collect: monitor => ({
             isOver: !!monitor.isOver(),
         }),
@@ -48,21 +45,19 @@ export default class EditableComponent extends React.Component{
         this.state = {
             height: props.height,
             rownum: props.rownum,
-            colnum: props.colnum,
+            index: props.index,
             img: props.img,
         }
         this.swapTemplateItems = props.swapTemplateItems.bind(this)
         this.togglePopupIsOpen = props.togglePopupIsOpen.bind(this)
         this.sendClickedInfo = props.sendClickedInfo.bind(this)
-        this.isMergeable = props.isMergeable.bind(this)
-        this.promptMerge = props.promptMerge.bind(this)
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
             height: nextProps.height,
             rownum: nextProps.rownum,
-            colnum: nextProps.colnum,
+            index: nextProps.index,
             img: nextProps.img,
         })
     }
@@ -80,11 +75,9 @@ export default class EditableComponent extends React.Component{
                     <Draggable
                         height={this.state.height}
                         rownum={this.state.rownum}
-                        colnum={this.state.colnum}
+                        index={this.state.index}
                         swapTemplateItems={this.swapTemplateItems}
                         style={{positiong: "relative", zIndex: "-1"}}
-                        isMergeable={this.isMergeable}
-                        promptMerge={this.promptMerge}
                     >
                         {this.props.children}
                     </Draggable>

@@ -18,7 +18,7 @@ export default class ProcessedLayout extends React.Component{
         
         return(
             <div>
-                <a href="/templatedigitalmemoryeditor">
+                <a href="/template2digitalmemoryeditor">
                     <button
                         style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     >
