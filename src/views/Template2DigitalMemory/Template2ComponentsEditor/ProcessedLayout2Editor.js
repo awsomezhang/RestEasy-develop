@@ -12,20 +12,18 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.state = {
             templateLayout: props.templateLayout,
             popupIsOpen: false,
-            popupCanMergeSwap : false,
             lastClickedRow: -1,
-            lastClickedCol: -1,
+            lastClickedInd: -1,
             lastClickedImg: "",
             lastClickedLarge: false,
             lastDraggedRow: -1,
-            lastDraggedCol: -1,
+            lastDraggedInd: -1,
             lastDroppedRow: -1,
-            lastDroppedCol: -1,
+            lastDroppedInd: -1,
         }
 
         this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
         this.swapTemplateItems = this.swapTemplateItems.bind(this)
-        this.mergeTemplateItems = this.mergeTemplateItems.bind(this)
         this.togglePopupIsOpen = this.togglePopupIsOpen.bind(this)
         this.clearLastClicked = this.clearLastClicked.bind(this)
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
@@ -36,8 +34,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.breakAndDeleteLarge = this.breakAndDeleteLarge.bind(this)
         this.breakInsert = this.breakInsert.bind(this)
         this.changeLastImg = this.changeLastImg.bind(this)
-        this.isMergeable = this.isMergeable.bind(this)
-        this.promptMerge = this.promptMerge.bind(this)
     }
 
     togglePopupIsOpen(){
@@ -48,7 +44,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         var large = (this.state.templateLayout[row]["items"][col]["height"] > 1 || this.state.templateLayout[row]["items"][col]["width"] > 1)
         this.setState({
             lastClickedRow: row,
-            lastClickedCol: col,
+            lastClickedInd: col,
             lastClickedImg: img,
             lastClickedLarge: large,
             popupCanMergeSwap: false,
@@ -67,50 +63,25 @@ export default class ProcessedLayoutEditor extends React.Component{
         );
     }
 
-    swapTemplateItems = (rowi = this.state.lastDraggedRow, coli = this.state.lastDraggedCol, rowj = this.state.lastDroppedRow, colj = this.state.lastDroppedCol) => {
-        const tempimg = this.state.templateLayout[rowi]["items"][coli]["img"]
+    swapTemplateItems = (rowi = this.state.lastDraggedRow, indi = this.state.lastDraggedInd, rowj = this.state.lastDroppedRow, indj = this.state.lastDroppedInd) => {
+        console.log(this.state.templateLayout[rowi]["items"][indi])
+        console.log(this.state.templateLayout[rowj]["items"][indj])
+        const tempItem = this.state.templateLayout[rowi]["items"][indi]
+        const tempSize = this.state.templateLayout[rowj]["items"][indj]["size"]
         var tempTemplateLayout = this.state.templateLayout
 
-        tempTemplateLayout[rowi]["items"][coli]["img"] = this.state.templateLayout[rowj]["items"][colj]["img"]
-        tempTemplateLayout[rowj]["items"][colj]["img"] = tempimg
+        tempTemplateLayout[rowi]["items"][indi] = this.state.templateLayout[rowj]["items"][indj]
+        tempTemplateLayout[rowi]["items"][indi]["index"] = indi
+        tempTemplateLayout[rowi]["items"][indi]["size"] = tempItem["size"]
+        tempTemplateLayout[rowj]["items"][indj] = tempItem
+        tempTemplateLayout[rowj]["items"][indj]["index"] = indj
+        tempTemplateLayout[rowj]["items"][indj]["size"] = tempSize
 
         this.setState({
             templateLayout: tempTemplateLayout
         })
-    }
-
-    mergeTemplateItems = () => {
-        var draggedHeight = this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["height"]
-        var draggedWidth = this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["width"]
-        var droppedHeight = this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["height"]
-        var droppedWidth = this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["width"]
-        var rowStart = Math.min(this.state.lastDraggedRow, this.state.lastDroppedRow)
-        var rowEnd = Math.max(this.state.lastDraggedRow + draggedHeight - 1, this.state.lastDroppedRow + droppedHeight - 1)
-        var colStart = Math.min(this.state.lastDraggedCol, this.state.lastDroppedCol)
-        var colEnd = Math.max(this.state.lastDraggedCol + draggedWidth - 1, this.state.lastDroppedCol + droppedWidth - 1)
-        var img = (this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] ? this.state.templateLayout[this.state.lastDraggedRow]["items"][this.state.lastDraggedCol]["img"] : this.state.templateLayout[this.state.lastDroppedRow]["items"][this.state.lastDroppedCol]["img"])
-        var i
-        var j
-        var tempTemplateLayout = this.state.templateLayout
-        for(i = rowStart; i <= rowEnd; i++){
-            for(j = colStart; j <= colEnd; j++){
-                tempTemplateLayout[i]["items"][j]["img"] = ""
-                tempTemplateLayout[i]["items"][j]["exists"] = (i == rowStart) ? false : true
-                tempTemplateLayout[i]["items"][j]["under"] = [i-rowStart, j-colStart]
-            }
-        }
-        tempTemplateLayout[rowStart]["items"][colStart]["img"] = img
-        tempTemplateLayout[rowStart]["items"][colStart]["exists"] = true
-        tempTemplateLayout[rowStart]["items"][colStart]["under"] = null
-        tempTemplateLayout[rowStart]["items"][colStart]["height"] = rowEnd - rowStart + 1
-        tempTemplateLayout[rowStart]["items"][colStart]["width"] = colEnd - colStart + 1
-        this.setState({
-            templateLayout: tempTemplateLayout,
-            popupCanMergeSwap: false,
-            lastClickedRow: rowStart,
-            lastClickedCol: colStart,
-            lastClickedImg: img,
-        })
+        console.log(this.state.templateLayout[rowi]["items"][indi])
+        console.log(this.state.templateLayout[rowj]["items"][indj])
     }
 
     clearLastClicked = () => {
@@ -203,7 +174,7 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     breakInsert = () => {
         var tempTemplateLayout = this.state.templateLayout
-        this.breakAndDeleteLarge(tempTemplateLayout, this.state.lastClickedRow, this.state.lastClickedCol)
+        this.breakAndDeleteLarge(tempTemplateLayout, this.state.lastClickedRow, this.state.lastClickedInd)
         this.setState({
             templateLayout: tempTemplateLayout,
             lastClickedLarge: false,
@@ -212,74 +183,9 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     changeLastImg(img){
         var tempTemplateLayout = this.state.templateLayout
-        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = img
+        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedInd]["img"] = img
         this.setState({
             lastClickedImg: img,
-        })
-    }
-
-    isMergeable(rowi, coli, rowj, colj){
-        if(this.state.templateLayout[rowi]["items"][coli]["under"] != null){
-            var underRow = this.state.templateLayout[rowi]["items"][coli]["under"][0]
-            var underCol = this.state.templateLayout[rowi]["items"][coli]["under"][1]
-            rowi -= underRow
-            coli -= underCol
-        }
-        if(this.state.templateLayout[rowj]["items"][colj]["under"] != null){
-            var underRow = this.state.templateLayout[rowj]["items"][colj]["under"][0]
-            var underCol = this.state.templateLayout[rowj]["items"][colj]["under"][1]
-            rowj -= underRow
-            colj -= underCol
-        }
-        const imgi = this.state.templateLayout[rowi]["items"][coli]["img"]
-        const imgj = this.state.templateLayout[rowj]["items"][colj]["img"]
-        if(imgi != "" && imgj != ""){
-            return false
-        }
-        var rowStart = Math.min(rowi, rowj)
-        var colStart = Math.min(coli, colj)
-        var rowEnd = Math.max(rowi + this.state.templateLayout[rowi]["items"][coli]["height"] - 1, rowj + this.state.templateLayout[rowj]["items"][colj]["height"] - 1)
-        var colEnd = Math.max(coli + this.state.templateLayout[rowi]["items"][coli]["width"] - 1, colj + this.state.templateLayout[rowj]["items"][colj]["width"] - 1)
-        var r
-        var c
-        for(r = rowStart; r <= rowEnd; r++){
-            for(c = colStart; c <= colEnd; c++){
-                if(this.state.templateLayout[r]["items"][c]["img"] != ""){
-                    if(!(r == rowi && c == coli) && !(r == rowj && c == colj)){
-                        return false
-                    }
-                }
-                if(this.state.templateLayout[r]["items"][c]["under"] != null){
-                    const rOver = r - this.state.templateLayout[r]["items"][c]["under"][0]
-                    const cOver = c - this.state.templateLayout[r]["items"][c]["under"][1]
-                    if(rOver < rowStart){
-                        return false
-                    }
-                    if(cOver < colStart){
-                        return false
-                    }
-                }
-                var rHeight = this.state.templateLayout[r]["items"][c]["height"] + r - 1
-                var cWidth = this.state.templateLayout[r]["items"][c]["width"] + c - 1
-                if(rHeight > rowEnd){
-                    return false;
-                }
-                if(cWidth > colEnd){
-                    return false;
-                }
-            }
-        }
-        return true
-    }
-
-    promptMerge = (dragRow, dragCol, dropRow, dropCol) => {
-        this.setState({
-            popupIsOpen: true,
-            popupCanMergeSwap: true,
-            lastDraggedRow: dragRow,
-            lastDraggedCol: dragCol,
-            lastDroppedRow: dropRow,
-            lastDroppedCol: dropCol,
         })
     }
 
@@ -354,7 +260,6 @@ export default class ProcessedLayoutEditor extends React.Component{
                     changeLastImg={this.changeLastImg}
                     breakInsert={this.breakInsert}
                     swapTemplateItems={this.swapTemplateItems}
-                    mergeTemplateItems={this.mergeTemplateItems}
                 />
             </div>
         )

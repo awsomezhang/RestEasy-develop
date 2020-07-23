@@ -8,7 +8,6 @@ const imgStyle = {height: "100%", width: "100%", objectFit: "cover"}
 const h = 600
 
 function DisplayItem(props){
-    console.log(props)
     if(props.item.type == "img"){
         return (
             <img src={props.item.img} style={imgStyle} />

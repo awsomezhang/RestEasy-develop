@@ -61,7 +61,7 @@ async function getResetTemplate2(){
     console.log("Request: get template")
 
     return await JSON.parse(fs.readFileSync(
-        '../src/views/Template2DigitalMemory/layout2_backup.js',
+        '../src/views/Template2DigitalMemory/layout2_backup2.js',
         "utf8",
     ).substring(14))
 
