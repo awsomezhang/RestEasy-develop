@@ -3,6 +3,7 @@ import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import LayoutRowEditor from './LayoutRowEditor.js'
 import EditorPopup from './EditorPopup.js'
+import { REMOTE_HOST } from "../../../constants.js"
 
 export default class ProcessedLayoutEditor extends React.Component{
     constructor(props){
@@ -30,6 +31,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
         this.addRow = this.addRow.bind(this)
         this.resetTemplate = this.resetTemplate.bind(this)
+        this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)
         this.deleteRow = this.deleteRow.bind(this)
         this.breakAndDeleteLarge = this.breakAndDeleteLarge.bind(this)
         this.breakInsert = this.breakInsert.bind(this)
@@ -59,8 +61,8 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     handleChangeTemplate = async() => {
         const layout = this.state.templateLayout
-        await axios.post(
-            "http://localhost:5001/changetemplate",
+        axios.post(
+            REMOTE_HOST + "/templates/savetemplate",
             {layout}
         );
     }
@@ -75,8 +77,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             templateLayout: tempTemplateLayout
         })
-
-        this.handleChangeTemplate()
     }
 
     mergeTemplateItems = () => {
@@ -111,7 +111,6 @@ export default class ProcessedLayoutEditor extends React.Component{
             lastClickedCol: colStart,
             lastClickedImg: img,
         })
-        this.handleChangeTemplate()
     }
 
     clearLastClicked = () => {
@@ -134,16 +133,28 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             templateLayout: tempTemplateLayout
         })
-        this.handleChangeTemplate()
     }
 
-    resetTemplate = () => {
-        axios.get("http://localhost:5001/getresettemplate")
+    revertLastSavedTemplate = () => {
+        axios.get(REMOTE_HOST + "/templates/gettemplate")
             .then((response) => {
+                console.log(response)
                 this.setState({
                     templateLayout: response["data"]
                 })
-                this.handleChangeTemplate()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    resetTemplate = () => {
+        axios.get(REMOTE_HOST + "/templates/getresettemplate")
+            .then((response) => {
+                console.log(response)
+                this.setState({
+                    templateLayout: response["data"]
+                })
             })
             .catch((error) => {
                 console.log(error)
@@ -172,7 +183,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             templateLayout: tempTemplateLayout
         })
-        this.handleChangeTemplate()
     }
 
     breakAndDeleteLarge = (tempTemplateLayout, rowStart, colStart) => {
@@ -198,7 +208,6 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout,
             lastClickedLarge: false,
         })
-        this.handleChangeTemplate()
     }
 
     changeLastImg(img){
@@ -207,7 +216,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             lastClickedImg: img,
         })
-        this.handleChangeTemplate()
     }
 
     isMergeable(rowi, coli, rowj, colj){
@@ -306,9 +314,23 @@ export default class ProcessedLayoutEditor extends React.Component{
                 <br />
                 <button
                     style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
+                    onClick={() => {this.handleChangeTemplate()}}
+                >
+                    Save current template
+                </button>
+                <br />
+                <button
+                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
+                    onClick={() => {this.revertLastSavedTemplate()}}
+                >
+                    Revert last saved template
+                </button>
+                <br />
+                <button
+                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     onClick={() => {this.resetTemplate()}}
                 >
-                    RESET
+                    RESET ORIGINAL TEMPLATE
                 </button>
                 <br />
                 <Container fluid={true}>
