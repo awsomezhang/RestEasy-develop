@@ -26,7 +26,7 @@ function Draggable(props){
 
     return(
         <div
-            style={{height: (props.height ? props.height : "100%"), width: "100%", padding: "0px", borderStyle: "none"}}
+            style={{height: "100%", width: "100%", padding: "0px", borderStyle: "none"}}
             ref = {drag}
         >
             <div
@@ -43,7 +43,6 @@ export default class EditableComponent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            height: props.height,
             rownum: props.rownum,
             index: props.index,
             img: props.img,
@@ -55,7 +54,6 @@ export default class EditableComponent extends React.Component{
 
     componentWillReceiveProps(nextProps){
         this.setState({
-            height: nextProps.height,
             rownum: nextProps.rownum,
             index: nextProps.index,
             img: nextProps.img,
@@ -66,18 +64,16 @@ export default class EditableComponent extends React.Component{
         return(
             <div>
                 <button
-                    style={{height: (this.state.height ? this.state.height : "100%"), width: "100%", padding: "0px", borderStyle: "none"}}
+                    style={{height: "100%", width: "100%", padding: "0px", borderStyle: "none", margin: "0px", backgroundColor: "transparent"}}
                     onClick={() => {
                         this.togglePopupIsOpen()
                         this.sendClickedInfo(this.state.rownum, this.state.colnum, this.state.img)
                     }}
                 >
                     <Draggable
-                        height={this.state.height}
                         rownum={this.state.rownum}
                         index={this.state.index}
                         swapTemplateItems={this.swapTemplateItems}
-                        style={{positiong: "relative", zIndex: "-1"}}
                     >
                         {this.props.children}
                     </Draggable>
