@@ -35,19 +35,19 @@ export default function LayoutRowEditor(props){
         LayoutCols = (
             <Row className="justify-content-md-center" style={{height: h}}>
                 <Col md="7" style={{height: h, padding: "0px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge} style={{height: h}}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[1].type}>
                         <div style={{height: (h*0.7), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[1]} />
                         </div>
                     </EditableComponent>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[2].type}>
                         <div style={{height: (h*0.3), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[2]} />
                         </div>
                     </EditableComponent>
                 </Col>
                 <Col md="5" style={{height: h, padding: "10px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[0].type}>
                         <div style={{height: (h-20)}}>
                             <DisplayItem item={props.rowinfo[0]} />
                         </div>
@@ -60,19 +60,19 @@ export default function LayoutRowEditor(props){
        LayoutCols = (
             <Row className="justify-content-md-center" style={{height: h}}>
                 <Col md="5" style={{height: h, padding: "10px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge} style={{height: "100%"}}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[0].type}>
                         <div style={{height: (h-20)}}>
                             <DisplayItem item={props.rowinfo[0]} />
                         </div>
                     </EditableComponent>
                 </Col>
                 <Col md="7" style={{height: h, padding: "0px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[1].type}>
                         <div style={{height: (h*0.7), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[1]} />
                         </div>
                     </EditableComponent>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} isMergeable={props.isMergeable} promptMerge={props.promptMerge}>
+                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[2].type}>
                         <div style={{height: (h*0.3), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[2]} />
                         </div>

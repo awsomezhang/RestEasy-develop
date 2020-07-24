@@ -45,7 +45,7 @@ export default class EditableComponent extends React.Component{
         this.state = {
             rownum: props.rownum,
             index: props.index,
-            img: props.img,
+            type: props.type,
         }
         this.swapTemplateItems = props.swapTemplateItems.bind(this)
         this.togglePopupIsOpen = props.togglePopupIsOpen.bind(this)
@@ -56,7 +56,7 @@ export default class EditableComponent extends React.Component{
         this.setState({
             rownum: nextProps.rownum,
             index: nextProps.index,
-            img: nextProps.img,
+            type: nextProps.type,
         })
     }
 
@@ -67,7 +67,7 @@ export default class EditableComponent extends React.Component{
                     style={{height: "100%", width: "100%", padding: "0px", borderStyle: "none", margin: "0px", backgroundColor: "transparent"}}
                     onClick={() => {
                         this.togglePopupIsOpen()
-                        this.sendClickedInfo(this.state.rownum, this.state.colnum, this.state.img)
+                        this.sendClickedInfo(this.state.rownum, this.state.index, this.state.type)
                     }}
                 >
                     <Draggable

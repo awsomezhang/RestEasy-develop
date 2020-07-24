@@ -14,8 +14,7 @@ export default class ProcessedLayoutEditor extends React.Component{
             popupIsOpen: false,
             lastClickedRow: -1,
             lastClickedInd: -1,
-            lastClickedImg: "",
-            lastClickedLarge: false,
+            lastClickedTyp: "",
             lastDraggedRow: -1,
             lastDraggedInd: -1,
             lastDroppedRow: -1,
@@ -31,18 +30,18 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.resetTemplate = this.resetTemplate.bind(this)
         this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)
         this.deleteRow = this.deleteRow.bind(this)
-        this.changeLastImg = this.changeLastImg.bind(this)
+        this.changeLastType = this.changeLastType.bind(this)
     }
 
     togglePopupIsOpen(){
         this.setState({popupIsOpen: !this.state.popupIsOpen})
     }
 
-    sendClickedInfo(row, ind, img){
+    sendClickedInfo(row, ind, typ){
         this.setState({
             lastClickedRow: row,
             lastClickedInd: ind,
-            lastClickedImg: img,
+            lastClickedTyp: typ,
         })
     }
 
@@ -80,7 +79,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     clearLastClicked = () => {
-        this.changeLastImg("")
+        this.changeLastType("empty")
     }
 
     addRow = () => {
@@ -138,11 +137,14 @@ export default class ProcessedLayoutEditor extends React.Component{
         })
     }
 
-    changeLastImg(img){
+    changeLastType(typ, img = null){
         var tempTemplateLayout = this.state.templateLayout
+        tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedInd]["type"] = typ
         tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedInd]["img"] = img
+
         this.setState({
-            lastClickedImg: img,
+            templateLayout: tempTemplateLayout,
+            lastClickedTyp: typ,
         })
     }
 
@@ -158,8 +160,6 @@ export default class ProcessedLayoutEditor extends React.Component{
                     sendClickedInfo={this.sendClickedInfo}
                     zIndex={"" + (this.state.templateLayout.length - rowinfo.row)}
                     deleteRow={this.deleteRow}
-                    isMergeable={this.isMergeable}
-                    promptMerge={this.promptMerge}
                 />
             )
         })
@@ -209,13 +209,10 @@ export default class ProcessedLayoutEditor extends React.Component{
                 <br />
                 <EditorPopup
                     popupIsOpen={this.state.popupIsOpen}
-                    popupCanMergeSwap={this.state.popupCanMergeSwap}
                     togglePopupIsOpen={this.togglePopupIsOpen}
-                    lastClickedImg={this.state.lastClickedImg}
-                    lastClickedLarge={this.state.lastClickedLarge}
+                    lastClickedTyp={this.state.lastClickedTyp}
                     clearLastClicked={this.clearLastClicked}
-                    changeLastImg={this.changeLastImg}
-                    breakInsert={this.breakInsert}
+                    changeLastType={this.changeLastType}
                     swapTemplateItems={this.swapTemplateItems}
                 />
             </div>

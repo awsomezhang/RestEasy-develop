@@ -2,34 +2,23 @@ import React from 'react';
 import Popup from "reactjs-popup"
 
 function InsertPopup(props){
-    let button = null
-    if(props.large){
-        button=(
-            <button
-                onClick={() => {props.breakInsert()}}
-            >
-                Break this section up.
-            </button>
-        )
-    }
     return(
         <div>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
             >
                 Add image
             </button>
             <button
-                onClick={() => {props.changeLastImg("nonimage")}}
+                onClick={() => {props.changeLastType("text")}}
             >
                 Add Memory
             </button>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
             >
                 Add Spotify playlist
             </button>
-            {button}
         </div>
     )
 }
@@ -43,17 +32,17 @@ function ImagePopup(props){
                 Delete this.
             </button>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
             >
                 Show a different image
             </button>
             <button
-                onClick={() => {props.changeLastImg("nonimage")}}
+                onClick={() => {props.changeLastType("text")}}
             >
                 Change to Memory
             </button>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
             >
                 Change to Spotify playlist
             </button>
@@ -70,17 +59,17 @@ function NonimagePopup(props){
                 Delete this.
             </button>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image3.bc0d3b4d.jpg")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
             >
                 Change to image
             </button>
             <button
-                onClick={() => {props.changeLastImg("nonimage")}}
+                onClick={() => {props.changeLastType("text")}}
             >
                 Show a different Memory
             </button>
             <button
-                onClick={() => {props.changeLastImg("/static/media/image8.b4f3dc7f.png")}}
+                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
             >
                 Change to Spotify playlist
             </button>
@@ -89,21 +78,22 @@ function NonimagePopup(props){
 }
 
 function CustomPopup(props){
-    const img = props.img
-    if(img === ""){
+    const type = props.type
+    console.log(type)
+    if(type === "empty"){
         return(
             <InsertPopup
                 large={props.large}
-                changeLastImg={props.changeLastImg}
+                changeLastType={props.changeLastType}
                 breakInsert={props.breakInsert}
             />
         )
     }
-    if(img === "nonimage"){
+    if(type === "text"){
         return(
             <NonimagePopup
                 clearLastClicked={props.clearLastClicked}
-                changeLastImg={props.changeLastImg}
+                changeLastType={props.changeLastType}
             />
         )
     }
@@ -111,48 +101,24 @@ function CustomPopup(props){
         return(
             <ImagePopup
                 clearLastClicked={props.clearLastClicked}
-                changeLastImg={props.changeLastImg}
+                changeLastType={props.changeLastType}
             />
         )
     }
 }
 
 export default function EditorPopup (props){
-    let popup
-    if(props.popupCanMergeSwap){
-        popup = (
-            <div>
-                <button
-                    onClick={() => {props.mergeTemplateItems()}}
-                >
-                    Merge
-                </button>
-                <button
-                    onClick={() => {props.swapTemplateItems()}}
-                >
-                    Swap
-                </button>
-            </div>
-        )
-    }
-    else{
-        popup=( 
-            <CustomPopup
-                img={props.lastClickedImg}
-                large={props.lastClickedLarge}
-                clearLastClicked={props.clearLastClicked}
-                changeLastImg={props.changeLastImg}
-                breakInsert={props.breakInsert}
-            />
-        )
-    }
     return(
         <Popup
             open={(props.popupIsOpen)}
             onClose={() => {props.togglePopupIsOpen()}}
             style={{zIndex: "999999"}}
         >
-            {popup}
+            <CustomPopup
+                type={props.lastClickedTyp}
+                clearLastClicked={props.clearLastClicked}
+                changeLastType={props.changeLastType}
+            />
         </Popup>
     )
 }
