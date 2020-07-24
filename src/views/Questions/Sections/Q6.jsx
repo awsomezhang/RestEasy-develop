@@ -5,6 +5,7 @@ import {uploadMedia} from "../QuestionsAPI";
 import axios from "axios";
 import PictureWall from "../PictureWall"
 import { json } from "body-parser";
+import { REMOTE_HOST } from "../../../constants.js"
 
 function renameFile(file) {
     var date = Date.now()
@@ -56,7 +57,7 @@ export default class Q6 extends React.Component {
             }
         }
 
-        axios.post("http://localhost:5000/aws/signS3_upload",{
+        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
             bucket : "resteasy-user-uploads",
             fileName : fileName,
             fileType : fileType
