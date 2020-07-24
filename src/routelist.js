@@ -48,7 +48,7 @@ export default [
     {
         id: 10,
         URLpath: "/registry",
-        dirpath: "./views/Registry/Registry"
+        dirpath: "./views/Registry/NewSections_test/NewRegistry"
     },
     {
         id: 11,

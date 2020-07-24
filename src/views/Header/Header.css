@@ -12,7 +12,8 @@
     color: white;
 }
 .search-area{
-    margin-right: 20px
+    margin-right: 20px;
+    display: block;
 }
 .search-bar {
     /* margin-right: 30px;
@@ -44,4 +45,16 @@
 }
 .username {
     margin-right: 30px;
+}
+.navbar-collapse.show, .navbar-collapse.collapsing{
+    background: rgba(0, 0, 0, 0.952);
+    text-align: center;
+    border-radius: 5%;
+}
+
+.form-inline{
+    display: block;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px
 }

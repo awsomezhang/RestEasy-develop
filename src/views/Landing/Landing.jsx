@@ -51,7 +51,7 @@ class Landing extends React.Component {
                     <div ref={this.state.createRef}> <Create /> </div>
                     <div ref={this.state.registerRef}> <Register /> </div>
                     <div ref={this.state.resourcesRef}> <Resources /> </div>
-                    <FAQ />
+                    {/* <FAQ /> */}
                 </div>
             }/>
         );
