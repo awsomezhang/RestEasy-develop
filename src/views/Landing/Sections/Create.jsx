@@ -116,7 +116,7 @@ function CreateAction(){
                             Build Your Forever Memory Now
                         </Button>
                         <div style={{ textAlign: "left", fontSize: "20px", marginLeft: "20px", padding: "30px 0px"}}>
-                            Curious? check out <a href="/templatedigitalmemory">samples</a> or <a href="/">reviews</a>.
+                            Curious? check out <a href="/templatedigitalmemory">sample</a> or <a href="/template2digitalmemory">sample2</a> or <a href="/">reviews</a>.
                         </div>
 
                     </Col>
@@ -127,7 +127,6 @@ function CreateAction(){
         </div>
     )
 }
-
 
 class Create extends React.Component {
     render() {

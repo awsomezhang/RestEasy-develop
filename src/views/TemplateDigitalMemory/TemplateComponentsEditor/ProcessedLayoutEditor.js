@@ -214,6 +214,7 @@ export default class ProcessedLayoutEditor extends React.Component{
         var tempTemplateLayout = this.state.templateLayout
         tempTemplateLayout[this.state.lastClickedRow]["items"][this.state.lastClickedCol]["img"] = img
         this.setState({
+            templateLayout: tempTemplateLayout,
             lastClickedImg: img,
         })
     }
