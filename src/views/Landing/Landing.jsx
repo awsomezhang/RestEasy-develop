@@ -3,7 +3,7 @@ import {Divider, Layout} from 'antd';
 
 import "../../styles/styles.css"
 
-import FAQ from "./Sections/FAQ";
+
 import Banner from "./Sections/Banner";
 import HowItWorks from "./Sections/HowItWorks";
 import Create from "./Sections/Create"

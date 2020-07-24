@@ -111,16 +111,16 @@ function CreateAction(){
                 <Row>
                    
                     <Col md="3" />
-                    <Col md="6" style={{ display: "flex", justifyContent: "center"}}>
+                    <Col md="7" style={{ display: "flex", justifyContent: "center"}}>
                         <Button className="build-button" style={{ fontSize: "25px", width: "272px", height: "96px", padding: "0px", border: "none" }}>
                             Build Your Forever Memory Now
                         </Button>
                         <div style={{ textAlign: "left", fontSize: "20px", marginLeft: "20px", padding: "30px 0px"}}>
-                            Curious? check out <a href="/templatedigitalmemory">samples</a> or <a href="/">reviews</a>.
+                            Curious? check out <a href="/templatedigitalmemory">samples</a> or <a href="/template2digitalmemory">sample2</a> or <a href="/">reviews</a>.
                         </div>
 
                     </Col>
-                    <Col md="3" />
+                    <Col md="2" />
 
                 </Row>
             </Container>
