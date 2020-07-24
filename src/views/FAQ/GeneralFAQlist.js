@@ -19,6 +19,21 @@ export default [
     },
     {
         id: 2,
+        question: "What makes RestEasy different?",
+        answer: `Traditionally, condolence messages are captured in a Funeral Guest Book at a funeral service. 
+        The book can only be signed by those who physically attend the funeral and can only be read by the 
+        person who keeps it after the service. 
+
+        A Digital Memory allows everyone who loved your loved one to contribute not only stories and messages, 
+        but photos, live videos, and music. And it can be viewed at any time (birthdays, anniversaries, any 
+        Tuesday when you really miss them) by all who love them.
+        
+        Sharing your Digital Memory allows you to move outside the confines of a traditional obituary when 
+        announcing a death. Share more than just facts about their life and death - capture the essence of 
+        who they are and the legacy they have left.`
+    },
+    {
+        id: 3,
         question: "How much does it cost?",
         answer: `$20 for creators. Free for contributors. 
 
@@ -28,7 +43,7 @@ export default [
         Sharing a memory or contributing funds to an existing Digital Memory is free.`
     },
     {
-        id: 3,
+        id: 4,
         question: "How does it work?",
         answer: `Create a Digital Memory in as little as 5 minutes. 
 

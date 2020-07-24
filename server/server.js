@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
 const uuid = require("uuid/v4");
+
 const mongoose = require("mongoose");
 
 const DEVELOPING = true;
