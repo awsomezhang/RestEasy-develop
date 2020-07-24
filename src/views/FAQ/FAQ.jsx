@@ -160,6 +160,7 @@ class FAQ extends React.Component {
                     <br />
 
                     <RegistryFAQ />
+                    <br />
                     <h5 className="centered-text"> Anything left unanswered? <a href="/">Chat us.</a> </h5>
                     <br />
                 </div>
