@@ -111,7 +111,7 @@ function CreateAction(){
                 <Row>
                    
                     <Col md="3" />
-                    <Col md="6" style={{ display: "flex", justifyContent: "center"}}>
+                    <Col md="7" style={{ display: "flex", justifyContent: "center"}}>
                         <Button className="build-button" style={{ fontSize: "25px", width: "272px", height: "96px", padding: "0px", border: "none" }}>
                             Build Your Forever Memory Now
                         </Button>
@@ -120,7 +120,7 @@ function CreateAction(){
                         </div>
 
                     </Col>
-                    <Col md="3" />
+                    <Col md="2" />
 
                 </Row>
             </Container>

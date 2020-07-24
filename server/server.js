@@ -13,7 +13,6 @@ const DEVELOPING = true;
 
 //const stripe = require("stripe")("");
 
-
 // Setup express app
 app.use(express.json());
 
