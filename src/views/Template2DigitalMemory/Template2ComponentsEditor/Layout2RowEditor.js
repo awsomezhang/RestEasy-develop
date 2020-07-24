@@ -13,6 +13,13 @@ function DisplayItem(props){
             <img src={props.item.img} style={imgStyle} />
         )
     }
+    else if(props.item.type == "empty"){
+        return (
+            <div className="center" style={{height: "100%", width: "100%", backgroundColor: "green"}}>
+                Insert photo or memory here.
+            </div>
+        )
+    }
     else{
         return (
             <div className="center" style={{height: "100%", width: "100%", backgroundColor: "#E2FCD3"}}>

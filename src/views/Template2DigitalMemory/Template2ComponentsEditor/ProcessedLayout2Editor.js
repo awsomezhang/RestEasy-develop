@@ -31,8 +31,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.resetTemplate = this.resetTemplate.bind(this)
         this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)
         this.deleteRow = this.deleteRow.bind(this)
-        this.breakAndDeleteLarge = this.breakAndDeleteLarge.bind(this)
-        this.breakInsert = this.breakInsert.bind(this)
         this.changeLastImg = this.changeLastImg.bind(this)
     }
 
@@ -40,14 +38,11 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({popupIsOpen: !this.state.popupIsOpen})
     }
 
-    sendClickedInfo(row, col, img){
-        var large = (this.state.templateLayout[row]["items"][col]["height"] > 1 || this.state.templateLayout[row]["items"][col]["width"] > 1)
+    sendClickedInfo(row, ind, img){
         this.setState({
             lastClickedRow: row,
-            lastClickedInd: col,
+            lastClickedInd: ind,
             lastClickedImg: img,
-            lastClickedLarge: large,
-            popupCanMergeSwap: false,
         })
     }
 
@@ -58,7 +53,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     handleChangeTemplate = async() => {
         const layout = this.state.templateLayout
         axios.post(
-            REMOTE_HOST + "/templates/savetemplate",
+            REMOTE_HOST + "/templates/savetemplate2",
             {layout}
         );
     }
@@ -93,12 +88,9 @@ export default class ProcessedLayoutEditor extends React.Component{
         tempTemplateLayout.push({
             row: tempTemplateLayout.length,
             items: [
-                {col: 0, width: 1, height: 1, img: "", exists: true},
-                {col: 1, width: 1, height: 1, img: "", exists: true},
-                {col: 2, width: 1, height: 1, img: "", exists: true},
-                {col: 3, width: 1, height: 1, img: "", exists: true},
-                {col: 4, width: 1, height: 1, img: "", exists: true},
-                {col: 5, width: 1, height: 1, img: "", exists: true},
+                {ind: 0, size: "big", type: "empty"},
+                {ind: 1, size: "med", type: "empty"},
+                {ind: 2, size: "small", type: "empty"},
             ]
         })
         this.setState({
@@ -107,7 +99,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     revertLastSavedTemplate = () => {
-        axios.get(REMOTE_HOST + "/templates/gettemplate")
+        axios.get(REMOTE_HOST + "/templates/gettemplate2")
             .then((response) => {
                 console.log(response)
                 this.setState({
@@ -120,7 +112,7 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     resetTemplate = () => {
-        axios.get(REMOTE_HOST + "/templates/getresettemplate")
+        axios.get(REMOTE_HOST + "/templates/getresettemplate2")
             .then((response) => {
                 console.log(response)
                 this.setState({
@@ -134,50 +126,15 @@ export default class ProcessedLayoutEditor extends React.Component{
 
     deleteRow = (rownum) => {
         var tempTemplateLayout = this.state.templateLayout
-        var i
-        for(i = 0; i < 6; i++){
-            if(tempTemplateLayout[rownum]["items"][i]["under"] != null){
-                var rowStart = rownum - tempTemplateLayout[rownum]["items"][i]["under"][0]
-                var colStart = i - tempTemplateLayout[rownum]["items"][i]["under"][1]
-                this.breakAndDeleteLarge(tempTemplateLayout, rowStart, colStart)
-            }
-            if(tempTemplateLayout[rownum]["items"][i]["height"] != 1 || tempTemplateLayout[rownum]["items"][i]["width"] != 1){
-                this.breakAndDeleteLarge(tempTemplateLayout, rownum, i)
-            }
-        }
-
         tempTemplateLayout.splice(rownum, 1)
+
+        var i
         for(i = 0; i < tempTemplateLayout.length; i++){
             tempTemplateLayout[i]["row"] = i
         }
 
         this.setState({
             templateLayout: tempTemplateLayout
-        })
-    }
-
-    breakAndDeleteLarge = (tempTemplateLayout, rowStart, colStart) => {
-        var rowEnd = rowStart + tempTemplateLayout[rowStart]["items"][colStart]["height"]
-        var colEnd = colStart + tempTemplateLayout[rowStart]["items"][colStart]["width"]
-        var j
-        var k
-        for(j = rowStart; j < rowEnd; j++){
-            for(k = colStart; k < colEnd; k++){
-                tempTemplateLayout[j]["items"][k]["img"] = ""
-                tempTemplateLayout[j]["items"][k]["exists"] = true
-                tempTemplateLayout[j]["items"][k]["height"] = 1
-                tempTemplateLayout[j]["items"][k]["width"] = 1
-                tempTemplateLayout[j]["items"][k]["under"] = null
-            }
-        }
-    }
-
-    breakInsert = () => {
-        var tempTemplateLayout = this.state.templateLayout
-        this.breakAndDeleteLarge(tempTemplateLayout, this.state.lastClickedRow, this.state.lastClickedInd)
-        this.setState({
-            templateLayout: tempTemplateLayout,
-            lastClickedLarge: false,
         })
     }
 
