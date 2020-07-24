@@ -20,9 +20,6 @@ export default function LoginForm() {
                                             <div className="header-description">
                                             When the founders of RestEasy experienced our own personal losses, we each noted serious flaws in the memorial process, starting with <span className="italic">“What do I do now?”</span>
                                             </div>
-                                            <div className="get-started">
-                                                Get Started Now:
-                                            </div>
                                         </Col>
                                     </Row>
                                 </Container>

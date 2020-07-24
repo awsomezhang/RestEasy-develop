@@ -98,3 +98,9 @@ code {
     color: var(--Color1);
     cursor: pointer;
 }
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
