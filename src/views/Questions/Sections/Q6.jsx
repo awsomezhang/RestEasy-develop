@@ -85,7 +85,7 @@ export default class Q6 extends React.Component {
                 
                 // upon successful upload, add the file data into the userImages index in mongoDB
                 console.log("add to database: " + fileToAddDB)
-                axios.post("http://localhost:5000/aws/addImgDB", {
+                axios.post(REMOTE_HOST + "/aws/addImgDB", {
                     memoryName: "testMemory",
                     imgID: fileToAddDB
                 }, config)
