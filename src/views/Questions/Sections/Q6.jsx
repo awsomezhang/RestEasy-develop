@@ -25,107 +25,116 @@ export default class Q6 extends React.Component {
         this.state = {
           success : false,
           url : "",
-          fileName: ""
+          fileName: "",
+          fileArr: [],
+          fileTest: [],
+          uploadMessage: ""
+            
         }
-      }
+    }
     
+
     handleChange = (ev) => {
-        this.setState({success: false, url : ""});
+        this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(ev.target.files[0])], fileTest: [...this.state.fileTest, ev.target.files[0]], uploadMessage: "" })
+        console.log(this.state.fileArr);
+        // this.setState({success: false, url : "", file: URL.createObjectURL(event.target.files[0])});
         
     }
     
-    handleUpload = ev => {
-        var file = this.uploadInput.files[0];
+    handleUpload = (ev) => {
+        // const files = this.uploadInput.files;
+        const files = this.state.fileTest;
+        console.log(files);
 
-        var file = renameFile(file)
 
-        var fileToAddDB = ""
+        Array.prototype.forEach.call(files, file => {
+            var file = renameFile(file)
 
-        console.log("new file")
-        console.log(file)
-        // Split the filename to get the name and type
-        let fileParts = file.name.split('.');
-        let fileName = fileParts[0];
-        let fileType = fileParts[1];
-        
-        console.log("Preparing the upload");
-
-        const jwt = localStorage.getItem("token");
-        const config = {
-            headers: {
-                Authorization: `Bearer ${jwt}`,
+            var fileToAddDB = ""
+    
+            console.log("new file")
+            console.log(file)
+            // Split the filename to get the name and type
+            let fileParts = file.name.split('.');
+            let fileName = fileParts[0];
+            let fileType = fileParts[1];
+            
+            console.log("Preparing the upload");
+    
+            const jwt = localStorage.getItem("token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${jwt}`,
+                }
             }
-        }
-
-        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
-            bucket : "resteasy-user-uploads",
-            fileName : fileName,
-            fileType : fileType
-        }, config)
-        .then(response => {
-            console.log("---------")
-            console.log(response)
-            var returnData = response.data
-            var signedRequest = returnData.signedRequest;
-            var url = returnData.url;
-            this.setState({url: url})
-            fileToAddDB = returnData.fileName
-            console.log("Recieved a signed request " + signedRequest);
-            console.log(fileToAddDB)
-        
-            // Put the fileType in the headers for the upload
-            var options = {
-                    headers: {
-                        'Content-Type': fileType
-                    }
-            };
-            axios.put(signedRequest,file,options)
-            .then(result => {
-                this.setState({success: true});
-                
-                // upon successful upload, add the file data into the userImages index in mongoDB
-                console.log("add to database: " + fileToAddDB)
-                axios.post(REMOTE_HOST + "/aws/addImgDB", {
-                    memoryName: "testMemory",
-                    imgID: fileToAddDB
-                }, config)
-                .then( result => {
-                    console.log(result)
-                }).catch(error => {
-                    console.log("error " + JSON.stringify(error))
+    
+            axios.post(REMOTE_HOST + "/aws/signS3_upload",{
+                bucket : "resteasy-user-uploads",
+                fileName : fileName,
+                fileType : fileType
+            }, config)
+            .then(response => {
+                console.log("---------")
+                console.log(response)
+                var returnData = response.data
+                var signedRequest = returnData.signedRequest;
+                var url = returnData.url;
+                this.setState({url: url})
+                fileToAddDB = returnData.fileName
+                console.log("Recieved a signed request " + signedRequest);
+                console.log(fileToAddDB)
+            
+                // Put the fileType in the headers for the upload
+                var options = {
+                        headers: {
+                            'Content-Type': fileType
+                        }
+                };
+                axios.put(signedRequest,file,options)
+                .then(result => {
+                    this.setState({success: true});
+                    
+                    // upon successful upload, add the file data into the userImages index in mongoDB
+                    console.log("add to database: " + fileToAddDB)
+                    axios.post("http://localhost:5000/aws/addImgDB", {
+                        memoryName: "testMemory",
+                        imgID: fileToAddDB
+                    }, config)
+                    .then( result => {
+                        console.log(result)
+                        
+                    }).catch(error => {
+                        console.log("error " + JSON.stringify(error))
+                    })
                 })
+                .catch(error => {
+                    console.log("ERROR " + JSON.stringify(error));
+                })
+
+                // this.setState({ fileArr: [], fileTest: [], uploadMessage: "Image(s) uploaded! You can add more or go to the next step." })
+                // document.getElementById("choose-file").value = null;
+
             })
             .catch(error => {
-                console.log("ERROR " + JSON.stringify(error));
+                console.log(JSON.stringify(error));
+
+            
             })
-        })
-        .catch(error => {
-            console.log(JSON.stringify(error));
-        })
 
+        });
 
-        // uploadMedia(file)
-        //     .done(function(response) {
-        //         if (response.success) {
-        //             console.log('file uploaded');
-        //         } else {
-        //             notification.error({
-        //                 message: 'Media upload failed',
-        //                 description: response.message,
-        //                 placement: 'bottomRight',
-        //             });
-        //         }
-        //     })
-        //     .fail((error) => {
-        //         notification.error({
-        //             message: 'Media upload failed',
-        //             description: (error.responseJSON && error.responseJSON.message) ? error.responseJSON.message : "Something went wrong, Please try again later.",
-        //             placement: 'bottomRight',
-        //         });
-        //     });
+        this.setState({ fileArr: [], fileTest: [], uploadMessage: "Image(s) uploaded! You can add more or go to the next step." })
+        document.getElementById("choose-file").value = null;
+
     };
 
     render() {
+
+        let imgArr = this.state.fileArr
+        const images = imgArr.map(image => {
+            return <img key={image} src={image} style={{height: "60px", width: "60px", objectFit: "cover", margin: "10px"}} />
+         });
+
         return (
             <div style={{width: "100%", textAlign: "center"}}>
                 <div style={{fontSize: "2em", marginBottom: "0.5em"}}>
@@ -140,8 +149,16 @@ export default class Q6 extends React.Component {
 
                 {/* <PictureWall /> */}
 
-                <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-                <button onClick={this.handleUpload}>UPLOAD</button>
+                <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file" multiple={false} id="choose-file"/>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <br/>
+                    { this.state.uploadMessage }
+                    { images }
+                </div>
+                {/* <img src={this.state.file} style={{height: "100px", objectFit: "cover", border: "none"}}/> */}
+                <br />
+                <br />
+                <button onClick={this.handleUpload}>UPLOAD PHOTO(S)</button>
                 <br/>
                 <div style={{display: "flex", justifyContent: "center", marginTop: "1em"}}>
                     <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>

@@ -86,7 +86,7 @@ export default [
     },
     {
         id: 17,
-        URLpath: "/digitalmemory",
+        URLpath: "/digitalmemory/" + localStorage.getItem("unique_url"),
         dirpath: "./views/User2DigitalMemory/Template2DigitalMemory",
         status: "protected"
     },

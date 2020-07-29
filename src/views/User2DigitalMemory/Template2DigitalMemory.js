@@ -45,6 +45,7 @@ export default class LoginForm extends React.Component{
                 fetch(response.data)
                     .then(response2 => response2.text())
                     .then(data => {
+                        console.log(data)
                         this.setState({templateLayout: JSON.parse(data)})
                     })
             })
