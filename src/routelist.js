@@ -87,11 +87,13 @@ export default [
     {
         id: 17,
         URLpath: "/digitalmemory",
-        dirpath: "./views/User2DigitalMemory/Template2DigitalMemory"
+        dirpath: "./views/User2DigitalMemory/Template2DigitalMemory",
+        status: "protected"
     },
     {
         id: 17,
         URLpath: "/digitalmemoryeditor",
-        dirpath: "./views/User2DigitalMemory/Template2DigitalMemoryEditor"
+        dirpath: "./views/User2DigitalMemory/Template2DigitalMemoryEditor",
+        status: "protected"
     },
 ]
