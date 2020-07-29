@@ -4,6 +4,13 @@ import axios from "axios";
 import { REMOTE_HOST } from "../../../constants.js"
 
 class CustomPopup extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            text: ""
+        }
+    }
+
     handleUpload = ev => {
         var file = this.uploadInput.files[0];
 
@@ -80,12 +87,15 @@ class CustomPopup extends React.Component{
             >
                 Delete this.
             </button>
+            <br />
             <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
             <button onClick={this.handleUpload}>Use this image</button>
+            <br />
+            <input onChange={(event) => {this.setState({text: event.target.value})}} type="text" />
             <button
-                onClick={() => {this.props.changeLastType("text")}}
+                onClick={() => {this.props.changeLastType("text", this.state.text)}}
             >
-                Change to Memory
+                Use this memory
             </button>
         </div>
     )}

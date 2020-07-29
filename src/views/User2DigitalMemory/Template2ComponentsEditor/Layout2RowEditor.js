@@ -40,11 +40,13 @@ class DisplayItem extends React.Component{
             })
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevState){
         if(this.props.item.type != "img"){
             return
         }
-        console.log(this.props.item.img)
+        if(this.state.lastImg == this.props.item.img){
+            return
+        }
         let fileParts = this.props.item.img.split('.');
         let fileName = fileParts[0];
         let fileType = fileParts[1];
@@ -56,7 +58,7 @@ class DisplayItem extends React.Component{
         }
         axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
             .then(response => {
-                this.setState({img: response.data})
+                this.setState({img: response.data, lastImg: this.props.item.img})
             })
             .catch(error => {
                 console.log("error")
@@ -71,15 +73,15 @@ class DisplayItem extends React.Component{
     }
     else if(this.props.item.type == "empty"){
         return (
-            <div className="center" style={{height: "100%", width: "100%", backgroundColor: "green"}}>
+            <div className="center" style={{height: "100%", width: "100%", backgroundColor: "lightpink"}}>
                 Insert photo or memory here.
             </div>
         )
     }
-    else{
+    else if(this.props.item.type == "text"){
         return (
             <div className="center" style={{height: "100%", width: "100%", backgroundColor: "#E2FCD3"}}>
-                Creator or contributor memory.
+                {this.props.item.img}
             </div>
         )
     }
