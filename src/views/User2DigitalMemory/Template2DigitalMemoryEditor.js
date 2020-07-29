@@ -20,14 +20,22 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
     }
 
     componentDidMount(){
-        axios.get(REMOTE_HOST + "/templates/gettemplate2")
-            .then((response) => {
-                this.setState({
-                    templateLayout: response["data"]
-                })
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : "layout2",
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                fetch(response.data)
+                    .then(response2 => response2.text())
+                    .then(data => {
+                        this.setState({templateLayout: JSON.parse(data)})
+                    })
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(error => {
+                console.log("error")
             })
     }
 

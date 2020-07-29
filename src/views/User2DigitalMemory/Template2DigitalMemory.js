@@ -11,7 +11,7 @@ export default class LoginForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            template2Layout: []
+            templateLayout: []
         }
     }
 
@@ -19,7 +19,7 @@ export default class LoginForm extends React.Component{
         const tokenId = JSON.parse(localStorage.getItem("user")).id
         const body = {
             id: tokenId,
-            memoryName : "layout2.js",
+            memoryName : "layout2",
             userUploadBucket : "resteasy-user-uploads",
         }
         axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
@@ -27,8 +27,7 @@ export default class LoginForm extends React.Component{
                 fetch(response.data)
                     .then(response2 => response2.text())
                     .then(data => {
-                        console.log(JSON.parse(data.substring(14)))
-                        this.setState({template2Layout: JSON.parse(data.substring(14))})
+                        this.setState({templateLayout: JSON.parse(data)})
                     })
             })
             .catch(error => {
@@ -45,7 +44,7 @@ export default class LoginForm extends React.Component{
                     <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
                     <h3 className="centered-text"> date - date </h3>
                     <br />
-                    <ProcessedLayout2 templateLayout={this.state.template2Layout} />
+                    <ProcessedLayout2 templateLayout={this.state.templateLayout} />
                     <br />
                 </div>
             }/>

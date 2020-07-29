@@ -22,11 +22,11 @@ export default class ProcessedLayout extends React.Component{
         
         return(
             <div>
-                <a href="/template2digitalmemoryeditor">
+                <a href="/digitalmemoryeditor">
                     <button
                         style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     >
-                        Edit page
+                        Edit your digital memory
                     </button>
                 </a>
                 <br />

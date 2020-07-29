@@ -27,7 +27,6 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.clearLastClicked = this.clearLastClicked.bind(this)
         this.sendClickedInfo = this.sendClickedInfo.bind(this)
         this.addRow = this.addRow.bind(this)
-        this.resetTemplate = this.resetTemplate.bind(this)
         this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)
         this.deleteRow = this.deleteRow.bind(this)
         this.changeLastType = this.changeLastType.bind(this)
@@ -50,11 +49,53 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     handleChangeTemplate = async() => {
-        const layout = this.state.templateLayout
-        axios.post(
-            REMOTE_HOST + "/templates/savetemplate2",
-            {layout}
-        );
+        const jwt = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        }
+
+        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
+            bucket : "resteasy-user-uploads",
+            fileName : "layout2",
+            fileType : "js"
+        }, config)
+        .then(response => {
+            console.log("---------")
+            console.log(response)
+            var returnData = response.data
+            var signedRequest = returnData.signedRequest;
+            console.log("Recieved a signed request " + signedRequest);
+        
+            // Put the fileType in the headers for the upload
+            var options = {
+                    headers: {
+                        'Content-Type': "js"
+                    }
+            };
+            axios.put(signedRequest,this.state.templateLayout,options)
+            .then(result => {
+                this.setState({success: true});
+                
+                // upon successful upload, add the file data into the userImages index in mongoDB
+                axios.post(REMOTE_HOST + "/aws/addImgDB", {
+                    memoryName: "testMemory",
+                    imgID: "layout2.js"
+                }, config)
+                .then( result => {
+                    console.log(result)
+                }).catch(error => {
+                    console.log("error " + JSON.stringify(error))
+                })
+            })
+            .catch(error => {
+                console.log("ERROR " + JSON.stringify(error));
+            })
+        })
+        .catch(error => {
+            console.log(JSON.stringify(error));
+        })
     }
 
     swapTemplateItems = (rowi = this.state.lastDraggedRow, indi = this.state.lastDraggedInd, rowj = this.state.lastDroppedRow, indj = this.state.lastDroppedInd) => {
@@ -98,28 +139,22 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     revertLastSavedTemplate = () => {
-        axios.get(REMOTE_HOST + "/templates/gettemplate2")
-            .then((response) => {
-                console.log(response)
-                this.setState({
-                    templateLayout: response["data"]
-                })
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : "layout2",
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                fetch(response.data)
+                    .then(response2 => response2.text())
+                    .then(data => {
+                        this.setState({templateLayout: JSON.parse(data)})
+                    })
             })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
-    resetTemplate = () => {
-        axios.get(REMOTE_HOST + "/templates/getresettemplate2")
-            .then((response) => {
-                console.log(response)
-                this.setState({
-                    templateLayout: response["data"]
-                })
-            })
-            .catch((error) => {
-                console.log(error)
+            .catch(error => {
+                console.log("error")
             })
     }
 
@@ -166,7 +201,7 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         return(
             <div>
-                <a href="/template2digitalmemory">
+                <a href="/digitalmemory">
                     <button
                         style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     >
@@ -189,12 +224,6 @@ export default class ProcessedLayoutEditor extends React.Component{
                     Revert last saved template
                 </button>
                 <br />
-                <button
-                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
-                    onClick={() => {this.resetTemplate()}}
-                >
-                    RESET ORIGINAL TEMPLATE
-                </button>
                 <br />
                 <Container fluid={true}>
                     {LayoutRows}
