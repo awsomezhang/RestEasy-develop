@@ -1,110 +1,94 @@
 import React from 'react';
 import Popup from "reactjs-popup"
+import axios from "axios";
+import { REMOTE_HOST } from "../../../constants.js"
 
-function InsertPopup(props){
-    return(
+class CustomPopup extends React.Component{
+    handleUpload = ev => {
+        var file = this.uploadInput.files[0];
+
+        var fileToAddDB = ""
+
+        console.log("new file")
+        console.log(file)
+        // Split the filename to get the name and type
+        let fileParts = file.name.split('.');
+        let fileName = fileParts[0];
+        let fileType = fileParts[1];
+        
+        console.log("Preparing the upload");
+
+        const jwt = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        }
+
+        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
+            bucket : "resteasy-user-uploads",
+            fileName : fileName,
+            fileType : fileType
+        }, config)
+        .then(response => {
+            console.log("---------")
+            console.log(response)
+            var returnData = response.data
+            var signedRequest = returnData.signedRequest;
+            var url = returnData.url;
+            this.setState({url: url})
+            fileToAddDB = returnData.fileName
+            console.log("Recieved a signed request " + signedRequest);
+            console.log(fileToAddDB)
+        
+            // Put the fileType in the headers for the upload
+            var options = {
+                    headers: {
+                        'Content-Type': fileType
+                    }
+            };
+            axios.put(signedRequest,file,options)
+            .then(result => {
+                this.setState({success: true});
+                
+                // upon successful upload, add the file data into the userImages index in mongoDB
+                console.log("add to database: " + fileToAddDB)
+                axios.post(REMOTE_HOST + "/aws/addImgDB", {
+                    memoryName: "testMemory",
+                    imgID: fileToAddDB
+                }, config)
+                .then( result => {
+                    console.log(result)
+                    this.props.changeLastType("img", fileToAddDB)
+                }).catch(error => {
+                    console.log("error " + JSON.stringify(error))
+                })
+            })
+            .catch(error => {
+                console.log("ERROR " + JSON.stringify(error));
+            })
+        })
+        .catch(error => {
+            console.log(JSON.stringify(error));
+        })
+    }
+
+    render() {return(
         <div>
             <button
-                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
-            >
-                Add image
-            </button>
-            <button
-                onClick={() => {props.changeLastType("text")}}
-            >
-                Add Memory
-            </button>
-            <button
-                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
-            >
-                Add Spotify playlist
-            </button>
-        </div>
-    )
-}
-
-function ImagePopup(props){
-    return(
-        <div>
-            <button
-                onClick={() => {props.clearLastClicked()}}
+                onClick={() => {this.props.clearLastClicked()}}
             >
                 Delete this.
             </button>
+            <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
+            <button onClick={this.handleUpload}>Use this image</button>
             <button
-                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
-            >
-                Show a different image
-            </button>
-            <button
-                onClick={() => {props.changeLastType("text")}}
+                onClick={() => {this.props.changeLastType("text")}}
             >
                 Change to Memory
             </button>
-            <button
-                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
-            >
-                Change to Spotify playlist
-            </button>
         </div>
-    )
-}
-
-function NonimagePopup(props){
-    return(
-        <div>
-            <button
-                onClick={() => {props.clearLastClicked()}}
-            >
-                Delete this.
-            </button>
-            <button
-                onClick={() => {props.changeLastType("img", "/static/media/image8.e8b7e3d9.jpg")}}
-            >
-                Change to image
-            </button>
-            <button
-                onClick={() => {props.changeLastType("text")}}
-            >
-                Show a different Memory
-            </button>
-            <button
-                onClick={() => {props.changeLastType("img", "/static/media/image2.5726fd40.png")}}
-            >
-                Change to Spotify playlist
-            </button>
-        </div>
-    )
-}
-
-function CustomPopup(props){
-    const type = props.type
-    console.log(type)
-    if(type === "empty"){
-        return(
-            <InsertPopup
-                large={props.large}
-                changeLastType={props.changeLastType}
-                breakInsert={props.breakInsert}
-            />
-        )
-    }
-    if(type === "text"){
-        return(
-            <NonimagePopup
-                clearLastClicked={props.clearLastClicked}
-                changeLastType={props.changeLastType}
-            />
-        )
-    }
-    else{
-        return(
-            <ImagePopup
-                clearLastClicked={props.clearLastClicked}
-                changeLastType={props.changeLastType}
-            />
-        )
-    }
+    )}
 }
 
 export default function EditorPopup (props){
@@ -115,7 +99,6 @@ export default function EditorPopup (props){
             style={{zIndex: "999999"}}
         >
             <CustomPopup
-                type={props.lastClickedTyp}
                 clearLastClicked={props.clearLastClicked}
                 changeLastType={props.changeLastType}
             />

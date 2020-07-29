@@ -3,17 +3,73 @@ import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import "../Template2DigitalMemory.css"
 import "../../../styles/styles.css"
 import EditableComponent from "./EditableComponent.js"
+import axios from "axios";
+import { REMOTE_HOST } from "../../../constants.js"
 
 const imgStyle = {height: "100%", width: "100%", objectFit: "cover"}
 const h = 600
 
-function DisplayItem(props){
-    if(props.item.type == "img"){
+class DisplayItem extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            img: ""
+        }
+    }
+
+    componentDidMount(){
+        if(this.props.item.type != "img"){
+            return
+        }
+        console.log(this.props.item.img)
+        let fileParts = this.props.item.img.split('.');
+        let fileName = fileParts[0];
+        let fileType = fileParts[1];
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : fileName,
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                this.setState({img: response.data})
+            })
+            .catch(error => {
+                console.log("error")
+            })
+    }
+
+    componentDidUpdate(){
+        if(this.props.item.type != "img"){
+            return
+        }
+        console.log(this.props.item.img)
+        let fileParts = this.props.item.img.split('.');
+        let fileName = fileParts[0];
+        let fileType = fileParts[1];
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : fileName,
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                this.setState({img: response.data})
+            })
+            .catch(error => {
+                console.log("error")
+            })
+    }
+
+    render(){
+    if(this.props.item.type == "img"){
         return (
-            <img src={props.item.img} style={imgStyle} />
+            <img src={this.state.img} style={imgStyle} />
         )
     }
-    else if(props.item.type == "empty"){
+    else if(this.props.item.type == "empty"){
         return (
             <div className="center" style={{height: "100%", width: "100%", backgroundColor: "green"}}>
                 Insert photo or memory here.
@@ -26,6 +82,7 @@ function DisplayItem(props){
                 Creator or contributor memory.
             </div>
         )
+    }
     }
 }
 
