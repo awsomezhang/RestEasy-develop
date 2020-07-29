@@ -9,9 +9,12 @@ const uuid = require("uuid/v4");
 
 const mongoose = require("mongoose");
 
+// var request = require('request');
+// var querystring = require('querystring');
+// var cookieParser = require('cookie-parser');
+
 const DEVELOPING = true;
 
-//const stripe = require("stripe")("");
 
 // Setup express app
 app.use(express.json());
@@ -26,7 +29,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 // use JWT auth to secure the api
-//app.use(jwt());
+app.use(jwt());
 console.log("authenticated")
 
 // api routes
@@ -34,6 +37,7 @@ app.use('/users', require('./users/users.controller'));
 app.use('/payment', require('./payment/payment.controller'))
 app.use('/aws', require('./aws/aws.controller.js'))
 app.use('/templates', require('./templates/templates.controller'))
+//app.use('/spotify', require('./spotify/spotify.controller'))
 
 app.use(errorHandler);
 
