@@ -26,8 +26,6 @@ async function signS3_upload(req) {
 
     // express-jwt appends sub (the user index in mongo) into req. use sub to get user details from mongo
     const userInfo = await getUser.getById(req.user.sub)
-    console.log(userInfo)
-
 
     const s3 = new aws.S3();  // Create a new instance of S3
     console.log("-----s3 created-----")
@@ -109,13 +107,13 @@ async function signS3_get(req) {
     console.log("-----s3 created-----")
 
     // express-jwt appends sub (the user index in mongo) into req. use sub to get user details from mongo
-    const id = req.user.sub
+    const id = req.body.id
     const S3_BUCKET = config.userUploadBucket;
 
     const user = await getUser.getById(id)
     const digitalMemoryID = req.body.memoryName
-    console.log(user)
 
+    /*
     if(user.digitalMemories[digitalMemoryID]){
         var imgLinks = user.digitalMemories[digitalMemoryID]
 
@@ -126,15 +124,19 @@ async function signS3_get(req) {
             let fileParts = item.split('.');
             let fileName = fileParts[0];
             let fileType = fileParts[1];
-
+    */
             const s3Params = {
                 Bucket: S3_BUCKET,
-                Key: user._id+"/"+fileName,
+    //            Key: user._id+"/"+fileName,
+                Key: id+"/" + digitalMemoryID,
                 Expires: 1800
             };
+            console.log(s3Params)
 
             var signedRequest = s3.getSignedUrl('getObject', s3Params)
+            return signedRequest
 
+    /*
             urlsSigned.push(signedRequest)
         })
         return urlsSigned
@@ -142,4 +144,5 @@ async function signS3_get(req) {
     else {
         console.log('there was an error')
     }
+    */
 }

@@ -23,7 +23,7 @@ function addImgDB(req, res, next) {
 }
 
 function signS3_get(req, res, next) {
-  s3Service.signS3_get(req)
+  s3Service.signS3_get(req.body)
       .then(data => res.json(data))
       .catch(err => next(err));
 }

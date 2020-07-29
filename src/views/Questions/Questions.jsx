@@ -3,6 +3,8 @@ import {Layout, Popover, Steps} from "antd";
 import "./Questions.css"
 import PageWrapper from "../../PageWrapper"
 import {Container, Row, Col} from "react-bootstrap";
+import axios from "axios";
+import { REMOTE_HOST } from "../../constants.js"
 
 const Q0 = lazy(() => import('./Sections/Q0')); //getting started
 const Q1 = lazy(() => import('./Sections/Q1')); //name
@@ -92,6 +94,56 @@ class Questions extends React.Component {
             return <Q13 prev={this.prev.bind(this)}/>;
     }
 
+    componentDidMount(){
+        const emptyLayout = []
+        const jwt = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        }
+
+        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
+            bucket : "resteasy-user-uploads",
+            fileName : "layout2",
+            fileType : "js"
+        }, config)
+        .then(response => {
+            console.log("---------")
+            console.log(response)
+            var returnData = response.data
+            var signedRequest = returnData.signedRequest;
+            console.log("Recieved a signed request " + signedRequest);
+        
+            // Put the fileType in the headers for the upload
+            var options = {
+                    headers: {
+                        'Content-Type': "js"
+                    }
+            };
+            axios.put(signedRequest,emptyLayout,options)
+            .then(result => {
+                this.setState({success: true});
+                
+                // upon successful upload, add the file data into the userImages index in mongoDB
+                axios.post(REMOTE_HOST + "/aws/addImgDB", {
+                    memoryName: "testMemory",
+                    imgID: "layout2.js"
+                }, config)
+                .then( result => {
+                    console.log(result)
+                }).catch(error => {
+                    console.log("error " + JSON.stringify(error))
+                })
+            })
+            .catch(error => {
+                console.log("ERROR " + JSON.stringify(error));
+            })
+        })
+        .catch(error => {
+            console.log(JSON.stringify(error));
+        })
+    }
     next() {
         console.log(this.state.curr)
         const current = this.state.curr + 1;

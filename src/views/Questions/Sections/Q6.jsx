@@ -34,8 +34,7 @@ export default class Q6 extends React.Component {
     }
     
     handleChange = (ev) => {
-        this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(event.target.files[0])], 
-            fileTest: [...this.state.fileTest, event.target.files[0]], uploadMessage: "" })
+        this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(event.target.files[0])], fileTest: [...this.state.fileTest, event.target.files[0]], uploadMessage: "" })
         console.log(this.state.fileArr);
         // this.setState({success: false, url : "", file: URL.createObjectURL(event.target.files[0])});
         

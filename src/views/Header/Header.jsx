@@ -46,6 +46,7 @@ function Header(props){
                         <Nav.Link href=""><span className="header-link">Help a friend in need</span></Nav.Link>
                         <Nav.Link href="/registry"><span className="header-link">Registry</span></Nav.Link>
                         <Nav.Link href="/my/create"><span className="header-link">Create</span></Nav.Link>
+                        <Nav.Link href="/digitalmemory"><span className="header-link">Digital Memory</span></Nav.Link>
                         <Nav.Link href="/contact"><span className="header-link">Contact Us!</span></Nav.Link>
                     </Nav>
                     <div className="search-area">
