@@ -27,6 +27,7 @@ export default class LoginForm extends React.Component{
                 fetch(response.data)
                     .then(response2 => response2.text())
                     .then(data => {
+                        console.log(data)
                         this.setState({templateLayout: JSON.parse(data)})
                     })
             })
@@ -41,8 +42,8 @@ export default class LoginForm extends React.Component{
                 <div>
                     <div style={{height: "100px", backgroundColor:"grey"}} />
                     <br />
-                    <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
-                    <h3 className="centered-text"> date - date </h3>
+                    <h1 className="centered-text emphasis-text"> In Loving Memory of {localStorage.getItem("first_name")} </h1>
+                    <h3 className="centered-text"> {localStorage.getItem("start_date")} - {localStorage.getItem("end_date")} </h3>
                     <br />
                     <ProcessedLayout2 templateLayout={this.state.templateLayout} />
                     <br />

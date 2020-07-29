@@ -33,22 +33,21 @@ export default class Q6 extends React.Component {
         }
     }
     
+
     handleChange = (ev) => {
-        this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(event.target.files[0])], fileTest: [...this.state.fileTest, event.target.files[0]], uploadMessage: "" })
+        this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(ev.target.files[0])], fileTest: [...this.state.fileTest, ev.target.files[0]], uploadMessage: "" })
         console.log(this.state.fileArr);
         // this.setState({success: false, url : "", file: URL.createObjectURL(event.target.files[0])});
         
     }
     
-    handleUpload = ev => {
+    handleUpload = (ev) => {
         // const files = this.uploadInput.files;
         const files = this.state.fileTest;
         console.log(files);
 
 
         Array.prototype.forEach.call(files, file => {
-            // console.log("goddamnit angela pay attention")
-            // console.log(file)
             var file = renameFile(file)
 
             var fileToAddDB = ""

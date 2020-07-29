@@ -1,10 +1,20 @@
 import React from "react";
 import {Typography, Button} from "antd";
+import uuid from 'react-uuid'
+
 
 export default class Q13 extends React.Component {
+    
     state = {
         name: localStorage.getItem('first_name'),
-        url: localStorage.getItem('first_name')+ (Math.floor(Math.random() * 10000)).toString(),
+        // url: localStorage.getItem('first_name')+ (Math.floor(Math.random() * 10000)).toString(),
+        url: localStorage.getItem('first_name')+ (uuid()).toString(),
+    };
+
+    saveData = () => {
+        // console.log('Received values of form: ', values);
+        // let b_day = (values.start_date === "undefined" ? "N/A" : values.start_date)
+        localStorage.setItem("unique_url", this.state.url);
     };
 
 
@@ -17,7 +27,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <Typography.Title>
-                    <a href="/templatedigitalmemory">{"https://resteasy2.herokuapp.com/registry/"+ this.state.url}</a>
+                    <a href="/templatedigitalmemory" onClick={this.saveData}>{"https://resteasy.live/registry/"+ this.state.url}</a>
                     </Typography.Title>
                 </div>
                 <div style={{textAlign: "center", fontSize: "1.5em", marginTop: "0.5em"}}>
@@ -26,7 +36,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <br />
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" style={{borderRadius: "10px"}}><a href="/">Finish!</a></Button>
+                    <Button type="primary" style={{borderRadius: "10px"}} onClick={this.saveData}><a href="/">Finish!</a></Button>
                 </div>
             </div>);
     }

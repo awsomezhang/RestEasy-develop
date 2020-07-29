@@ -4,6 +4,7 @@ import {Button, DatePicker, Form, Input} from "antd";
 export default class Q2 extends React.Component {
     saveData = values => {
         // console.log('Received values of form: ', values);
+        // let b_day = (values.start_date === "undefined" ? "N/A" : values.start_date)
         localStorage.setItem("start_date", values.start_date);
         localStorage.setItem("end_date", values.end_date);
         this.props.next();
@@ -28,26 +29,26 @@ export default class Q2 extends React.Component {
                     onFinish={this.saveData}
                     scrollToFirstError>
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Form.Item name="start_date">
+                        {/* <Form.Item name="start_date">
                             <DatePicker placeholder="Birthday" style={{borderRadius: "10px", width: "11em", height: "2.5em"}}/>
                         </Form.Item>
                         <Form.Item style={{marginLeft:"2em"}} name="end_date">
                             <DatePicker placeholder="Date of passing" style={{borderRadius: "10px", width: "11em", height: "2.5em"}}/>
-                        </Form.Item>
+                        </Form.Item> */}
                     </div>
 
-                    <div style={{display: "flex", justifyContent: "center", fontSize: "1.5em"}}>
+                    {/* <div style={{display: "flex", justifyContent: "center", fontSize: "1.5em"}}>
                         OR
-                    </div>
+                    </div> */}
                     <div style ={{fontsize: "12px"}}>
                             Enter dates manually
                     </div>
                     <br/>
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Form.Item name="birth_date_manual">
+                        <Form.Item name="start_date">
                             <Input placeholder="Birthday" style={{borderRadius: "10px", width: "12em", height: "2.5em", marginRight: "10px"}}/>
                         </Form.Item>
-                        <Form.Item name="passing_date_manual">
+                        <Form.Item name="end_date">
                             <Input placeholder="Enter day of passing" style={{borderRadius: "10px", width: "12em", height: "2.5em",  marginLeft: "10px"}}/>
                         </Form.Item>
                     </div>
