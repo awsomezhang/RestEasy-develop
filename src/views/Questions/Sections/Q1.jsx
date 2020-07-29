@@ -1,5 +1,7 @@
 import React from "react";
 import {Button, Form, Input} from "antd";
+import axios from "axios";
+import { REMOTE_HOST } from "../../../constants.js"
 
 export default class Q1 extends React.Component {
     saveData = values => {
@@ -7,6 +9,52 @@ export default class Q1 extends React.Component {
         localStorage.setItem("first_name", values.first_name);
         localStorage.setItem("middle_name", values.middle_name);
         localStorage.setItem("last_name", values.last_name);
+
+        const jwt = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_upload",{
+            bucket : "resteasy-user-uploads",
+            fileName : "firstname",
+            fileType : "txt"
+        }, config)
+        .then(response => {
+            console.log("---------")
+            console.log(response)
+            var returnData = response.data
+            var signedRequest = returnData.signedRequest;
+            console.log("Recieved a signed request " + signedRequest);
+        
+            // Put the fileType in the headers for the upload
+            var options = {
+                    headers: {
+                        'Content-Type': "txt"
+                    }
+            };
+            axios.put(signedRequest,localStorage.getItem("first_name"),options)
+            .then(result => {
+                // upon successful upload, add the file data into the userImages index in mongoDB
+                axios.post(REMOTE_HOST + "/aws/addImgDB", {
+                    memoryName: "firstname",
+                    imgID: "firstname.txt"
+                }, config)
+                .then( result => {
+                    console.log(result)
+                }).catch(error => {
+                    console.log("error " + JSON.stringify(error))
+                })
+            })
+            .catch(error => {
+                console.log("ERROR " + JSON.stringify(error));
+            })
+        })
+        .catch(error => {
+            console.log(JSON.stringify(error));
+        })
+
         this.props.next();
     };
 
