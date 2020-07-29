@@ -11,8 +11,26 @@ export default class LoginForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            templateLayout: []
+            templateLayout: [],
+            firstname: "",
         }
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : "firstname",
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                fetch(response.data)
+                    .then(response2 => response2.text())
+                    .then(data => {
+                        this.setState({firstname: data})
+                    })
+            })
+            .catch(error => {
+                console.log("error")
+            })
     }
 
     componentDidMount(){
@@ -33,6 +51,7 @@ export default class LoginForm extends React.Component{
             .catch(error => {
                 console.log("error")
             })
+
     }
 
     render(){
@@ -41,7 +60,7 @@ export default class LoginForm extends React.Component{
                 <div>
                     <div style={{height: "100px", backgroundColor:"grey"}} />
                     <br />
-                    <h1 className="centered-text emphasis-text"> In loving memory of [name] </h1>
+                    <h1 className="centered-text emphasis-text"> In loving memory of {this.state.firstname} </h1>
                     <h3 className="centered-text"> date - date </h3>
                     <br />
                     <ProcessedLayout2 templateLayout={this.state.templateLayout} />
