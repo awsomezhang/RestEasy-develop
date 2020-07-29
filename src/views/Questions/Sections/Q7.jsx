@@ -33,8 +33,7 @@ export default class Q7 extends React.Component {
                     <br/>
 
                     <div>
-                        {/* <iframe src="https://open.spotify.com/track/2ckGH6FtxWeAv0SskcREd1?si=ckrUuDH_Q-ujV58NcwT6ig" 
-                        width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
+                    {/* <iframe src="https://open.spotify.com/embed/track/2ckGH6FtxWeAv0SskcREd1" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
