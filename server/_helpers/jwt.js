@@ -10,7 +10,14 @@ function jwt() {
         path: [
             // public routes that don't require authentication
             '/users/authenticate',
-            '/users/register'
+            '/users/register',
+            '/templates/gettemplate',
+            '/templates/savetemplate',
+            '/templates/getresettemplate',
+            '/templates/gettemplate2',
+            '/templates/savetemplate2',
+            '/templates/getresettemplate2',
+            '/aws/signS3_get',
         ]
     });
 }
