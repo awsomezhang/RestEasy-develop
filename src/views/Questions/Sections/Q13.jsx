@@ -36,7 +36,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <br />
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" style={{borderRadius: "10px"}} onClick={this.saveData}><a href="/">Finish!</a></Button>
+                    <Button type="primary" style={{borderRadius: "10px"}} onClick={this.saveData}><a href="/digitalmemory">Finish!</a></Button>
                 </div>
             </div>);
     }
