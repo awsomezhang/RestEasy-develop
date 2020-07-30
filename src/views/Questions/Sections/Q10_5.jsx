@@ -49,7 +49,15 @@ export default class Q10_5 extends React.Component {
                                 imgSrc={cashFundIcon}
                                 headerText={"Medical Bills"}
                                 mainText={"Click here to add"}
+                                togglePopup = {this.togglePopup.bind(this)}
                             />
+                            {this.state.showPopup ?
+                                <Popup
+                                    text=''
+                                    closePopup={this.togglePopup.bind(this)}
+                                />
+                                : null
+                            }
                         </Col>
 
                         <Col className="col-4 d-flex justify-content-center">

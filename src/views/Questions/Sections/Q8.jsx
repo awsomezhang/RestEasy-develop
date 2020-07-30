@@ -42,21 +42,21 @@ export default class Q8 extends React.Component {
                 <div style={{fontSize: "2em", marginBottom: "0.5em"}}>
                     Select a template
                 </div>
-                <div style={{display: "flex", justifyContent: "center"}}>
+                <div style={{display: "flex", justifyContent: "center", overflow: "auto"}}>
                     <Radio.Group onChange={this.onChange} value={this.state.template_no}>
                         {/* <Radio value={1}>
                             <Card style={{marginTop: "0.5em"}} hoverable cover={<img alt="img" src="/img/diamond.jpg" />}>
                                 <Card.Meta title="Template 1" />
                             </Card>
                         </Radio> */}
-                        <Radio value={1}>
-                            <Card style={{marginTop: "0.5em", width: "300px", height: "300px"}} hoverable cover={<img alt="img" 
-                            id= "template-style" src={require("../../../assets/img/TemplateOneSample.PNG")} style={{width: "100%", height: "100%"}}/>}>
+                        <Radio value={1} style={{margin: "20px"}}>
+                            <Card style={{marginTop: "0.5em", width: "300px",  verticalAlign: "top"}} hoverable cover={<img alt="img" 
+                            id= "template-style" src={require("../../../assets/img/TemplateTwoSample.PNG")} style={{width: "100%", height: "100%"}}/>}>
                                 <Card.Meta title="Template 1" style={{height: "10px"}} />
                             </Card>
                         </Radio>
-                         <Radio value={2}>
-                            <Card style={{marginTop: "0.5em"}} hoverable cover={<img alt="img" id= "template-style" src="/img/diamond.jpg" />}>
+                         <Radio value={2} style={{margin: "20px"}}>
+                            <Card style={{marginTop: "0.5em",  verticalAlign: "top"}} hoverable cover={<img alt="img" id= "template-style" src="/img/diamond.jpg" />}>
                                 <Card.Meta title="Template 2" />
                             </Card>
                         </Radio>

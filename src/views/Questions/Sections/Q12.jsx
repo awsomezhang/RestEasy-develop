@@ -68,7 +68,7 @@ export default class Q12 extends React.Component {
         return (
             <div style={{width: "100%", textAlign: "center"}}>
                 <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
-                    Pay using credit card
+                    Contribute using credit card
                 </div>
                 <div style={{fontStyle: "italic", fontSize: "1em"}}>
                     PayPal and Venmo coming soon
@@ -78,7 +78,7 @@ export default class Q12 extends React.Component {
                     <StripeCheckout
                         token={this.handleToken}
                         stripeKey={constants.STRIPE_PUBLIC_KEY}
-                        amount={2000} // cents
+                        amount={5000} // cents
                         name="RestEasy Memorial Page"
                         description="Create a digital memorial"
                         image="/logo196.png" // the pop-in header image (default none)
