@@ -19,6 +19,7 @@ export default class Q13 extends React.Component {
 
 
     render() {
+        const DM_url = "/digitalmemory/" + this.state.url
         return (
             <div style={{width: "100%", textAlign: "center"}}>
                 <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
@@ -27,7 +28,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <Typography.Title>
-                    <a href="/templatedigitalmemory" onClick={this.saveData}>{"https://resteasy.live/registry/"+ this.state.url}</a>
+                    <a href={DM_url} onClick={this.saveData}>{"https://resteasy.live/digitalmemory/"+ this.state.url}</a>
                     </Typography.Title>
                 </div>
                 <div style={{textAlign: "center", fontSize: "1.5em", marginTop: "0.5em"}}>
@@ -36,7 +37,7 @@ export default class Q13 extends React.Component {
                 </div>
                 <br />
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" style={{borderRadius: "10px"}} onClick={this.saveData}><a href="/digitalmemory">Finish!</a></Button>
+                    <Button type="primary" style={{borderRadius: "10px"}} onClick={this.saveData}><a href={DM_url}>Finish!</a></Button>
                 </div>
             </div>);
     }

@@ -13,7 +13,7 @@ class Popup extends React.Component {
         localStorage.setItem("item_note", values.item_note);
         this.props.closePopup();
         //toast("Wow so easy !", { type: "success" });
-        toast(`Added to your registry! Item: ${values.item_name}  Price: ${values.item_price}`, { type: "success" });
+        toast(`Added to your registry! Item: ${values.item_name}  Cost: ${values.item_price}`, { type: "success" });
         
     };
 
@@ -99,7 +99,7 @@ class Popup extends React.Component {
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <Button type="primary" onClick={this.props.closePopup} style={{ borderRadius: "10px", margin: "5px" }}>Cancel</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{ borderRadius: "10px", margin: "5px" }}>Add to Reigstry</Button>
+                            <Button type="primary" htmlType="submit" style={{ borderRadius: "10px", margin: "5px" }}>Add to Registry</Button>
                         </Form.Item>
                     </div>
                     </Form>

@@ -199,9 +199,11 @@ export default class ProcessedLayoutEditor extends React.Component{
             )
         })
 
+        const DM_url = "/digitalmemory/" + localStorage.getItem("unique_url")
+
         return(
             <div>
-                <a href="/digitalmemory">
+                <a href={DM_url}>
                     <button
                         style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
                     >
