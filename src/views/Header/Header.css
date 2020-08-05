@@ -1,5 +1,9 @@
 @import "../../styles/styles.css";
 
+.header{
+    margin-bottom: 105px;
+    
+}
 .title{
     font-size: 30px;
     font-weight: bold;
@@ -9,7 +13,7 @@
 
 .menu-options {
     padding-top: 10px;
-    color: white;
+    color: #8FC36B;
 }
 .search-area{
     margin-right: 20px;
@@ -20,28 +24,30 @@
     background-color: rgba(255, 255, 255, 0.548);
     border-width: 5;
     border-radius: 50; */
-    background: rgba(255, 255, 255, 0.445);
-    border: transparent;
+    background: white;
+    border: #8FC36B;
+    border-style: solid;
     border-radius: 50px;
 }
 .search-bar:focus {
     background: rgba(255, 255, 255, 0.336);
     border: none;
-    color: rgb(255, 255, 255);
+    color:#8FC36B;
 
 }
 .search-bar::placeholder {
-    color: white
+    color: #8FC36B
 }
 .navBar-custom {
-    background-color: transparent;
+    background-color: white;
 }
 .navBar-custom-dark {
-    background-color: rgba(0, 0, 0, 0.473);
+    background-color: rgba(255, 255, 255, 0.904);
+    box-shadow: 0px 1px #0000002c;
 }
 
 .header-link {
-    color: white;
+    color: #8FC36B;
 }
 .username {
     margin-right: 30px;

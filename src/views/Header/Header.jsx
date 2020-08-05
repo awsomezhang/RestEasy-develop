@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import "./Header.css"
 import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { Input } from 'antd';
 import { withContext } from "../../AppContext"
 
@@ -13,15 +13,15 @@ function Header(props){
 
     const [scroll, setScroll] = useState(true)
 
-    useEffect(() => {
-        document.addEventListener("scroll", () => {
-            const scrollCheck = window.scrollY < 100
-            if (scrollCheck !== scroll) {
-                setScroll(scrollCheck)
-            }
-        })
+    // useEffect(() => {
+    //     document.addEventListener("scroll", () => {
+    //         const scrollCheck = window.scrollY < 100
+    //         if (scrollCheck !== scroll) {
+    //             setScroll(scrollCheck)
+    //         }
+    //     })
         
-    })
+    // })
     const handleLogout = () => {
         props.logout()
     }
