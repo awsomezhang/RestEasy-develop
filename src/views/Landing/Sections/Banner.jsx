@@ -1,6 +1,7 @@
 import React from 'react';
 import './Banner.css';
 import { Parallax, Background } from "react-parallax";
+import { withRouter, Redirect } from "react-router-dom";
 
 import {
     Button,
@@ -21,58 +22,42 @@ export default class Carousel extends React.Component{
         }
     }
 
-    render(){
-    return (
-        <div>
-            <Container fluid={true}>
-                    <Row className="justify-content-md-center">
-                        <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
-                            <div className="image-section">
-                                <Container>
+    render() {
+        return (
+            <div className="image-section">
+                <Container fluid={true}>
+                        <Row className="justify-content-md-center">
+                                <Col className="tree-col">
+                                    <div>
+                                        <img className="tree" src={require("../../../assets/img/1x/tree-white.png")}></img>
+                                    </div>
+                                </Col>
+                                <Col className="header-section">
                                     <Row>
                                         <Col>
-                                            <div className="headerText">We are sorry you're here, but happy you found us</div>
+                                            <div className="header-text">
+                                                Losing someone is hard.
+                                            </div>
                                         </Col>
                                     </Row>
-                                <Row className="middle">
-                                    <Col md="3" />
-                                    <Col md="6" className= "secondary-text">
-                                        <Row>
-                                            <Col>
-                                                Tell their story.
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                Fund their resting place.
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                Celebrate and Commemorate their life.
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col md="3" />
-                                    </Row>
-                                    <Row className="button-row">
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.createScroll}>CREATE<br/> <span className="sub-btn">A Digital Memory</span></Button>
-                                        </Col>
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.registerScroll}>REGISTER<br/> <span className="sub-btn">For What You Need</span></Button>
-                                        </Col >
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.resourcesScroll}>FIND<br/> <span className="sub-btn">Advice and Resources</span></Button>
+                                    <Row>
+                                        <Col>
+                                            <div className="header-text-sub">
+                                                But together, we can<br/>remember your loved one.
+                                            </div>
                                         </Col>
                                     </Row>
-                                </Container>
-                            </div>
-                        </Col>
-                    </Row>
-            </Container>
-
-        </div>
-    )
+                                    <Row>
+                                        <Col>
+                                            <div className="btn-holder">
+                                                <Button className="button-learn-more">Learn More!</Button>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                        </Row>
+                </Container>
+            </div>
+        )
     }
 }
