@@ -1,0 +1,84 @@
+.register-header-text{
+    /* Register for what you need */
+    color: #505050;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.register-row{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 15px;
+    margin-left: 15px
+}
+.registry-options{
+    text-align: center;
+}
+h3 {
+    color: #8FC36B;
+    font-size: 25px;
+}
+.registry-descriptions{
+    text-align: center;
+    font-size: 21px;
+}
+.registry-options-mobile{
+    display: none !important;
+}
+
+@media screen and (max-width: 1304px) {
+    .registry-graphic{
+        height: 400px;
+        width: auto;
+    }
+
+}
+@media screen and (max-width: 1030px) {
+    .registry-graphic{
+        height: 300px;
+        width: auto;
+    }
+    h3{
+        font-size: 20px;
+    }
+    .registry-descriptions{
+        text-align: center;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .registry-graphic{
+        height: 300px;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .registry-graphic{
+        height: 250px;
+        width: auto;
+    }
+    .register-header-text{
+        /* Register for what you need */
+        margin-bottom: 20px;
+    }
+    .registry-options-mobile{
+        display: flex !important;
+    }
+    .registry-options-desktop{
+        display: none !important;
+    }
+    h3{
+        font-size: 21px;
+    }
+    .registry-descriptions{
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 18px
+    }
+}
