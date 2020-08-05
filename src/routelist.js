@@ -2,7 +2,7 @@ export default [
     {
         id: 1,
         URLpath: "/",
-        dirpath: "./views/Landing/Landing"
+        dirpath: "./views/Landing/NewLanding"
     },
     {
         id: 2,
