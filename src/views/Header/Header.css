@@ -27,7 +27,7 @@
     background-color: rgba(255, 255, 255, 0.548);
     border-width: 5;
     border-radius: 50; */
-    background: white;
+    background: rgba(255, 255, 255, 0.952);
     border: #8FC36B;
     border-style: solid;
     border-radius: 50px;
@@ -42,8 +42,8 @@
     color: #8FC36B
 }
 .navBar-custom {
-    background-color: white;
-    box-shadow: 0px 3px #00000013;
+    background-color: rgba(255, 255, 255, 0.952);
+    box-shadow: 0px 3px 5px 2px #00000013;
     height: 75px;
 }
 .header-link {
@@ -56,6 +56,8 @@
     background: rgba(255, 255, 255, 0.959);
     text-align: center;
     border-radius: 5%;
+    box-shadow: 0px 3px 5px 2px #00000013;
+
 }
 
 .form-inline{
@@ -118,5 +120,9 @@
     }
     .search-bar {
         font-size: 14px
+    }
+    .restEasy-logo{
+        width: 75px;
+        height: auto;
     }
 }
