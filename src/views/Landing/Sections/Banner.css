@@ -1,7 +1,7 @@
 @import "../../../styles/styles.css";
 .image-section {
     display: flex;
-    background-image: url("../../../assets/img/1x/Asset\ 1.png");
+    background-image: url("../../../assets/img/1x/wave-imagepng.png");
     visibility: visible;
     height: 664px;
     width: 100%;
@@ -14,8 +14,8 @@
 }
 .header-text {
     /* we are sorry you are here... */
-    color: #505050;
-    font-size: 45px;
+    color: #ffffff;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 25px;
@@ -177,21 +177,21 @@
 }
 @media screen and (max-width: 450px) {
     .header-section{
-        padding-top: 35px;
+        padding-top: 55px;
         margin-right: 0px;
     }
     .header-text {
-        /* losing someone is hard */
-        font-size: 32px;
+        /* We're sorry...*/
+        font-size: 28px;
         line-height: 40px;
     }
     .header-text-sub {
-        /* But together... */
+        /* Tell their story... */
         font-size: 22px;
         line-height: 35px;
     }
     .image-section {
-        max-height: 700px;
+        height: 500px;
     }
     
 }

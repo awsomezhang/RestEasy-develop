@@ -16,9 +16,16 @@ export default class Carousel extends React.Component{
         super(props)
         console.log(props)
         this.state = {
-            howItWorksRef: this.props.howItWorksRef,
-            registerScroll: this.props.registerScroll,
-            resourcesScroll: this.props.resourcesScroll,
+        }
+    }
+
+    handleOnClick = (event) => {
+        //.current is verification that your element has rendered
+        if(this.props.howItWorksRef.current){
+            this.props.howItWorksRef.current.scrollIntoView({ 
+               behavior: "smooth", 
+               block: "nearest"
+            })
         }
     }
 
@@ -27,16 +34,16 @@ export default class Carousel extends React.Component{
             <div className="image-section">
                 <Container fluid={true}>
                         <Row className="justify-content-md-center">
-                                <Col className="tree-col">
+                                {/* <Col className="tree-col">
                                     <div>
                                         <img className="tree" src={require("../../../assets/img/1x/tree-white.png")}></img>
                                     </div>
-                                </Col>
+                                </Col> */}
                                 <Col className="header-section">
                                     <Row>
                                         <Col>
                                             <div className="header-text">
-                                                We are sorry you are here, but happy you found us
+                                                We are sorry you are here,<br/>but happy you found us
                                             </div>
                                         </Col>
                                     </Row>
@@ -52,7 +59,7 @@ export default class Carousel extends React.Component{
                                     <Row>
                                         <Col>
                                             <div className="btn-holder">
-                                                <Button className="button-learn-more">Learn More!</Button>
+                                                <Button onClick={this.handleOnClick} className="button-learn-more">Learn More</Button>
                                             </div>
                                         </Col>
                                     </Row>
