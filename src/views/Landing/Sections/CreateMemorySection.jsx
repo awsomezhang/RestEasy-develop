@@ -14,15 +14,15 @@ import {
     return (
         <div className="image-wave">
             <Container fluid={true}>
-                <Row className="justify-content-md-center">
-                    <Col md="7" className="wave-header-section">
-                        <Row>
-                            <Col>
-                                <div className="header-text-celebrate">
-                                Create a<br/><span className="header-text-celebrate-emphasis">Digital Memory</span><br/>celebrating the life of your loved one.
-                                </div>
-                            </Col>
-                        </Row>
+                <Row>
+                    <Col>
+                        <div className="header-text-celebrate">
+                            <span className="header-text-celebrate-emphasis">Create a Digital Memory</span><br/>celebrating the life of your loved one.
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="d-flex justify-content-md-center">
+                    <Col md="6" className="wave-header-section">
                         <Row>
                             <Col>
                                 <div className="information">
@@ -62,13 +62,13 @@ import {
                         <Row>
                             <Col>
                                 <div style={{ textAlign: "center", fontSize: "20px", marginLeft: "20px", padding: "30px 0px"}}>
-                                    Curious? Check out <a href="/templatedigitalmemory">sample</a> or <a href="/template2digitalmemory">sample2</a>.
+                                    Curious? Check out <a className="memory-sample-link" href="/templatedigitalmemory">sample</a> or <a className="memory-sample-link" href="/template2digitalmemory">sample2</a>.
                                 </div>
                             </Col>
                         </Row>
                     </Col>
-                    <Col className="memory-graphic-col">
-                        <div>
+                    <Col md="5" className="memory-graphic-col">
+                        <div className="d-flex justify-content-center">
                             <img className="memory-graphic" src={require("../../../assets/img/1x/memory_graphic2.png")}></img>
                         </div>
                     </Col>
