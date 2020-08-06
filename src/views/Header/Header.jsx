@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import "./Header.css"
-import {Col, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
-import { withRouter } from "react-router-dom";
+import {Col, Row, Nav, Navbar, Container, NavDropdown, Form, FormControl, Button, InputGroup} from "react-bootstrap"
+import { withRouter, Redirect } from "react-router-dom";
 import { Input } from 'antd';
 import { withContext } from "../../AppContext"
 
@@ -13,28 +13,26 @@ function Header(props){
 
     const [scroll, setScroll] = useState(true)
 
-    useEffect(() => {
-        document.addEventListener("scroll", () => {
-            const scrollCheck = window.scrollY < 100
-            if (scrollCheck !== scroll) {
-                setScroll(scrollCheck)
-            }
-        })
+    // useEffect(() => {
+    //     document.addEventListener("scroll", () => {
+    //         const scrollCheck = window.scrollY < 100
+    //         if (scrollCheck !== scroll) {
+    //             setScroll(scrollCheck)
+    //         }
+    //     })
         
-    })
+    // })
     const handleLogout = () => {
         props.logout()
     }
 
     return (
         <div className="header">
-            <Navbar className={scroll ?  "navBar-custom" : "navBar-custom-dark"} fixed="top" expand="lg">
+            <Navbar className="navBar-custom" fixed="top" expand="lg">
                 <Navbar.Brand href="/">
                     <img
                         src={require('../../assets/img/logo.png')}
-                        width="99px"
-                        height="79px"
-                        className="d-inline-block align-top"
+                        className="d-inline-block align-top restEasy-logo"
                         alt="RestEasylogo"
                     />
                 </Navbar.Brand>
@@ -50,19 +48,21 @@ function Header(props){
                         <Nav.Link href={DM_url}><span className="header-link">Digital Memory</span></Nav.Link>
                         <Nav.Link href="/contact"><span className="header-link">Contact Us!</span></Nav.Link>
                     </Nav>
-                    <div className="search-area">
+                    
                         <Form inline>
-                            <FormControl className="search-bar"
-                                type="text"
-                                placeholder="Search"
-                            />
+                            <div className="search-area">
+                                <FormControl className="search-bar"
+                                    type="text"
+                                    placeholder="Search"
+                                />
+                            </div>
                         </Form>
-                    </div>
+                    
                     
                     <Form inline>
 
                         {props.user ? <span className="username"> Hello {props.user.firstName}!</span> : null}
-                        {props.token ? <Button variant="success" onClick={() => {handleLogout()}}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
+                        {props.token ? <Button className="sign-in-out" variant="success" onClick={() => {handleLogout()}}>Logout</Button>:<Button variant="success" href="/login">Login</Button> }
                         
                     </Form>
                     

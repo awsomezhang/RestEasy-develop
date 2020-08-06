@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {} from 'react';
 import "./HowItWorks.css"
 import Step from "./HowItWorksStep"
+import { Redirect } from "react-router-dom";
 
 import {
     Button,
@@ -17,6 +18,7 @@ class HowItWorks extends React.Component {
         return (
             <div>
                 <Container>
+                    <a id="howItWorksSection"/>
                     <Row className="justify-content-center">
                         <Col>
                             <div className="how-it-works">How It Works</div>
@@ -64,8 +66,8 @@ class HowItWorks extends React.Component {
                         <Col md="4" className="get-started">
                             <a href="/my/create" style={{textDecoration: "none"}}>
                                 <div className= "text-box" style={{ display: "flex", justifyContent: "center", marginLeft: "20px" }}>
-                                    <img className="arrow-right" src={rightArrow} />
                                     <div style={{ color: "#6F9753" }}>Get Started</div>
+                                    <img className="arrow-right" src={rightArrow} />
                                 </div>
                             </a>
                         </Col>

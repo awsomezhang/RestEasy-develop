@@ -11,7 +11,7 @@ import "./FAQ.css"
 
 function FAQHeader(){
     return (
-        <div className="centered-text" style={{backgroundColor: "#F1FFE9", display: "flex", justifyContent: "center", height: "150px"}}>   
+        <div className="centered-text" style={{backgroundColor: "#8FC36B", display: "flex", justifyContent: "center", height: "150px"}}>   
             {/* <h1 className="color1-text" style={{fontSize: "54px"}}> <b> Frequently Asked Questions </b> </h1>
             <h3 className="color2-text"> We’re here to answer your questions and try to make this tough time a little bit easier. </h3> */}
             <hr className="line"></hr>
@@ -151,7 +151,6 @@ class FAQ extends React.Component {
         return (
             <PageWrapper content={
                 <div>
-                    <Container fluid={true} className="header-banner"></Container>
                     <FAQHeader />
                     <GeneralFAQ />
                     <br />

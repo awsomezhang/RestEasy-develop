@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 //import {Card, Col, Row} from "antd";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
+import { withRouter, Redirect } from "react-router-dom";
+
 import "../../../styles/stylesWithButtons.css"
+import "./Resources.css"
+
+
 
 function ResourcesHeader(){
     const headerStyle = {
@@ -21,24 +26,14 @@ function ResourcesHeader(){
 }
 
 function ResourcesText() {
-    const resourcesText = {
-        fontStyle: "normal",
-        fontWeight: "normal",
-        fontSize: "25px",
-        lineHeight: "49px",
-        textAlign: "center",
-        color: "#5E624E"
-    }
     return (
         <div className="centered-text">
             <Container fluid={true}>
                 <Row className="justify-content-md-center">
-                    <Col md="2" />
-                    <Col md="8" style={resourcesText}>
+                    <Col md="8" className="resources-text">
                         We’ve done the research so you don’t have to.
                         Check out our vetted list of resources that can help guide you through this life altering time.
                     </Col>
-                    <Col md="2" />
                 </Row>
             </Container>
         </div>
@@ -50,26 +45,27 @@ function ResourcesAction(){
         <div className="centered-text">
             <Container fluid={true}>
                 <Row className="justify-content-md-center" >
-                    <Col md="2" />
                     <Col md="8">
                         <Row className="justify-content-md-center ">
-                            <Col md="1" />
-                            <Col className="center" md="4">
-                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%", fontSize: "20px", padding: "20px"}}>
+                            <Col className="btn-col center" md="4">
+                                <Button href="/whattodonow" className="button-links center">
                                     I lost someone I love and I don’t know what to do next
                                 </Button>
                             </Col>
-                            <Col md="2" />
-                            <Col className="center" md="4">
-                                <Button className="button-links center" style={{fontSize: "30px", width: "100%", height: "100%", fontSize: "20px", padding: "20px"}}>
+                            <Col md="1"/>
+                            <Col className="btn-col center" md="4">
+                                <Button className="button-links center">
                                     Someone I know and care about has lost someone they love and I don’t know how to help
                                 </Button>
                             </Col>
-                            <Col md="1" />
                         </Row>
                     </Col>
-                    <Col md="2" />
-                    <h5 className="centered-text" style={{marginTop: "50px"}}> Anything left unanswered? Check out our <a href="/">Frequently Asked Questions.</a> </h5>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col md="12" className="justify-content-md-center ">
+                        <h5 className="centered-text" style={{marginTop: "50px"}}> Anything left unanswered? Check out our <a href="/faq">Frequently Asked Questions.</a> </h5>
+                    </Col>
+
                 </Row>
             </Container>
         </div>
@@ -80,6 +76,8 @@ class Resources extends React.Component {
     render() {
         return (
             <div >
+                
+
                 <div style={{backgroundColor: "#F2F2F2"}}>
                     <br />
                     <ResourcesHeader />

@@ -24,10 +24,14 @@ export class AppContextProvider extends Component {
             token: localStorage.getItem("token") || "",
             routeAttempted: null
         }
+        this.signup = this.signup.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+        this.routeUpdate = this.routeUpdate.bind(this);
     }
 
-
     signup = (firstName, lastName, email, password) => {
+        console.log("signup")
         return authAxios.post(API_URL+"/users/register", {
             firstName: firstName,
             lastName: lastName,
@@ -48,6 +52,7 @@ export class AppContextProvider extends Component {
     }
 
     login = (email, password) => {
+        console.log("login")
         return authAxios.post(API_URL+"/users/authenticate", {
             email: email,
             password: password
@@ -66,6 +71,7 @@ export class AppContextProvider extends Component {
     }
 
     logout = () => {
+        console.log("logout")
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         this.setState({
@@ -75,6 +81,7 @@ export class AppContextProvider extends Component {
     }
 
     routeUpdate = (route) => {
+        console.log("routeUpdate")
         console.log(this.state)
         console.log(route)
         this.setState({
