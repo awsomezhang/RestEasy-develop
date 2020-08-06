@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 //import {Card, Col, Row} from "antd";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
+import { withRouter, Redirect } from "react-router-dom";
+
 import "../../../styles/stylesWithButtons.css"
 import "./Resources.css"
+
+
 
 function ResourcesHeader(){
     const headerStyle = {
@@ -44,7 +48,7 @@ function ResourcesAction(){
                     <Col md="8">
                         <Row className="justify-content-md-center ">
                             <Col className="btn-col center" md="4">
-                                <Button className="button-links center">
+                                <Button href="/whattodonow" className="button-links center">
                                     I lost someone I love and I don’t know what to do next
                                 </Button>
                             </Col>
@@ -56,7 +60,12 @@ function ResourcesAction(){
                             </Col>
                         </Row>
                     </Col>
-                    <h5 className="centered-text" style={{marginTop: "50px"}}> Anything left unanswered? Check out our <a href="/">Frequently Asked Questions.</a> </h5>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col md="12" className="justify-content-md-center ">
+                        <h5 className="centered-text" style={{marginTop: "50px"}}> Anything left unanswered? Check out our <a href="/faq">Frequently Asked Questions.</a> </h5>
+                    </Col>
+
                 </Row>
             </Container>
         </div>
@@ -67,6 +76,8 @@ class Resources extends React.Component {
     render() {
         return (
             <div >
+                
+
                 <div style={{backgroundColor: "#F2F2F2"}}>
                     <br />
                     <ResourcesHeader />
