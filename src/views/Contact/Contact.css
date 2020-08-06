@@ -56,3 +56,20 @@
 .in-touch {
     margin-bottom: 35px;
 }
+@media screen and (max-width: 500px) {
+    .sub-header-top {
+        /* Learn More About Becoming A Business Partner */
+    
+        position: absolute;
+        text-align: center;
+        top: 124px;
+    
+        font-style: normal;
+        font-weight: bold;
+        font-size: 38px;
+        line-height: 59px;
+        /* identical to box height */
+    
+        color: #FFFFFF;
+    }
+}

@@ -1,5 +1,12 @@
 @import "../../styles/styles.css";
 
+.header{
+    margin-bottom: 75px;
+}
+.restEasy-logo{
+    width: 85px;
+    height: auto;
+}
 .title{
     font-size: 30px;
     font-weight: bold;
@@ -9,10 +16,10 @@
 
 .menu-options {
     padding-top: 10px;
-    color: white;
+    font-size: 16px;
+    color: #8FC36B;
 }
 .search-area{
-    margin-right: 20px;
     display: block;
 }
 .search-bar {
@@ -20,36 +27,37 @@
     background-color: rgba(255, 255, 255, 0.548);
     border-width: 5;
     border-radius: 50; */
-    background: rgba(255, 255, 255, 0.445);
-    border: transparent;
+    background: rgba(255, 255, 255, 0.952);
+    border: #8FC36B;
+    border-style: solid;
     border-radius: 50px;
 }
 .search-bar:focus {
     background: rgba(255, 255, 255, 0.336);
     border: none;
-    color: rgb(255, 255, 255);
+    color:#8FC36B;
 
 }
 .search-bar::placeholder {
-    color: white
+    color: #8FC36B
 }
 .navBar-custom {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.952);
+    box-shadow: 0px 3px 5px 2px #00000013;
+    height: 75px;
 }
-.navBar-custom-dark {
-    background-color: rgba(0, 0, 0, 0.473);
-}
-
 .header-link {
-    color: white;
+    color: #8FC36B;
 }
 .username {
     margin-right: 30px;
 }
 .navbar-collapse.show, .navbar-collapse.collapsing{
-    background: rgba(0, 0, 0, 0.952);
+    background: rgba(255, 255, 255, 0.959);
     text-align: center;
     border-radius: 5%;
+    box-shadow: 0px 3px 5px 2px #00000013;
+
 }
 
 .form-inline{
@@ -57,4 +65,64 @@
     margin-left: 20px;
     margin-bottom: 15px;
     margin-top: 15px
+}
+.sign-in-out{
+    font-size: 16px;
+}
+.search-bar {
+    font-size: 16px
+}
+
+@media only screen and (max-width: 1360px) {
+    .header-link {
+        font-size: 13px;
+    }
+    .username {
+        margin-right: 30px;
+        font-size: 13px;
+    }
+    .sign-in-out{
+        font-size: 13px;
+    }
+    .search-bar {
+        font-size: 13px
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .header-link {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .username {
+        margin-right: 10px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .sign-in-out{
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .search-bar {
+        font-size: 10px;
+        font-weight: bold;
+    }
+}
+@media only screen and (max-width: 990px) {
+    .header-link {
+        font-size: 14px;
+    }
+    .username {
+        margin-right: 30px;
+        font-size: 14px;
+    }
+    .sign-in-out{
+        font-size: 14px;
+    }
+    .search-bar {
+        font-size: 14px
+    }
+    .restEasy-logo{
+        width: 75px;
+        height: auto;
+    }
 }
