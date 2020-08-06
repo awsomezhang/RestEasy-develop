@@ -51,10 +51,10 @@ class DisplayItem extends React.Component{
                 </div>
             )
         }
-        else{
+        else if(this.props.item.type == "text"){
             return (
                 <div className="center" style={{height: "100%", width: "100%", backgroundColor: "#E2FCD3"}}>
-                    Creator or contributor memory.
+                    {this.props.item.img}
                 </div>
             )
         }

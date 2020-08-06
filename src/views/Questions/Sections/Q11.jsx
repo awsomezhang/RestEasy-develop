@@ -5,7 +5,9 @@ import {Form, Container, Row, Col} from "react-bootstrap";
 export default class Q11 extends React.Component {
     state = {
         name: localStorage.getItem('first_name'),
-        story: localStorage.getItem('relation_info')
+        story: localStorage.getItem('relation_info'),
+        birth_date: localStorage.getItem('start_date'),
+        d_date: localStorage.getItem('end_date')
         
     };
 
@@ -15,7 +17,7 @@ export default class Q11 extends React.Component {
         var templateSrc = "";
         switch (templateNum) {
             case "1":
-                templateSrc = require("../../../assets/img/TemplateOneSample.PNG");
+                templateSrc = require("../../../assets/img/TemplateTwoSample.PNG");
                 break;
             default:
                 templateSrc = "/img/diamond.jpg";
@@ -65,6 +67,7 @@ export default class Q11 extends React.Component {
                 <div style={{ fontWeight: "bold", textAlign: "center", fontSize: "1.5em" }}>
                     {this.state.name}'s Registry in Memory of {this.state.name}
                     <div style={{ height: "300px" }}>
+                        Coming Soon
                     </div>
                 </div>
 
