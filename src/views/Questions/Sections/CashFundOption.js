@@ -12,6 +12,8 @@ export default function NextStep(props) {
                 </div>
                 <br/>
                 <a onClick={props.togglePopup} style={{ padding: "5px", textAlign: "center",  textDecoration: "underline", color: "darkblue"}}>{props.mainText}</a>
+                <br/>
+                <a onClick={props.togglePopupTwo} style={{ padding: "5px", textAlign: "center",  textDecoration: "underline", color: "darkblue"}}>{props.secondaryText}</a>
             </div>
         </div>
     )

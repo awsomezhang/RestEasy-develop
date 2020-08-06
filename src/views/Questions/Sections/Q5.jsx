@@ -20,7 +20,7 @@ export default class Q5 extends React.Component {
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <Form.Item name="relation_info">
                             <Input.TextArea placeholder="Add some information about your loved one that you would want others to know.
-                            This will show up at the top of the Digital Memory." style={{width: "34em", height: "7em", borderRadius: "10px"}}/>
+                            This will show up at the top of the Digital Memory." style={{width: "34em", height: "7em", borderRadius: "10px", whiteSpace: "pre-wrap"}}/>
                         </Form.Item>
                     </div>
 

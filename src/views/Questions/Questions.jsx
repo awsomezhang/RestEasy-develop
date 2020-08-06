@@ -84,7 +84,7 @@ class Questions extends React.Component {
         else if (this.state.curr === 10)
             return <Q10 cashfund={this.cashfund.bind(this)} prev={this.prev.bind(this)} next={this.next.bind(this)}/>;
         else if (this.state.curr === 10.5)
-            return <Q10_5 cashfundBack={this.cashfundBack.bind(this)}/>;
+            return <Q10_5 cashfundBack={this.cashfundBack.bind(this)} cashfundNext={this.cashfundNext.bind(this)}/>;
 
         else if (this.state.curr === 11)
             return <Q11 next={this.next.bind(this)} prev={this.prev.bind(this)}/>;
@@ -172,6 +172,13 @@ class Questions extends React.Component {
 
     cashfundBack() {
         const current = this.state.curr - 0.5;
+        this.setState({
+            curr: current
+        });
+    }
+
+    cashfundNext() {
+        const current = this.state.curr + 0.5;
         this.setState({
             curr: current
         });
