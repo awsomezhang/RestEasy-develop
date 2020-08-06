@@ -1,5 +1,5 @@
 import React from 'react';
-import {Divider, Layout} from 'antd';
+import {Divider, notification, Layout} from 'antd';
 import { withRouter, Redirect } from "react-router-dom";
 
 import "../../styles/styles.css"
@@ -12,7 +12,6 @@ import Register from "./Sections/Register"
 import Resources from "./Sections/Resources"
 import CreateMemorySection from "./Sections/CreateMemorySection"
 import CreateRegistrySection from "./Sections/CreateRegistrySection"
-
 import PageWrapper from "../../PageWrapper"
 import {
     Button,
@@ -44,6 +43,17 @@ class NewLanding extends React.Component {
             anchor: ""
         }
     }
+
+    componentDidMount() {
+        notification.info({
+            message: 'Welcome',
+            description:
+              "RestEasy is currently in Beta. While not all features are available at this time, feel free to look around and learn more about who we are!",
+            placement: "topRight",
+            duration: 8,
+            top: 80
+        });
+     }
     
 
     render() {
@@ -59,9 +69,11 @@ class NewLanding extends React.Component {
                     <div className="section"> <CreateMemorySection /> </div>
                     <div className="section"> <CreateRegistrySection /></div>
                     <div> <Resources /> </div>
-                    
                     <div id="create-memory">
-                        <button onClick={e => {this.handleSubmit("/my/create")}} className="button-both">Build a Digital Memory!</button>
+                        <a href="/my/create">
+                            <button className="button-both">Build a Digital Memory!</button>
+                        </a>
+                        
                     </div>
                     
                 </div>
