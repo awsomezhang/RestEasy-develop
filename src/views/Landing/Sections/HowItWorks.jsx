@@ -14,25 +14,7 @@ import {
 const rightArrow = require("../../../assets/img/right_arrow_landing.PNG")
 
 class HowItWorks extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            redirect: false,
-            route: '#'
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleSubmit = (route) => {
-        this.setState(() => ({
-            redirect: true,
-            route: route
-        }))
-    }
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to={this.state.route} />
-        }
         return (
             <div>
                 <Container>
@@ -82,7 +64,7 @@ class HowItWorks extends React.Component {
                     <Row>
                         <Col md="4" />
                         <Col md="4" className="get-started">
-                            <a onClick={e => {this.handleSubmit("/my/create")}} style={{textDecoration: "none"}}>
+                            <a href="/my/create" style={{textDecoration: "none"}}>
                                 <div className= "text-box" style={{ display: "flex", justifyContent: "center", marginLeft: "20px" }}>
                                     <div style={{ color: "#6F9753" }}>Get Started</div>
                                     <img className="arrow-right" src={rightArrow} />
