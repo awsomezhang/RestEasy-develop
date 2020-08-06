@@ -64,7 +64,7 @@ export default function Contact() {
     }
 
 
-    function submitForm(event, formData) {
+    async function submitForm(event, formData) {
         event.preventDefault();
         console.log("api called")
         // POST request using fetch with async/await
