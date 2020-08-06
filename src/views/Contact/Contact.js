@@ -11,6 +11,10 @@ import {
     Col,
   } from "react-bootstrap";
 
+import { notification } from 'antd';
+
+const image1 = require("../../assets/img/ron-otsu-62_2KGyX13E-unsplash.jpg")
+const image2 = require("../../assets/img/1600x900-anti-flash-white-solid-color-background.jpg")
 
 const headerStyle = {
     position: "absolute",
@@ -25,33 +29,21 @@ const headerStyle = {
     color: "black"
 }
 
-async function addUser(event, formData) {
-    event.preventDefault();
-    console.log("api called")
-    // POST request using fetch with async/await
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(formData)
-    };
-    const response =  await fetch('https://zkv7ajqod9.execute-api.us-east-1.amazonaws.com/dev/contact-form', requestOptions);
-    console.log("response: " + response)
-}
-
 export default function Contact() {
 
     let pageHeader = React.createRef();
 
     // form data
-    const [firstName, setFirstName] = useState("First Name");
-    const [lastName, setLastName] = useState("Last Name");
-    const [jobTitle, setJobTitle] = useState("Job Title");
-    const [organization, setOrganization] = useState("Company / Organization");
-    const [website, setWebsite] = useState("Company Website");
-    const [email, setEmail] = useState("Email Address");
-    const [phoneNum, setPhoneNum] = useState("Phone Number");
-    const [comments, setComments] = useState("Questions or Comments");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [jobTitle, setJobTitle] = useState("");
+    const [organization, setOrganization] = useState("");
+    const [website, setWebsite] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
+    const [comments, setComments] = useState("");
 
-    const formData = {
+    var formData = {
         'firstname': firstName,
         'lastName': lastName,
         'jobTitle': jobTitle,
@@ -61,9 +53,55 @@ export default function Contact() {
         'phoneNum': phoneNum,
         "comments": comments
     }
+    function clearForm(){
+        
+        // setJobTitle('')
+        // setOrganization('')
+        // setWebsite('')
+        // setEmail('')
+        // setPhoneNum('')
+        // setComments('')
+    }
 
-    const image1 = require("../../assets/img/ron-otsu-62_2KGyX13E-unsplash.jpg")
-    const image2 = require("../../assets/img/1600x900-anti-flash-white-solid-color-background.jpg")
+
+    function submitForm(event, formData) {
+        event.preventDefault();
+        console.log("api called")
+        // POST request using fetch with async/await
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        };
+
+        try{
+            const response =  await fetch('https://zkv7ajqod9.execute-api.us-east-1.amazonaws.com/dev/contact-form', requestOptions);
+            console.log("response: " + response)
+            notification.success({
+                message: 'Success!',
+                description:
+                  "Thank you for reaching out! We will be in touch shortly!",
+                placement: "bottomRight",
+            });
+            setLastName('sdfsdfds')
+            
+        
+        }catch(error){
+            console.log("Error:")
+            console.log(error)
+            
+
+            notification.error({
+                message: 'Oops! There was an error!',
+                description:
+                  "For some reason, your message didn't go through. If this problem persists, please email us at: resteasytechnologies@gmail.com",
+                placement: "bottomRight",
+            });
+            
+        }
+        
+    }
+
+
     return (
         <PageWrapper content = {
             <div className="main">
@@ -81,10 +119,10 @@ export default function Contact() {
                         <Col md="6">
                             <h3 className="join-header">Join the RestEasy Ecosystem</h3>
                             <div className="section-form">
-                                <Form onSubmit={event => addUser(event, formData)}>
+                                <Form onSubmit={event => submitForm(event, formData)}>
                                     <Form.Row>
                                         <Col>
-                                            <Form.Control required placeholder={firstName.length >= 0 ? "First Name" : firstName} onChange={e => setFirstName(e.target.value)} />
+                                            <Form.Control type="text" required value={firstName} placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
                                         </Col>
                                         <Col>
                                             <Form.Control required placeholder={lastName.length >= 0 ? "Last Name" : lastName} onChange={e => setLastName(e.target.value)} />
