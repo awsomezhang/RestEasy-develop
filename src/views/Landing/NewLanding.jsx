@@ -22,6 +22,9 @@ import {
     Col,
   } from "react-bootstrap";
 
+  
+
+
 function LandingDivider(){
     return( <Divider style={{
         minWidth: "1em",
@@ -35,43 +38,28 @@ class NewLanding extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            createRef: React.createRef(),
+            howItWorksRef: React.createRef(),
             registerRef: React.createRef(),
             resourcesRef: React.createRef(),
-            redirect: false,
-            route: '#'
+            anchor: ""
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleSubmit = (route) => {
-        this.setState(() => ({
-            redirect: true,
-            route: route
-        }))
-    }
+    
 
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to={this.state.route} />
-        }
         return (
             <PageWrapper content={
                 <div style={{backgroundColor: "white"}}>
                     <Banner 
-                        createScroll={() => this.state.createRef.current.scrollIntoView({behavior: "smooth"})}
+                        howItWorksRef={() => this.state.howItWorksRef.current.scrollIntoView({behavior: "smooth"})}
                         registerScroll={() => this.state.registerRef.current.scrollIntoView({behavior: "smooth"})}
                         resourcesScroll={() => this.state.resourcesRef.current.scrollIntoView({behavior: "smooth"})}
                     />
-                    <div className="section"> <HowItWorks /> </div>
+                    <div id="howItWorksRef" className="section"> <HowItWorks /> </div>
                     <div className="section"> <CreateMemorySection /> </div>
                     <div className="section"> <CreateRegistrySection /></div>
-                    <div ref={this.state.resourcesRef}> <Resources /> </div>
-                    {/* <FAQ /> */}
+                    <div> <Resources /> </div>
                     
-                    <div id="create-registry">
-                        <button onClick={e => {this.handleSubmit("/registry")}} className="button-both">Create a Registry!</button>
-                    </div>
-
                     <div id="create-memory">
                         <button onClick={e => {this.handleSubmit("/my/create")}} className="button-both">Build a Digital Memory!</button>
                     </div>
