@@ -61,24 +61,28 @@ export default [
         dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory",
         //status: "protected"
     },
+    /*
     {
         id: 13,
         URLpath: "/templatedigitalmemoryeditor",
         dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemoryEditor",
         //status: "protected"
     },
+    */
     {
         id: 14,
         URLpath: "/template2digitalmemory",
         dirpath: "./views/Template2DigitalMemory/Template2DigitalMemory",
         //status: "protected"
     },
+    /*
     {
         id: 15,
         URLpath: "/template2digitalmemoryeditor",
         dirpath: "./views/Template2DigitalMemory/Template2DigitalMemoryEditor",
         //status: "protected"
     },
+    */
     {
         id: 16,
         URLpath: "/faq",
