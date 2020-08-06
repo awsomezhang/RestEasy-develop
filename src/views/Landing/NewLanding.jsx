@@ -37,41 +37,39 @@ class NewLanding extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            howItWorksRef: React.createRef(),
-            registerRef: React.createRef(),
-            resourcesRef: React.createRef(),
-            anchor: ""
         }
+
+        this.howItWorksRef = React.createRef()
     }
 
     componentDidMount() {
         notification.info({
-            message: 'Welcome',
+            message: 'Beta Mode',
             description:
-              "RestEasy is currently in Beta. While not all features are available at this time, feel free to look around and learn more about who we are!",
+              "RestEasy is currently in Beta. Not all features are available now. Check back soon for our official launch.",
             placement: "topRight",
             duration: 8,
-            top: 80
+            top: 80,
+            className: "notification-beta"
         });
      }
+
+     
     
 
     render() {
         return (
             <PageWrapper content={
                 <div style={{backgroundColor: "white"}}>
-                    <Banner 
-                        howItWorksRef={() => this.state.howItWorksRef.current.scrollIntoView({behavior: "smooth"})}
-                        registerScroll={() => this.state.registerRef.current.scrollIntoView({behavior: "smooth"})}
-                        resourcesScroll={() => this.state.resourcesRef.current.scrollIntoView({behavior: "smooth"})}
-                    />
-                    <div id="howItWorksRef" className="section"> <HowItWorks /> </div>
+                    <Banner howItWorksRef = {this.howItWorksRef} />
+                    
+                    <div ref={this.howItWorksRef} className="section"> <HowItWorks /> </div>
                     <div className="section"> <CreateMemorySection /> </div>
                     <div className="section"> <CreateRegistrySection /></div>
                     <div> <Resources /> </div>
                     <div id="create-memory">
                         <a href="/my/create">
-                            <button className="button-both">Build a Digital Memory!</button>
+                            <button className="button-both">Build a Digital Memory</button>
                         </a>
                         
                     </div>
