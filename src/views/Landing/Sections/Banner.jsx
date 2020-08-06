@@ -1,7 +1,6 @@
 import React from 'react';
 import './Banner.css';
 import { Parallax, Background } from "react-parallax";
-import { withRouter, Redirect } from "react-router-dom";
 
 import {
     Button,
@@ -15,8 +14,9 @@ import {
 export default class Carousel extends React.Component{
     constructor(props){
         super(props)
+        console.log(props)
         this.state = {
-            createScroll: this.props.createScroll,
+            howItWorksRef: this.props.howItWorksRef,
             registerScroll: this.props.registerScroll,
             resourcesScroll: this.props.resourcesScroll,
         }
@@ -36,14 +36,16 @@ export default class Carousel extends React.Component{
                                     <Row>
                                         <Col>
                                             <div className="header-text">
-                                                Losing someone is hard.
+                                                We are sorry you are here, but happy you found us
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
                                             <div className="header-text-sub">
-                                                But together, we can<br/>remember your loved one.
+                                            Tell their story.<br/>
+                                            Fund their resting place.<br/>
+                                            Celebrate and Commemorate their life.
                                             </div>
                                         </Col>
                                     </Row>
@@ -57,6 +59,7 @@ export default class Carousel extends React.Component{
                                 </Col>
                         </Row>
                 </Container>
+                
             </div>
         )
     }
