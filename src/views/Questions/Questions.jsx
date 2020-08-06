@@ -187,10 +187,12 @@ class Questions extends React.Component {
     
 
     render() {
+
+        const headerSpace = (this.state.curr === 0 ? <Container fluid={true} style={{height: "50px"}}></Container>: <Container fluid={true} style={{height: "20px"}}></Container>)
         return (
             <PageWrapper content={
                 <div>
-                    <Container fluid={true} className="header-banner"></Container>
+                    {headerSpace}
                     {this.state.curr === 0 ? (
                         <div style={{textAlign: "center", marginTop: "80px"}}>
                             <h2 style = {{fontWeight: "bold"}}>We're sorry you're here, but happy you found us</h2>
