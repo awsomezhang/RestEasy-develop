@@ -19,6 +19,7 @@ export default class TemplateDigitalMemoryModularEditor extends React.Component{
         this.componentDidMount = this.componentDidMount.bind(this)
     }
 
+    //Get the layout for this particular memory
     componentDidMount(){
         const tokenId = JSON.parse(localStorage.getItem("user")).id
         const body = {

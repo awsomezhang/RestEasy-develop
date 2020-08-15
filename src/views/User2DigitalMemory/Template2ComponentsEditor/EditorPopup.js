@@ -3,14 +3,16 @@ import Popup from "reactjs-popup"
 import axios from "axios";
 import { REMOTE_HOST } from "../../../constants.js"
 
+//This is what we format inside the imported Popup class.
 class CustomPopup extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            text: ""
+            text: this.props.lastClickedTxt
         }
     }
 
+    //when user uploads new image
     handleUpload = ev => {
         var file = this.uploadInput.files[0];
 
@@ -80,25 +82,31 @@ class CustomPopup extends React.Component{
         })
     }
 
-    render() {return(
-        <div>
-            <button
-                onClick={() => {this.props.clearLastClicked()}}
-            >
-                Delete this.
-            </button>
-            <br />
-            <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-            <button onClick={this.handleUpload}>Use this image</button>
-            <br />
-            <input onChange={(event) => {this.setState({text: event.target.value})}} type="text" />
-            <button
-                onClick={() => {this.props.changeLastType("text", this.state.text)}}
-            >
-                Use this memory
-            </button>
-        </div>
-    )}
+    render() {
+        return(
+            <div>
+                <button
+                    onClick={() => {this.props.clearLastClicked()}}
+                >
+                    Delete this.
+                </button>
+                <br />
+                <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
+                <button onClick={this.handleUpload}>Use this image</button>
+                <br />
+                <input
+                    onChange={(event) => {this.setState({text: event.target.value})}}
+                    type="text"
+                    value={this.state.text} 
+                    style={{width: "50%"}}
+                />
+                <button
+                    onClick={() => {this.props.changeLastType("text", this.state.text)}}
+                >
+                    Use this memory
+                </button>
+            </div>
+        )}
 }
 
 export default function EditorPopup (props){
@@ -111,6 +119,7 @@ export default function EditorPopup (props){
             <CustomPopup
                 clearLastClicked={props.clearLastClicked}
                 changeLastType={props.changeLastType}
+                lastClickedTxt={props.lastClickedTxt}
             />
         </Popup>
     )

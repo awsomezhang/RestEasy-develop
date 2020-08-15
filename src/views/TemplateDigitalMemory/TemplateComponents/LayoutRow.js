@@ -5,6 +5,7 @@ import "../../../styles/styles.css"
 
 export default function LayoutRow(props){
     const LayoutCols = props.rowinfo.map((item) => {
+        //Converts each item in a row into the appropriate rectangle
         if(!item.exists){
             return(null)   
         }
