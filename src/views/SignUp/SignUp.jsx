@@ -80,7 +80,6 @@ function RegistrationForm(props)  {
     return (
         <PageWrapper content={
             <div>
-                <Container fluid={true} className="header-banner"></Container>
                 <Container fluid={true}>
                     <Row className="justify-content-md-center">
                         <Col md="2"/>

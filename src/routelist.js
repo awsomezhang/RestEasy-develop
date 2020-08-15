@@ -2,7 +2,7 @@ export default [
     {
         id: 1,
         URLpath: "/",
-        dirpath: "./views/Landing/Landing"
+        dirpath: "./views/Landing/NewLanding"
     },
     {
         id: 2,
@@ -59,7 +59,10 @@ export default [
         id: 12,
         URLpath: "/templatedigitalmemory",
         dirpath: "./views/TemplateDigitalMemory/TemplateDigitalMemory",
+<<<<<<< HEAD
         //status: "protected"
+=======
+>>>>>>> master
     },
     /*
     {

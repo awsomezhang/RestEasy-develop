@@ -14,65 +14,60 @@ import {
 export default class Carousel extends React.Component{
     constructor(props){
         super(props)
+        console.log(props)
         this.state = {
-            createScroll: this.props.createScroll,
-            registerScroll: this.props.registerScroll,
-            resourcesScroll: this.props.resourcesScroll,
         }
     }
 
-    render(){
-    return (
-        <div>
-            <Container fluid={true}>
-                    <Row className="justify-content-md-center">
-                        <Col style={{ "paddingLeft": 0, "paddingRight": 0 }}>
-                            <div className="image-section">
-                                <Container>
+    handleOnClick = (event) => {
+        //.current is verification that your element has rendered
+        if(this.props.howItWorksRef.current){
+            this.props.howItWorksRef.current.scrollIntoView({ 
+               behavior: "smooth", 
+               block: "nearest"
+            })
+        }
+    }
+
+    render() {
+        return (
+            <div className="image-section">
+                <Container fluid={true}>
+                        <Row className="justify-content-md-center">
+                                {/* <Col className="tree-col">
+                                    <div>
+                                        <img className="tree" src={require("../../../assets/img/1x/tree-white.png")}></img>
+                                    </div>
+                                </Col> */}
+                                <Col className="header-section">
                                     <Row>
                                         <Col>
-                                            <div className="headerText">We are sorry you're here, but happy you found us</div>
+                                            <div className="header-text">
+                                                We are sorry you are here,<br/>but happy you found us
+                                            </div>
                                         </Col>
                                     </Row>
-                                <Row className="middle">
-                                    <Col md="3" />
-                                    <Col md="6" className= "secondary-text">
-                                        <Row>
-                                            <Col>
-                                                Tell their story.
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                Fund their resting place.
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                Celebrate and Commemorate their life.
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col md="3" />
-                                    </Row>
-                                    <Row className="button-row">
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.createScroll}>CREATE<br/> <span className="sub-btn">A Digital Memory</span></Button>
-                                        </Col>
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.registerScroll}>REGISTER<br/> <span className="sub-btn">For What You Need</span></Button>
-                                        </Col >
-                                        <Col sm="4" className="text-center">
-                                            <Button className="header-btn" onClick={this.state.resourcesScroll}>FIND<br/> <span className="sub-btn">Advice and Resources</span></Button>
+                                    <Row>
+                                        <Col>
+                                            <div className="header-text-sub">
+                                            Tell their story.<br/>
+                                            Fund their resting place.<br/>
+                                            Celebrate and Commemorate their life.
+                                            </div>
                                         </Col>
                                     </Row>
-                                </Container>
-                            </div>
-                        </Col>
-                    </Row>
-            </Container>
-
-        </div>
-    )
+                                    <Row>
+                                        <Col>
+                                            <div className="btn-holder">
+                                                <Button onClick={this.handleOnClick} className="button-learn-more">Learn More</Button>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                        </Row>
+                </Container>
+                
+            </div>
+        )
     }
 }
