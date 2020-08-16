@@ -3,17 +3,118 @@ import Popup from "reactjs-popup"
 import axios from "axios";
 import { REMOTE_HOST } from "../../../constants.js"
 
+function showUploads(toggleShowingUploads){
+    const potentialNames = JSON.parse(localStorage.getItem("user")).digitalMemories.testMemory
+    var photos = []
+    for(var i = 0; i < potentialNames.length; i++){
+        var ending = potentialNames[i].substr(potentialNames[i].length - 3)
+        if(ending == "gif" || ending == "jpg" || ending == "png"){
+            if(!photos.includes(potentialNames[i])){
+                photos.push(potentialNames[i])
+            }
+        }
+    }
+    toggleShowingUploads(photos)
+}
+
+class GetPhoto extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            url: "",
+        }
+        
+        let fileParts = props.name.split('.');
+        let fileName = fileParts[0];
+        let fileType = fileParts[1];
+        var url
+        const tokenId = JSON.parse(localStorage.getItem("user")).id
+        const body = {
+            id: tokenId,
+            memoryName : fileName,
+            userUploadBucket : "resteasy-user-uploads",
+        }
+        axios.post(REMOTE_HOST + "/aws/signS3_get", {body})
+            .then(response => {
+                this.setState({url: response.data})
+            })
+            .catch(error => {
+                console.log("error")
+            })
+    }
+
+    render(){
+        return(
+            <img
+                key={this.props.k}
+                onClick={() => this.props.selector(this.props.name)}
+                src={this.state.url}
+                style={{height: "100px", width: "100px", objectFit: "cover"}}
+            />
+        )
+    }
+}
+
+class PhotoArray extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            processedPhotos: [],
+        }
+
+        for(var i = 0; i < props.photos.length; i++){
+            var newProcessedPhotos = this.state.processedPhotos;
+            var newPhoto = <GetPhoto k={i} selector={this.props.selector} name={props.photos[i]} />
+            newProcessedPhotos.push(newPhoto)
+            this.setState({processedPhotos: newProcessedPhotos})
+        }
+    }
+
+    selector(p){
+        this.props.selector(p)
+    }
+
+    render(){
+        return(
+            <div>
+                {this.state.processedPhotos}
+            </div>
+        )
+    }
+}
+
 //This is what we format inside the imported Popup class.
 class CustomPopup extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            text: this.props.lastClickedTxt
+            showingUploads: false,
+            photos: {},
+            selectedPhoto: "",
+            text: this.props.lastClickedTxt,
         }
+
+        this.toggleShowingUploads = this.toggleShowingUploads.bind(this)
+        this.selectPhoto = this.selectPhoto.bind(this)
+    }
+
+    toggleShowingUploads(p){
+        this.setState({
+            showingUploads: !this.state.showingUploads,
+            photos: p,
+        })
+    }
+
+    selectPhoto(p){
+        this.props.changeLastType("img", p)
+        this.toggleShowingUploads([])
     }
 
     //when user uploads new image
     handleUpload = ev => {
+        if(this.uploadInput.files.length == 0){
+            return
+        }
         var file = this.uploadInput.files[0];
 
         var fileToAddDB = ""
@@ -83,30 +184,43 @@ class CustomPopup extends React.Component{
     }
 
     render() {
-        return(
-            <div>
-                <button
-                    onClick={() => {this.props.clearLastClicked()}}
-                >
-                    Delete this.
-                </button>
-                <br />
-                <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-                <button onClick={this.handleUpload}>Use this image</button>
-                <br />
-                <input
-                    onChange={(event) => {this.setState({text: event.target.value})}}
-                    type="text"
-                    value={this.state.text} 
-                    style={{width: "50%"}}
-                />
-                <button
-                    onClick={() => {this.props.changeLastType("text", this.state.text)}}
-                >
-                    Use this memory
-                </button>
-            </div>
-        )}
+        if(!this.state.showingUploads){
+            return(
+                <div>
+                    <button
+                        onClick={() => {this.props.clearLastClicked()}}
+                    >
+                        Delete this.
+                    </button>
+                    <br />
+                    <input ref={(ref) => { this.uploadInput = ref; }} type="file"/>
+                    <button onClick={this.handleUpload}>Use this image</button>
+                    <br />
+                    <button onClick={() => showUploads(this.toggleShowingUploads)}>Use previously uploaded image</button>
+                    <br />
+                    <input
+                        onChange={(event) => {this.setState({text: event.target.value})}}
+                        type="text"
+                        value={this.state.text} 
+                        style={{width: "50%"}}
+                    />
+                    <button
+                        onClick={() => {this.props.changeLastType("text", this.state.text)}}
+                    >
+                        Use this memory
+                    </button>
+                </div>
+            )
+        }
+        else{
+            return(
+                <div>
+                    <PhotoArray photos={this.state.photos} selector={this.selectPhoto} />
+                    <button onClick={() => this.toggleShowingUploads([])}> Cancel </button>
+                </div>
+            )
+        }
+    }
 }
 
 export default function EditorPopup (props){
