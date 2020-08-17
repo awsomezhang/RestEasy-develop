@@ -15,7 +15,7 @@ const mongoose = require("mongoose");
 // var querystring = require('querystring');
 // var cookieParser = require('cookie-parser');
 
-const DEVELOPING = false;
+const DEVELOPING = true;
 
 
 // Setup express app
