@@ -21,3 +21,13 @@
     background-color: black;
     height: 120px;
 }
+
+.create-text {
+    font-style: normal;
+    line-height: 34px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: #000000;
+}
