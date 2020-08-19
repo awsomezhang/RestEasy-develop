@@ -59,7 +59,8 @@ export default class LoginForm extends React.Component{
         return(
             <PageWrapper content={
                 <div>
-                    <div style={{height: "100px", backgroundColor:"grey"}} />
+                    {/* <div style={{height: "100px", backgroundColor:"grey"}} /> */}
+                    <div style={{height: "50px"}} />
                     <br />
                     <h1 className="centered-text emphasis-text"> In loving memory of {this.state.firstname} </h1>
                     <h3 className="centered-text"> {localStorage.getItem("start_date")} - {localStorage.getItem("end_date")} </h3>
