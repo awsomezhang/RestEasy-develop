@@ -15,21 +15,22 @@ export default class ProcessedLayoutEditor extends React.Component{
             lastClickedRow: -1,
             lastClickedInd: -1,
             lastClickedTyp: "",
+            lastClickedTxt: "",
             lastDraggedRow: -1,
             lastDraggedInd: -1,
             lastDroppedRow: -1,
             lastDroppedInd: -1,
         }
 
-        this.handleChangeTemplate = this.handleChangeTemplate.bind(this)
+        this.handleChangeTemplate = this.handleChangeTemplate.bind(this)        //asks AWS to update layout stored in bucket. not automatic
         this.swapTemplateItems = this.swapTemplateItems.bind(this)
         this.togglePopupIsOpen = this.togglePopupIsOpen.bind(this)
-        this.clearLastClicked = this.clearLastClicked.bind(this)
-        this.sendClickedInfo = this.sendClickedInfo.bind(this)
+        this.clearLastClicked = this.clearLastClicked.bind(this)                //deletes selected item, called from popup window
+        this.sendClickedInfo = this.sendClickedInfo.bind(this)                  //updates state so popup shows correct info
         this.addRow = this.addRow.bind(this)
-        this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)
+        this.revertLastSavedTemplate = this.revertLastSavedTemplate.bind(this)  //asks AWS for last saved layout, to restore
         this.deleteRow = this.deleteRow.bind(this)
-        this.changeLastType = this.changeLastType.bind(this)
+        this.changeLastType = this.changeLastType.bind(this)                    //updates layout, change between image/text/etc
     }
 
     togglePopupIsOpen(){
@@ -37,10 +38,12 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     sendClickedInfo(row, ind, typ){
+        const txt = (typ == "text") ? this.state.templateLayout[row]["items"][ind]["img"] : ""
         this.setState({
             lastClickedRow: row,
             lastClickedInd: ind,
             lastClickedTyp: typ,
+            lastClickedTxt: txt,
         })
     }
 
@@ -99,8 +102,8 @@ export default class ProcessedLayoutEditor extends React.Component{
     }
 
     swapTemplateItems = (rowi = this.state.lastDraggedRow, indi = this.state.lastDraggedInd, rowj = this.state.lastDroppedRow, indj = this.state.lastDroppedInd) => {
-        console.log(this.state.templateLayout[rowi]["items"][indi])
-        console.log(this.state.templateLayout[rowj]["items"][indj])
+        //console.log(this.state.templateLayout[rowi]["items"][indi])
+        //console.log(this.state.templateLayout[rowj]["items"][indj])
         const tempItem = this.state.templateLayout[rowi]["items"][indi]
         const tempSize = this.state.templateLayout[rowj]["items"][indj]["size"]
         var tempTemplateLayout = this.state.templateLayout
@@ -115,8 +118,8 @@ export default class ProcessedLayoutEditor extends React.Component{
         this.setState({
             templateLayout: tempTemplateLayout
         })
-        console.log(this.state.templateLayout[rowi]["items"][indi])
-        console.log(this.state.templateLayout[rowj]["items"][indj])
+        //console.log(this.state.templateLayout[rowi]["items"][indi])
+        //console.log(this.state.templateLayout[rowj]["items"][indj])
     }
 
     clearLastClicked = () => {
@@ -193,7 +196,6 @@ export default class ProcessedLayoutEditor extends React.Component{
                     swapTemplateItems={this.swapTemplateItems}
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     sendClickedInfo={this.sendClickedInfo}
-                    zIndex={"" + (this.state.templateLayout.length - rowinfo.row)}
                     deleteRow={this.deleteRow}
                 />
             )
@@ -242,6 +244,7 @@ export default class ProcessedLayoutEditor extends React.Component{
                     popupIsOpen={this.state.popupIsOpen}
                     togglePopupIsOpen={this.togglePopupIsOpen}
                     lastClickedTyp={this.state.lastClickedTyp}
+                    lastClickedTxt={this.state.lastClickedTxt}
                     clearLastClicked={this.clearLastClicked}
                     changeLastType={this.changeLastType}
                     swapTemplateItems={this.swapTemplateItems}

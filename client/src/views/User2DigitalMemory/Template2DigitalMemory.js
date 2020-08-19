@@ -14,6 +14,8 @@ export default class LoginForm extends React.Component{
             templateLayout: [],
             firstname: "",
         }
+
+        //Get the first name for this particular memory
         const tokenId = JSON.parse(localStorage.getItem("user")).id
         const body = {
             id: tokenId,
@@ -33,6 +35,10 @@ export default class LoginForm extends React.Component{
             })
     }
 
+    //Get the layout for this particular memory
+    //This is in a different file than the layout but
+    //for some reason when I try to get both in the same function,
+    //only one goes through, so I'm breaking it up here.
     componentDidMount(){
         const tokenId = JSON.parse(localStorage.getItem("user")).id
         const body = {

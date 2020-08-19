@@ -15,13 +15,12 @@ class DisplayItem extends React.Component{
         this.state = {
             img: ""
         }
-    }
 
-    componentDidMount(){
         if(this.props.item.type != "img"){
             return
         }
-        console.log(this.props.item.img)
+
+        //Display image if it is an image
         let fileParts = this.props.item.img.split('.');
         let fileName = fileParts[0];
         let fileType = fileParts[1];
@@ -40,6 +39,7 @@ class DisplayItem extends React.Component{
             })
     }
 
+    //Display image if it is an image
     componentDidUpdate(prevState){
         if(this.props.item.type != "img"){
             return
@@ -90,23 +90,45 @@ class DisplayItem extends React.Component{
 
 export default function LayoutRowEditor(props){
     var LayoutCols
+    //Alternate orientation between rows
     if(props.rownum % 2){
         LayoutCols = (
             <Row className="justify-content-md-center" style={{height: h}}>
                 <Col md="7" style={{height: h, padding: "0px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[1].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={1}
+                        type={props.rowinfo[1].type}
+                    >
                         <div style={{height: (h*0.7), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[1]} />
                         </div>
                     </EditableComponent>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[2].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={2}
+                        type={props.rowinfo[2].type}
+                    >
                         <div style={{height: (h*0.3), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[2]} />
                         </div>
                     </EditableComponent>
                 </Col>
                 <Col md="5" style={{height: h, padding: "10px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[0].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={0}
+                        type={props.rowinfo[0].type}
+                    >
                         <div style={{height: (h-20)}}>
                             <DisplayItem item={props.rowinfo[0]} />
                         </div>
@@ -119,19 +141,40 @@ export default function LayoutRowEditor(props){
        LayoutCols = (
             <Row className="justify-content-md-center" style={{height: h}}>
                 <Col md="5" style={{height: h, padding: "10px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={0} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[0].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={0}
+                        type={props.rowinfo[0].type}
+                    >
                         <div style={{height: (h-20)}}>
                             <DisplayItem item={props.rowinfo[0]} />
                         </div>
                     </EditableComponent>
                 </Col>
                 <Col md="7" style={{height: h, padding: "0px"}}>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={1} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[1].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={1}
+                        type={props.rowinfo[1].type}
+                    >
                         <div style={{height: (h*0.7), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[1]} />
                         </div>
                     </EditableComponent>
-                    <EditableComponent swapTemplateItems={props.swapTemplateItems} rownum={props.rownum} index={2} togglePopupIsOpen={props.togglePopupIsOpen} sendClickedInfo={props.sendClickedInfo} type={props.rowinfo[2].type}>
+                    <EditableComponent
+                        swapTemplateItems={props.swapTemplateItems}
+                        rownum={props.rownum}
+                        togglePopupIsOpen={props.togglePopupIsOpen}
+                        sendClickedInfo={props.sendClickedInfo}
+                        index={2}
+                        type={props.rowinfo[2].type}
+                    >
                         <div style={{height: (h*0.3), padding: "10px"}}>
                             <DisplayItem item={props.rowinfo[2]} />
                         </div>
