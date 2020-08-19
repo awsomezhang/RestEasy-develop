@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Form, Input} from "antd";
+import "../Questions.css"
 
 export default class Q3 extends React.Component {
     saveData = values => {
@@ -11,18 +12,20 @@ export default class Q3 extends React.Component {
     render() {
 
         const inputStyle = {
-            borderRadius: "10px",
-            width: "12em",
-            height: "2em",
+            borderRadius: "12px",
             textAlign: "center",
             fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "235px",
+            height:"40px",
+            margin: "20px 10px"
             // backgroundColor: "#BEBEBE",
             // color: "black"
         }
 
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
                     Who is {localStorage.getItem("first_name")} to you?
                 </div>
                 <Form

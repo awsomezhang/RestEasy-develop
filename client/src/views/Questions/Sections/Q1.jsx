@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Form, Input} from "antd";
 import axios from "axios";
 import { REMOTE_HOST } from "../../../constants.js"
+import "../Questions.css"
 
 export default class Q1 extends React.Component {
     saveData = values => {
@@ -60,24 +61,38 @@ export default class Q1 extends React.Component {
 
     render() {
         const inputStyle = {
-            borderRadius: "10px",
-            width: "11em",
-            height: "2em",
+            borderRadius: "12px",
             textAlign: "center",
             fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "235px",
+            height:"40px",
+            margin: "20px 10px"
+            // backgroundColor: "#BEBEBE",
+            // color: "black"
+        }
+
+        const suffixStyle = {
+            borderRadius: "12px",
+            textAlign: "center",
+            fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "150px",
+            height:"40px",
+            margin: "20px 10px"
             // backgroundColor: "#BEBEBE",
             // color: "black"
         }
 
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "2em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "2em"}}>
                     What is your loved one's name?
                 </div>
                 <Form
                     onFinish={this.saveData}
                     scrollToFirstError>
-                    <div style={{display: "flex", justifyContent: "center"}}>
+                    <div style={{display: "flex", justifyContent: "center", flexFlow: "row wrap"}}>
                         <Form.Item name="first_name"
                                    rules={[
                                        {
@@ -87,14 +102,14 @@ export default class Q1 extends React.Component {
                                    ]}>
                             <Input placeholder="First name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item style={{margin:"0em 2em"}} name="middle_name">
+                        <Form.Item name="middle_name">
                             <Input placeholder="Middle name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item name="last_name" style={inputStyle}>
+                        <Form.Item name="last_name">
                             <Input placeholder="Last name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item style={{margin:"0em 2em"}} name="suffix">
-                            <Input placeholder="Suffix" style={{borderRadius: "10px", width: "5em", height: "2em", textAlign: "center", fontSize: "17px",}}/>
+                        <Form.Item name="suffix">
+                            <Input placeholder="Suffix" style={suffixStyle}/>
                         </Form.Item>
                     </div>
 

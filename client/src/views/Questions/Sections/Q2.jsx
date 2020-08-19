@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, DatePicker, Form, Input} from "antd";
+import "../Questions.css"
 
 export default class Q2 extends React.Component {
     saveData = values => {
@@ -12,17 +13,20 @@ export default class Q2 extends React.Component {
 
     render() {
         const inputStyle = {
-            borderRadius: "10px",
-            width: "11em",
-            height: "2em",
-            //textAlign: "center",
-            //fontSize: "17px",
+            borderRadius: "12px",
+            textAlign: "center",
+            fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "235px",
+            height:"40px",
+            margin: "20px 10px"
             // backgroundColor: "#BEBEBE",
             // color: "black"
         }
+
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
                     Share some important dates
                 </div>
                 <Form
@@ -40,16 +44,16 @@ export default class Q2 extends React.Component {
                     {/* <div style={{display: "flex", justifyContent: "center", fontSize: "1.5em"}}>
                         OR
                     </div> */}
-                    <div style ={{fontsize: "12px"}}>
+                    <div className="create-text" style ={{fontsize: "15px"}}>
                             Enter dates manually
                     </div>
                     <br/>
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <Form.Item name="start_date">
-                            <Input placeholder="Birthday" style={{borderRadius: "10px", width: "12em", height: "2.5em", marginRight: "10px"}}/>
+                            <Input placeholder="Birthday" style={inputStyle}/>
                         </Form.Item>
                         <Form.Item name="end_date">
-                            <Input placeholder="Enter day of passing" style={{borderRadius: "10px", width: "12em", height: "2.5em",  marginLeft: "10px"}}/>
+                            <Input placeholder="Enter day of passing" style={inputStyle}/>
                         </Form.Item>
                     </div>
 
