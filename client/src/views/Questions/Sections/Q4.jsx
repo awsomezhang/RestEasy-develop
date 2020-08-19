@@ -61,7 +61,7 @@ export default class Q4 extends React.Component {
                     </div>
 
                     <GoogleAutoComplete style={{ width: "50px", height: "50px", padding: "0px" }}
-                        apiKey='AIzaSyD25zPqwG_ss3pYlkK3A_46BxABxVsBArc'
+                        apiKey=''
                         id='location'
                         fields={{
                             streetAddress: "route_two",
@@ -113,7 +113,7 @@ export default class Q4 extends React.Component {
                     </div>
 
                     <GoogleAutoComplete style={{width: "50px", height: "50px", padding: "0px"}}
-                            apiKey='AIzaSyD25zPqwG_ss3pYlkK3A_46BxABxVsBArc'
+                            apiKey=''
                             id='location'
                             fields={{
                                 streetAddress: "route",
