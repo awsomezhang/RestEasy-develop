@@ -4,6 +4,7 @@ import axios from "axios";
 import LayoutRowEditor from './Layout2RowEditor.js'
 import EditorPopup from './EditorPopup.js'
 import { REMOTE_HOST } from "../../../constants.js"
+import "../../../styles/styles.css"
 
 export default class ProcessedLayoutEditor extends React.Component{
     constructor(props){
@@ -205,40 +206,56 @@ export default class ProcessedLayoutEditor extends React.Component{
 
         return(
             <div>
-                <a href={DM_url}>
-                    <button
-                        style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
-                    >
-                        View page
-                    </button>
-                </a>
-                <br />
-                <br />
-                <button
-                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
-                    onClick={() => {this.handleChangeTemplate()}}
-                >
-                    Save current template
-                </button>
-                <br />
-                <button
-                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
-                    onClick={() => {this.revertLastSavedTemplate()}}
-                >
-                    Revert last saved template
-                </button>
-                <br />
-                <br />
+                <Container flex="true">
+                    <Row style={{marginBottom:10}}>
+                        <Col className="d-flex justify-content-center">
+                            <a href={DM_url}>
+                                <button className="button-links"
+                                    style={{borderColor: "#8FC36B", borderStyle: "solid", borderRadius: 4, paddingLeft: 15, paddingRight: 15, paddingTop:5, paddingBottom:5, backgroundColor: "white", color: "#8FC36B"}}
+                                >
+                                    View page
+                                </button>
+                            </a>
+                        </Col>
+                    </Row>
+                    <Row className="d-flex justify-content-center">
+                        <Col md="3" className="d-flex justify-content-center">
+                            <button className="button-links"
+                                style={{ border: "none", borderRadius: 4, paddingLeft: 15, paddingRight: 15, paddingTop:5, paddingBottom:5}}
+                                onClick={() => {this.handleChangeTemplate()}}
+                            >
+                                Save current template
+                            </button>
+                        </Col>
+                        <Col md="3" className="d-flex justify-content-center">
+                            <button className="button-links"
+                                style={{ border: "none", borderRadius: 4, paddingLeft: 15, paddingRight: 15, paddingTop:5, paddingBottom:5, backgroundColor: "#CC0000"}}
+                                onClick={() => {this.revertLastSavedTemplate()}}
+                            >
+                                Cancel all changes
+                            </button>
+                        </Col>
+                    </Row>
+                    
+                    
+                </Container>
+
                 <Container fluid={true}>
                     {LayoutRows}
                 </Container>
                 <br />
-                <button
-                    style={{width: "20%", marginLeft: "40%", marginRight: "40%"}}
-                    onClick={() => {this.addRow()}}
-                >
-                    Add row
-                </button>
+                <Container>
+                    <Row >
+                        <Col className="d-flex justify-content-center">
+                            <button className="button-links"
+                                style={{borderColor: "#8FC36B", borderStyle: "solid", borderRadius: 4, paddingLeft: 15, paddingRight: 15, paddingTop:5, paddingBottom:5, backgroundColor: "white", color: "#8FC36B"}}
+                                onClick={() => {this.addRow()}}
+                            >
+                                Add row
+                            </button>
+                        </Col>
+                    </Row>
+                </Container>
                 <br />
                 <EditorPopup
                     popupIsOpen={this.state.popupIsOpen}
