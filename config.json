@@ -1,12 +1,3 @@
 {
-    "connectionString": "mongodb+srv://restEasyAdmin:CBS2021!@resteasy.iosdw.mongodb.net/RestEasy?retryWrites=true&w=majority",
-    "secret": "thisisatest123",
-    "stripeSecretKey": "sk_test_51GdM6cKpjNQvxncigaBH7nkwsYeYhhR9kEal9JEp5aPw5SeFmbx4XPgfrJtktF1MeENKje8GhQW9SesnMGGPimBO00eh4xFzM1",
-    "AWSAccessKeyId": "AKIA4XBDGZVVQIKDYYUP",
-    "AWSSecretKey": "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",
-    "userUploadBucket": "resteasy-user-uploads",
-    "spotifyClientID": "e6aa481ddd5c43768636eb476164aa45",
-    "spotifyClientSecret": "bf378bb0a5d24253a1418e3badc72134",
-    "spotifyRedirectURI": "http://localhost:8888/callback",
-    "googleMapsApiKey": "AIzaSyD25zPqwG_ss3pYlkK3A_46BxABxVsBArc"
+
 }
