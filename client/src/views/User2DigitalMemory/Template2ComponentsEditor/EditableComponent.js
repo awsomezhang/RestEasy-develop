@@ -61,6 +61,8 @@ export default class EditableComponent extends React.Component{
     }
 
     render(){
+        //button to manage clicks
+        //Draggable to manage drag and drops
         return(
             <div>
                 <button
