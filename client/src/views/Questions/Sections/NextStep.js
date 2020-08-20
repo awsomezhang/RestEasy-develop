@@ -4,7 +4,7 @@ import React from "react"
 
 export default function NextStep(props) {
     return (
-        <div style={{width: "280px", height: "250px"}}>
+        <div style={{width: "280px", height: "250px", margin: "50px"}}>
             <div style={{justifyContent: "center", width: "280px", marginBottom: "10px"}}>
                     <img src = {props.imgSrc} style={{width: "100%", height: "100%", width: "45px", height: "40px", objectFit: "cover" }}/>
             </div>

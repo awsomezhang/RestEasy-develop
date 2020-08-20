@@ -4,7 +4,6 @@ import "../Questions.css"
 
 export default class Q3 extends React.Component {
     saveData = values => {
-        // console.log('Received values of form: ', values);
         localStorage.setItem("relation", values.relation);
         this.props.next();
     };
@@ -19,8 +18,12 @@ export default class Q3 extends React.Component {
             width: "235px",
             height:"40px",
             margin: "20px 10px"
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         return (
@@ -38,9 +41,9 @@ export default class Q3 extends React.Component {
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{borderRadius: "10px", marginLeft: "14px"}}>Previous</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{borderRadius: "10px", marginLeft: "20px"}}>Skip/Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Skip/Next</Button>
                         </Form.Item>
                     </div>
                 </Form>

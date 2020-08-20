@@ -4,8 +4,6 @@ import "../Questions.css"
 
 export default class Q2 extends React.Component {
     saveData = values => {
-        // console.log('Received values of form: ', values);
-        // let b_day = (values.start_date === "undefined" ? "N/A" : values.start_date)
         localStorage.setItem("start_date", values.start_date);
         localStorage.setItem("end_date", values.end_date);
         this.props.next();
@@ -20,8 +18,12 @@ export default class Q2 extends React.Component {
             width: "235px",
             height:"40px",
             margin: "20px 10px"
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         return (
@@ -32,18 +34,6 @@ export default class Q2 extends React.Component {
                 <Form
                     onFinish={this.saveData}
                     scrollToFirstError>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        {/* <Form.Item name="start_date">
-                            <DatePicker placeholder="Birthday" style={{borderRadius: "10px", width: "11em", height: "2.5em"}}/>
-                        </Form.Item>
-                        <Form.Item style={{marginLeft:"2em"}} name="end_date">
-                            <DatePicker placeholder="Date of passing" style={{borderRadius: "10px", width: "11em", height: "2.5em"}}/>
-                        </Form.Item> */}
-                    </div>
-
-                    {/* <div style={{display: "flex", justifyContent: "center", fontSize: "1.5em"}}>
-                        OR
-                    </div> */}
                     <div className="create-text" style ={{fontsize: "15px"}}>
                             Enter dates manually
                     </div>
@@ -58,9 +48,9 @@ export default class Q2 extends React.Component {
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{borderRadius: "10px", marginLeft: "14px"}}>Previous</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{borderRadius: "10px", marginLeft: "20px"}}>Skip/Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Skip/Next</Button>
                         </Form.Item>
                     </div>
                 </Form>

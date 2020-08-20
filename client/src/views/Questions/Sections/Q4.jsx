@@ -56,8 +56,12 @@ export default class Q4 extends React.Component {
             width: "235px",
             height:"40px",
             margin: "10px"
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         const secondForm = (this.state.secondService ? 
@@ -119,10 +123,6 @@ export default class Q4 extends React.Component {
                         <Form.Item style={{margin:"0em 2em"}} name="time">
                             <TimePicker placeholder="Time" style={inputStyle}/>
                         </Form.Item>
-                        {/* <Form.Item name="location">
-                            <Input placeholder="Location" style={{width: "10em", borderRadius: "10px"}}/>
-                        </Form.Item> */}
-                        
                     </div>
 
                     <GoogleAutoComplete style={{width: "50px", height: "50px", padding: "0px"}}
@@ -147,18 +147,10 @@ export default class Q4 extends React.Component {
 
                     {secondForm}
                     
-                    {/* <div>
-                        <Button type="primary" onClick={handleClick} style={{marginLeft: "10px", borderRadius: "10px"}}>Add a second service</Button>
-                    </div>
-
-                    <div>
-                        <Button type="primary" onClick={handleClick} style={{marginLeft: "10px", borderRadius: "10px"}}>Remove second service</Button>
-                    </div> */}
-
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{marginLeft: "10px", borderRadius: "10px"}}>Skip/Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Skip/Next</Button>
                         </Form.Item>
                     </div>
                 </Form>

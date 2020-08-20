@@ -20,15 +20,16 @@ function renameFile(file) {
 }
 
 export default class Q6 extends React.Component {
-
+    //fileImgs is the array of photo urls which are used to diaply the thumbnail
+    //fileArr is used for the actual photos to be dumped into s3 bucket
     constructor(props){
         super(props);
         this.state = {
           success : false,
           url : "",
           fileName: "",
+          fileImgs: [],
           fileArr: [],
-          fileTest: [],
           uploadMessage: ""
             
         }
@@ -37,22 +38,19 @@ export default class Q6 extends React.Component {
 
     handleChange = (ev) => {
         try{
-            this.setState({ fileArr: [...this.state.fileArr, URL.createObjectURL(ev.target.files[0])], fileTest: [...this.state.fileTest, ev.target.files[0]], uploadMessage: "" })
-        console.log(this.state.fileArr);
+            this.setState({ fileImgs: [...this.state.fileImgs, URL.createObjectURL(ev.target.files[0])], fileArr: [...this.state.fileArr, ev.target.files[0]], uploadMessage: "" })
         } catch(error) {
-            this.setState({ fileArr: [], fileTest: [], uploadMessage: "An error occured while uploading your photos. Please try again." })
+            this.setState({ fileImgs: [], fileArr: [], uploadMessage: "An error occured while uploading your photos. Please try again." })
         }
-        // this.setState({success: false, url : "", file: URL.createObjectURL(event.target.files[0])});
         
     }
     
 
     handleUpload = async(ev) => {
-        // const files = this.uploadInput.files;
         this.setState({ uploadMessage: `Please wait for your images to finish uploading before proceeding to the next step. 
         
         We will notify you when the upload is complete, thank you for your patience!` })
-        const files = this.state.fileTest;
+        const files = this.state.fileArr;
         console.log(files);
 
 
@@ -132,14 +130,20 @@ export default class Q6 extends React.Component {
 
         }
         document.getElementById("choose-file").value = null;
-        this.setState({ fileArr: [], fileTest: [], uploadMessage: "Image(s) uploaded! You can add more or go to the next step." })
+        this.setState({ fileImgs: [], fileArr: [], uploadMessage: "Image(s) uploaded! You can add more or go to the next step." })
 
     };
 
 
     render() {
 
-        let imgArr = this.state.fileArr
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
+        }
+
+        let imgArr = this.state.fileImgs
         const images = imgArr.map(image => {
             return <img key={image} src={image} style={{height: "60px", width: "60px", objectFit: "cover", margin: "10px"}} />
          });
@@ -157,14 +161,13 @@ export default class Q6 extends React.Component {
                     <br />
                     { images }
                 </div>
-                {/* <img src={this.state.file} style={{height: "100px", objectFit: "cover", border: "none"}}/> */}
                 <br />
                 <br />
                 <button className="upload" onClick={this.handleUpload}>UPLOAD PHOTO(S)</button>
                 <br/>
                 <div style={{display: "flex", justifyContent: "center", marginTop: "1em"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
-                    <Button type="primary" onClick={this.props.next} style={{marginLeft: "10px", borderRadius: "10px"}}>Skip/Next</Button>
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
+                    <Button type="primary" onClick={this.props.next} style={navButton}>Skip/Next</Button>
                 </div>
             </div>);
     }

@@ -68,8 +68,6 @@ export default class Q1 extends React.Component {
             width: "235px",
             height:"40px",
             margin: "20px 10px"
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
         }
 
         const suffixStyle = {
@@ -80,8 +78,12 @@ export default class Q1 extends React.Component {
             width: "150px",
             height:"40px",
             margin: "20px 10px"
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         return (
@@ -114,9 +116,9 @@ export default class Q1 extends React.Component {
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{borderRadius: "10px", marginLeft: "-30px", marginRight: "10px"}}>Back</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}>Back</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{borderRadius: "10px", marginLeft: "10px"}}>Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Next</Button>
                         </Form.Item>
                     </div>
                 </Form>

@@ -4,12 +4,18 @@ import "../Questions.css"
 
 export default class Q5 extends React.Component {
     saveData = values => {
-        // console.log('Received values of form: ', values);
         localStorage.setItem("relation_info", values.relation_info);
         this.props.next();
     };
 
     render() {
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
+        }
+
         return (
             <div style={{width: "100%", textAlign: "center"}}>
                 <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
@@ -30,9 +36,9 @@ export default class Q5 extends React.Component {
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}> Previous</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}> Previous</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{marginLeft: "10px", borderRadius: "10px"}}>Skip/Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Skip/Next</Button>
                         </Form.Item>
                     </div>
                 </Form>

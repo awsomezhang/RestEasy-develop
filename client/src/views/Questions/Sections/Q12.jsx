@@ -43,13 +43,13 @@ export default class Q12 extends React.Component {
 
 
     render() {
-        const checkout_button = {
-            width: "150px", 
-            height: "70px", 
-            padding: "10px", 
-            textAlign: "center",
-            borderRadius: "10px"
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "20px",
+            width: "100px"
         }
+
         return (
             <div style={{width: "100%", textAlign: "center"}}>
                 <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
@@ -74,8 +74,7 @@ export default class Q12 extends React.Component {
                     </StripeCheckout>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{ borderRadius: "10px", margin: "5px" }}>Back</Button>
-                    {/* <Button type="primary" onClick={this.props.next} style={{ borderRadius: "10px", margin: "5px" }}>Continue (REMOVE THIS IN FINAL PRODUCT)</Button> */}
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Back</Button>
                 </div>
             </div>);
     }

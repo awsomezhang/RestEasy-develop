@@ -39,6 +39,13 @@ export default class Q11 extends React.Component {
     };
 
     render() {
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
+        }
+
         return (
             <div style={{width: "100%"}}>
                 <div className="create-text" style={{textAlign: "center"}}>
@@ -73,8 +80,8 @@ export default class Q11 extends React.Component {
                 </div>
 
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
-                    <Button type="primary" onClick={this.props.next} style={{marginLeft: "10px", borderRadius: "10px"}}>Continue</Button>
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
+                    <Button type="primary" onClick={this.props.next} style={navButton}>Continue</Button>
                 </div>
             </div>);
     }

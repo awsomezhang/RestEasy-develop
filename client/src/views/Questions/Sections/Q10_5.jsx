@@ -33,9 +33,7 @@ export default class Q10_5 extends React.Component {
                 <div style={{fontSize: "2em", marginBottom: "0.5em", textAlign: "center"}}>
                     Cash Funds
                 </div>
-                <Container fluid={true}>
-                    <Row className="justify-content-md-center">
-                        <Col md="4" className="col-4 d-flex justify-content-center">
+                <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"Create your own cash fund"}
@@ -52,9 +50,9 @@ export default class Q10_5 extends React.Component {
                                 />
                                 : null
                             }
-                        </Col>
+                       
 
-                        <Col md="4" className="col-4 d-flex justify-content-center">
+                        
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"Medical Bills"}
@@ -68,47 +66,46 @@ export default class Q10_5 extends React.Component {
                                 />
                                 : null
                             }
-                        </Col>
+                
 
-                        <Col className="col-4 d-flex justify-content-center">
+                
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"College fund for surviving child(ren)"}
                                 mainText={"Click here to add"}
                                 togglePopup = {this.togglePopup.bind(this)}
                             />
-                        </Col>
-                    </Row>
+                        </div>
 
-                    <Row className="justify-content-md-center">
-                        <Col md="4" className="col-4 d-flex justify-content-center">
+
+                     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"Funeral Expenses"}
                                 mainText={"Click here to add"}
                                 togglePopup = {this.togglePopup.bind(this)}
                             />
-                        </Col>
 
-                        <Col md="4" className="col-4 d-flex justify-content-center">
+
+
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"Estate Management Fees"}
                                 mainText={"Click here to add"}
                                 togglePopup = {this.togglePopup.bind(this)}
                             />
-                        </Col>
 
-                        <Col className="col-4 d-flex justify-content-center">
+
+
                             <CashFundOption
                                 imgSrc={cashFundIcon}
                                 headerText={"Loan Payoff"}
                                 mainText={"Click here to add"}
                                 togglePopup = {this.togglePopup.bind(this)}
                             />
-                        </Col>
-                    </Row>
-                </Container>
+                    </div>
+
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <Button type="primary" onClick={this.props.cashfundBack} style={{borderRadius: "10px", margin: "5px"}}>Back to Registry Overview</Button>
                     <Button type="primary" onClick={this.props.cashfundNext} style={{borderRadius: "10px", margin: "5px"}}>Next Step</Button>
