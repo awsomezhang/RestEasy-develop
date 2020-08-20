@@ -214,7 +214,7 @@ class CustomPopup extends React.Component{
         }
         else{
             return(
-                <div>
+                <div style={{height: "400px", overflow: "auto"}}>
                     <PhotoArray photos={this.state.photos} selector={this.selectPhoto} />
                     <button onClick={() => this.toggleShowingUploads([])}> Cancel </button>
                 </div>
