@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import {Button, notification} from "antd";
 import * as constants from "../../../constants";
 import "../Questions.css"
-//import {saveStripeToken} from "../QuestionsAPI";
 
 import "react-toastify/dist/ReactToastify.css";
 

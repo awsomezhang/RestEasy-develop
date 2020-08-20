@@ -7,13 +7,10 @@ export default class Q13 extends React.Component {
     
     state = {
         name: localStorage.getItem('first_name'),
-        // url: localStorage.getItem('first_name')+ (Math.floor(Math.random() * 10000)).toString(),
         url: localStorage.getItem('first_name')+ (uuid()).toString(),
     };
 
     saveData = () => {
-        // console.log('Received values of form: ', values);
-        // let b_day = (values.start_date === "undefined" ? "N/A" : values.start_date)
         localStorage.setItem("unique_url", this.state.url);
     };
 
