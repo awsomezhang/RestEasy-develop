@@ -1,5 +1,6 @@
-import React from "react";
-import {Button, Form, Input} from "antd";
+import React from "react"
+import {Button, Form, Input} from "antd"
+import "../Questions.css"
 
 function embedSpotify(link) {
     var linkArr = link.split('/')
@@ -53,7 +54,7 @@ export default class Q7 extends React.Component {
 
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
                     Add a soundtrack
                 </div>
                 <Form
@@ -69,19 +70,19 @@ export default class Q7 extends React.Component {
                                 message: "This field must be a valid url."
                             }
                         ]}>
-                            <Input placeholder="Spotify Track Link" style={{width: "15em"}}/>
+                            <Input placeholder="Spotify Track Link" style={{width: "15em", borderRadius: "10px"}}/>
                            
                         </Form.Item>
                     </div>
-                    <div style={{width: "60%", margin: "auto"}}>
+                    <div className="create-text" style={{width: "60%", margin: "auto"}}>
                     To find the link of a Spotify Song or Playlist, open up Spotify on your computer and search up the song/playlist 
                     that you would like to upload. Click on the "...", then press "share" and "copy playlist/song link". You can now copy the link into
                     the input box above and hit "upload".
                     </div>
                     <br />
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" style={{ marginLeft: "10px", borderRadius: "10px" }} >Upload</Button>
-                    </Form.Item>
+                    {/* <Form.Item> */}
+                        <button type="primary" htmlType="submit" className= "upload">Upload</button>
+                    {/* </Form.Item> */}
                     <br />
                     <div>
                     {linkFrame}

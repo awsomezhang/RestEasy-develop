@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Form, Input} from "antd";
+import "../Questions.css"
 
 export default class Q5 extends React.Component {
     saveData = values => {
@@ -11,7 +12,7 @@ export default class Q5 extends React.Component {
     render() {
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
                     Share a little bit about {localStorage.getItem("first_name")}
                 </div>
                 <Form
@@ -20,11 +21,11 @@ export default class Q5 extends React.Component {
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <Form.Item name="relation_info">
                             <Input.TextArea placeholder="Add some information about your loved one that you would want others to know.
-                            This will show up at the top of the Digital Memory." style={{width: "34em", height: "7em", borderRadius: "10px", whiteSpace: "pre-wrap"}}/>
+                            This will show up at the top of the Digital Memory." style={{width: "34em", height: "7em", borderRadius: "10px", whiteSpace: "pre-wrap",  border: "1px solid #578C3D"}}/>
                         </Form.Item>
                     </div>
 
-                    <div style={{fontSize: "1em", marginBottom: "0.5em"}}>
+                    <div className="create-text" style={{fontSize: "20px", marginBottom: "0.5em"}}>
                         Don't worry. You can come back and update this at any time
                     </div>
 

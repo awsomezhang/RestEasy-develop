@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Card, Typography} from "antd";
 import {Form, Container, Row, Col} from "react-bootstrap";
+import "../Questions.css"
 
 export default class Q11 extends React.Component {
     state = {
@@ -40,7 +41,7 @@ export default class Q11 extends React.Component {
     render() {
         return (
             <div style={{width: "100%"}}>
-                <div style={{textAlign: "center"}}>
+                <div className="create-text" style={{textAlign: "center"}}>
                 See below for a sneak peak of what your Digital Memory will look like. You can modify as you wish after you publish and receieve a custom URL
                 </div>
                 <br/>

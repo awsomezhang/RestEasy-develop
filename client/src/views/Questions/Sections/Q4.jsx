@@ -2,6 +2,7 @@ import React from "react";
 import {Button, DatePicker, Form, Input, TimePicker} from "antd";
 import GoogleAutoComplete from 'react-auto-complete-address-fields';
 import './GoogleAutoComplete.css';
+import "../Questions.css"
 //const config = require('../../../../server/config.json');
 
 export default class Q4 extends React.Component {
@@ -47,16 +48,28 @@ export default class Q4 extends React.Component {
     };
 
     render() {
+        const inputStyle = {
+            borderRadius: "12px",
+            textAlign: "center",
+            fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "235px",
+            height:"40px",
+            margin: "10px"
+            // backgroundColor: "#BEBEBE",
+            // color: "black"
+        }
+
         const secondForm = (this.state.secondService ? 
                 <div>
                     
                     <hr style={{width: "100%"}}/>
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "40px"}}>
                         <Form.Item name="date_two">
-                            <DatePicker placeholder="Date" style={{ width: "10em", borderRadius: "10px" }} />
+                            <DatePicker placeholder="Date" style={inputStyle} />
                         </Form.Item>
                         <Form.Item style={{ margin: "0em 2em" }} name="time_two">
-                            <TimePicker placeholder="Time" style={{ width: "10em", borderRadius: "10px" }} />
+                            <TimePicker placeholder="Time" style={inputStyle} />
                         </Form.Item>
                     </div>
 
@@ -76,7 +89,7 @@ export default class Q4 extends React.Component {
 
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <Form.Item name="description_two">
-                            <Input.TextArea placeholder="Description/Details" style={{ width: "34em", height: "10em", borderRadius: "10px", whiteSpace: "pre-wrap"}} />
+                            <Input.TextArea placeholder="Description/Details" style={{ width: "34em", height: "10em", borderRadius: "10px", whiteSpace: "pre-wrap",  border: "1px solid #578C3D"}} />
                         </Form.Item>
                     </div>
 
@@ -92,8 +105,8 @@ export default class Q4 extends React.Component {
         
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
-                    Do you want to display funeral/service information on the memory?
+                <div className="create-text-no-flex" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                    Do you want to display funeral/service information on the memory? <br />
                     <h5>This can be removed later.</h5>
                 </div>
                 <Form
@@ -101,10 +114,10 @@ export default class Q4 extends React.Component {
                     scrollToFirstError>
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <Form.Item name="date">
-                            <DatePicker placeholder="Date" style={{width: "10em", borderRadius: "10px"}}/>
+                            <DatePicker placeholder="Date" style={inputStyle}/>
                         </Form.Item>
                         <Form.Item style={{margin:"0em 2em"}} name="time">
-                            <TimePicker placeholder="Time" style={{width: "10em", borderRadius: "10px"}}/>
+                            <TimePicker placeholder="Time" style={inputStyle}/>
                         </Form.Item>
                         {/* <Form.Item name="location">
                             <Input placeholder="Location" style={{width: "10em", borderRadius: "10px"}}/>
@@ -128,7 +141,7 @@ export default class Q4 extends React.Component {
 
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <Form.Item name="description">
-                            <Input.TextArea placeholder="Description/Details" style={{width: "34em", height: "10em", borderRadius: "10px"}}/>
+                            <Input.TextArea placeholder="Description/Details" style={{width: "34em", height: "10em", borderRadius: "10px",  border: "1px solid #578C3D"}}/>
                         </Form.Item>
                     </div>
 
