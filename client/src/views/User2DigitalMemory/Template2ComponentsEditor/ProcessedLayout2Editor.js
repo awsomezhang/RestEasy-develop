@@ -5,6 +5,8 @@ import LayoutRowEditor from './Layout2RowEditor.js'
 import EditorPopup from './EditorPopup.js'
 import { REMOTE_HOST } from "../../../constants.js"
 import "../../../styles/styles.css"
+import 'antd/dist/antd.css';
+import { notification } from 'antd';
 
 export default class ProcessedLayoutEditor extends React.Component{
     constructor(props){
@@ -89,6 +91,11 @@ export default class ProcessedLayoutEditor extends React.Component{
                 }, config)
                 .then( result => {
                     console.log(result)
+                    notification["success"]({
+                        message: "Success",
+                        description: "Your memory has been saved",
+                        top: 90
+                    });
                 }).catch(error => {
                     console.log("error " + JSON.stringify(error))
                 })
@@ -155,6 +162,11 @@ export default class ProcessedLayoutEditor extends React.Component{
                     .then(response2 => response2.text())
                     .then(data => {
                         this.setState({templateLayout: JSON.parse(data)})
+                        notification["warning"]({
+                            message: "Cancelled",
+                            description: "Your changes have been cancelled",
+                            top: 90
+                        });
                     })
             })
             .catch(error => {
@@ -185,8 +197,12 @@ export default class ProcessedLayoutEditor extends React.Component{
             templateLayout: tempTemplateLayout,
             lastClickedTyp: typ,
         })
+        notification["success"]({
+            message: "Success",
+            description: "Memory has been added",
+            top: 90
+        });
     }
-
     render(){
         const LayoutRows = this.state.templateLayout.map((rowinfo) => {
             return(
