@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import {Button, notification} from "antd";
 import * as constants from "../../../constants";
-//import {saveStripeToken} from "../QuestionsAPI";
+import "../Questions.css"
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,22 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
 export default class Q12 extends React.Component {
-
-    // handleToken = async(token) => {
-    //     const response = await axios.post(
-    //         "http://localhost:5000/checkout",
-    //         { token }
-    //     );
-    //     const { status } = response.data;
-    //     console.log("Response:", response.data);
-    //     if (status === "success") {
-    //         toast("Success! Check email for details", { type: "success" });
-    //         this.props.next();
-    //     } else {
-    //         toast("Something went wrong", { type: "error" });
-    //     }
-
-    // };
 
     handleToken = async(token, addresses) => {
 
@@ -58,19 +42,19 @@ export default class Q12 extends React.Component {
 
 
     render() {
-        const checkout_button = {
-            width: "150px", 
-            height: "70px", 
-            padding: "10px", 
-            textAlign: "center",
-            borderRadius: "10px"
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "20px",
+            width: "100px"
         }
+
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "0.5em"}}>
                     Contribute using credit card
                 </div>
-                <div style={{fontStyle: "italic", fontSize: "1em"}}>
+                <div className="create-text" style={{fontStyle: "italic", fontSize: "1em"}}>
                     PayPal and Venmo coming soon
                 </div>
                 <br/>
@@ -85,12 +69,11 @@ export default class Q12 extends React.Component {
                         billingAddress
                         shippingAddress
                     > 
-                    <Button type="primary" style={checkout_button}>Pay With Card</Button>
+                    <button type="primary" className="upload">Pay With Card</button>
                     </StripeCheckout>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{ borderRadius: "10px", margin: "5px" }}>Back</Button>
-                    {/* <Button type="primary" onClick={this.props.next} style={{ borderRadius: "10px", margin: "5px" }}>Continue (REMOVE THIS IN FINAL PRODUCT)</Button> */}
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Back</Button>
                 </div>
             </div>);
     }

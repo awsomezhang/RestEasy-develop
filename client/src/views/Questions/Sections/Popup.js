@@ -12,7 +12,6 @@ class Popup extends React.Component {
         localStorage.setItem("item_price", values.item_price);
         localStorage.setItem("item_note", values.item_note);
         this.props.closePopup();
-        //toast("Wow so easy !", { type: "success" });
         toast(`Added to your registry! Item: ${values.item_name}  Cost: ${values.item_price}`, { type: "success" });
         
     };

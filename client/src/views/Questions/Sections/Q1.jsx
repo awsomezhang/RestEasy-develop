@@ -60,24 +60,40 @@ export default class Q1 extends React.Component {
 
     render() {
         const inputStyle = {
-            borderRadius: "10px",
-            width: "11em",
-            height: "2em",
+            borderRadius: "12px",
             textAlign: "center",
             fontSize: "17px",
-            // backgroundColor: "#BEBEBE",
-            // color: "black"
+            border: "1px solid #578C3D",
+            width: "235px",
+            height:"40px",
+            margin: "20px 10px"
+        }
+
+        const suffixStyle = {
+            borderRadius: "12px",
+            textAlign: "center",
+            fontSize: "17px",
+            border: "1px solid #578C3D",
+            width: "150px",
+            height:"40px",
+            margin: "20px 10px"
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         return (
             <div style={{width: "100%", textAlign: "center"}}>
-                <div style={{fontSize: "2em", marginBottom: "0.5em"}}>
+                <div className="create-text" style={{fontSize: "1.5em", marginBottom: "2em"}}>
                     What is your loved one's name?
                 </div>
                 <Form
                     onFinish={this.saveData}
                     scrollToFirstError>
-                    <div style={{display: "flex", justifyContent: "center"}}>
+                    <div style={{display: "flex", justifyContent: "center", flexFlow: "row wrap"}}>
                         <Form.Item name="first_name"
                                    rules={[
                                        {
@@ -87,21 +103,21 @@ export default class Q1 extends React.Component {
                                    ]}>
                             <Input placeholder="First name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item style={{margin:"0em 2em"}} name="middle_name">
+                        <Form.Item name="middle_name">
                             <Input placeholder="Middle name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item name="last_name" style={inputStyle}>
+                        <Form.Item name="last_name">
                             <Input placeholder="Last name" style={inputStyle}/>
                         </Form.Item>
-                        <Form.Item style={{margin:"0em 2em"}} name="suffix">
-                            <Input placeholder="Suffix" style={{borderRadius: "10px", width: "5em", height: "2em", textAlign: "center", fontSize: "17px",}}/>
+                        <Form.Item name="suffix">
+                            <Input placeholder="Suffix" style={suffixStyle}/>
                         </Form.Item>
                     </div>
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button type="primary" onClick={this.props.prev} style={{borderRadius: "10px", marginLeft: "-30px", marginRight: "10px"}}>Back</Button>
+                        <Button type="primary" onClick={this.props.prev} style={navButton}>Back</Button>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" style={{borderRadius: "10px", marginLeft: "10px"}}>Next</Button>
+                            <Button type="primary" htmlType="submit" style={navButton}>Next</Button>
                         </Form.Item>
                     </div>
                 </Form>
