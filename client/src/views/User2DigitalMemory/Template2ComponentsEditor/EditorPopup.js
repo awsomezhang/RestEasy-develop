@@ -64,7 +64,7 @@ class PhotoArray extends React.Component{
 
         for(var i = 0; i < props.photos.length; i++){
             var newProcessedPhotos = this.state.processedPhotos;
-            var newPhoto = <GetPhoto k={i} selector={this.props.selector} name={props.photos[i]} />
+            var newPhoto = <GetPhoto key={i} selector={this.props.selector} name={props.photos[i]} />
             newProcessedPhotos.push(newPhoto)
             this.setState({processedPhotos: newProcessedPhotos})
         }
@@ -214,7 +214,7 @@ class CustomPopup extends React.Component{
         }
         else{
             return(
-                <div>
+                <div style={{height: "400px", overflow: "auto"}}>
                     <PhotoArray photos={this.state.photos} selector={this.selectPhoto} />
                     <button onClick={() => this.toggleShowingUploads([])}> Cancel </button>
                 </div>
