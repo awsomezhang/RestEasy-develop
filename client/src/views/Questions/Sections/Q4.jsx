@@ -3,7 +3,7 @@ import {Button, DatePicker, Form, Input, TimePicker} from "antd";
 import GoogleAutoComplete from 'react-auto-complete-address-fields';
 import './GoogleAutoComplete.css';
 import "../Questions.css"
-//const config = require('../../../../server/config.json');
+import * as constants from "../../../constants";
 
 export default class Q4 extends React.Component {
 
@@ -13,6 +13,7 @@ export default class Q4 extends React.Component {
             secondService: false,
         }
         this.callbackFunc = this.callbackFunc.bind(this);
+        this.callbackFuncSec = this.callbackFuncSec.bind(this);
 
     }
     
@@ -31,10 +32,14 @@ export default class Q4 extends React.Component {
 	callbackFunc  = ( autoCompleteData ) => {
         //You can use the address data, passed by autocomplete as you want.
         localStorage.setItem("service_location", autoCompleteData);
+    }
+    
+    callbackFuncSec  = ( autoCompleteData ) => {
+        //You can use the address data, passed by autocomplete as you want.
+        localStorage.setItem("service_location_two", autoCompleteData);
 	}
 
     saveData = values => {
-        // console.log('Received values of form: ', values);
         localStorage.setItem("date", values.date);
         localStorage.setItem("time", values.time);
         localStorage.setItem("location", values.location);
@@ -78,7 +83,7 @@ export default class Q4 extends React.Component {
                     </div>
 
                     <GoogleAutoComplete style={{ width: "50px", height: "50px", padding: "0px" }}
-                        apiKey=''
+                        apiKey={constants.GOOGLE_MAPS_KEY}
                         id='location'
                         fields={{
                             streetAddress: "route_two",
@@ -88,7 +93,7 @@ export default class Q4 extends React.Component {
                             postalcode: "postal_code_two",
                             country: "country_two"
                         }}
-                        callbackFunction={this.callbackFunc}
+                        callbackFunctionSecond={this.callbackFuncSec}
                     />
 
                     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -126,8 +131,9 @@ export default class Q4 extends React.Component {
                     </div>
 
                     <GoogleAutoComplete style={{width: "50px", height: "50px", padding: "0px"}}
-                            apiKey=''
+                            apiKey={constants.GOOGLE_MAPS_KEY}
                             id='location'
+                            key='one'
                             fields={{
                                 streetAddress: "route",
                                 streetAddress2: "administrative_area_level_4",

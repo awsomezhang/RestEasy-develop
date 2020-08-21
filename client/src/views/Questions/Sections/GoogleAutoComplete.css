@@ -25,7 +25,7 @@
 }
 .address-field input {
     width: 100%;
-    border: "1px solid #578C3D";
+    border: 1px solid #578C3D;
     border-radius: 6px;
     font-size: 14px;
     padding: 6px;
@@ -44,7 +44,6 @@
 }
 .addressInput {
     padding-bottom: 20px;
-    border: "1px solid #578C3D";
     position: relative;
 }
 .addressInput:before {
@@ -64,6 +63,16 @@
     border-radius: 6px;
     border: 1px solid #ccc;
 }
+
+.addressInput input#location_two {
+    width: 100%;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
 .addressFields {
     display: none;
 }

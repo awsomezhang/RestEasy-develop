@@ -69,7 +69,7 @@ export default class Q7 extends React.Component {
                     </div>
                 
                     <br />
-                        <button type="primary" htmlType="submit" className= "upload-small">Upload</button>
+                        <button type="primary" type="submit" className= "upload-small">Upload</button>
                     <br />
                     <div>
                     {linkFrame}

@@ -2,7 +2,6 @@ import React from "react";
 import {Button, Form, Input} from "antd";
 import axios from "axios";
 import { REMOTE_HOST } from "../../../constants.js"
-import "../Questions.css"
 
 export default class Q1 extends React.Component {
     saveData = values => {
