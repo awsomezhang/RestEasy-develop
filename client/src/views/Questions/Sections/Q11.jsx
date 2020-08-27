@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Card, Typography} from "antd";
 import {Form, Container, Row, Col} from "react-bootstrap";
+import "../Questions.css"
 
 export default class Q11 extends React.Component {
     state = {
@@ -38,9 +39,16 @@ export default class Q11 extends React.Component {
     };
 
     render() {
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
+        }
+
         return (
             <div style={{width: "100%"}}>
-                <div style={{textAlign: "center"}}>
+                <div className="create-text" style={{textAlign: "center"}}>
                 See below for a sneak peak of what your Digital Memory will look like. You can modify as you wish after you publish and receieve a custom URL
                 </div>
                 <br/>
@@ -72,8 +80,8 @@ export default class Q11 extends React.Component {
                 </div>
 
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
-                    <Button type="primary" onClick={this.props.next} style={{marginLeft: "10px", borderRadius: "10px"}}>Continue</Button>
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
+                    <Button type="primary" onClick={this.props.next} style={navButton}>Continue</Button>
                 </div>
             </div>);
     }

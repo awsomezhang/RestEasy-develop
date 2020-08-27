@@ -3,3 +3,4 @@ node_modules
 config.json
 mongoCreds.json
 client/build
+client/src/constants.js

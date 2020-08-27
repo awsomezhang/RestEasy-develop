@@ -15,22 +15,8 @@ export default class Q10 extends React.Component {
         super();
         this.state = {
             name: localStorage.getItem('first_name'),
-            // steps: [
-            //     {
-            //         target: ".joyride-test",
-            //         content: "This is your message to your user"
-            //     },
-            //     {
-            //         target: ".joyride-test-2",
-            //         content: "This is your second message to your user"
-            //     }
-            // ]
         }
     }
-    // state = {
-    //     name: localStorage.getItem('first_name')
-        
-    // };
 
     onNameChange = (name) => {
         this.setState({
@@ -39,13 +25,11 @@ export default class Q10 extends React.Component {
     };
 
     render() {
-        // console.log(this.state.steps.content);
-        // console.log(this.state.name);
-        // console.log(this.state.steps);
         const buttonStyle = {
             width: "150px",
             height: "50px",
             borderRadius: "10px",
+            border: "1px solid #21231F",
             margin: "5px",
             textAlign: "center",
             backgroundColor: "#E2F4B8",
@@ -53,6 +37,17 @@ export default class Q10 extends React.Component {
         }
 
         const smallButtonStyle = {
+            borderRadius: "10px",
+            margin: "5px",
+            textAlign: "center",
+            display: "inline-block",
+            maxWidth: "150px",
+            backgroundColor: "#8FC36B",
+            border: "1px solid #21231F",
+            wordWrap: "break-word",   
+        }
+
+        const shortButtonStyle = {
             height: "50px",
             borderRadius: "10px",
             margin: "5px",
@@ -61,7 +56,14 @@ export default class Q10 extends React.Component {
             maxWidth: "150px",
             backgroundColor: "#8FC36B",
             border: "1px solid #21231F",
-            //box-sizing: border-box;       
+            wordWrap: "break-word",
+     
+        }
+
+        const navButton = {
+            borderRadius: "10px",
+            margin: "10px",
+            width: "100px"
         }
 
         return (
@@ -89,26 +91,26 @@ export default class Q10 extends React.Component {
                             }
                         }}
                     />
-                      <div style={{width: "100%", margin: "1px", justifyContent: "center"}} className="step-one">
-                        <Button style={smallButtonStyle}>Search All</Button>
-                        <Button style={smallButtonStyle}>Cremation Products</Button>
-                        <Button style={smallButtonStyle}>Comfort and Memory Items</Button>
-                        <Button style={smallButtonStyle}>Unique Resting Places</Button>
-                        <Button style={smallButtonStyle}>Experiences</Button>
-                        <Button style={smallButtonStyle}>Charity and Donations</Button>
-                        <Button style={smallButtonStyle}>Cash Funds</Button>
-                        <Button style={smallButtonStyle}>Traditional Funeral Arrangements</Button>
-                        <Button style={smallButtonStyle}>Sympathy Gifts</Button>
+                      <div style={{width: "100%", margin: "1px", display: "flex", justifyContent: "center", flexWrap: "wrap"}} className="step-one">
+                        <button style={smallButtonStyle}>Search All</button>
+                        <button style={smallButtonStyle}>Cremation Products</button>
+                        <button style={smallButtonStyle}>Comfort and Memory Items</button>
+                        <button style={smallButtonStyle}>Unique Resting Places</button>
+                        <button style={smallButtonStyle}>Experiences</button>
+                        <button style={smallButtonStyle}>Charity and Donations</button>
+                        <button style={smallButtonStyle} onClick={this.props.cashfund}>Cash Funds</button>
+                        <button style={smallButtonStyle}>Traditional Funeral Arrangements</button>
+                        <button style={smallButtonStyle}>Sympathy Gifts</button>
                         
                     </div>
                     <br/>
-                    <div style={{width: "100%", margin: "1px", justifyContent: "center"}}>
-                        <Button className= "step-two" style={buttonStyle}>Overview</Button>
-                        <Button className= "step-three" style={buttonStyle}>Manage Registry</Button>
-                        <Button className= "step-four" style={buttonStyle}>Support Tracker</Button>
-                        <Button className= "step-five" style={buttonStyle}>I'm not sure where <br/> to start</Button>
+                    <div style={{width: "100%", margin: "1px", display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
+                        <button className= "step-two" style={buttonStyle}>Overview</button>
+                        <button className= "step-three" style={buttonStyle}>Manage Registry</button>
+                        <button className= "step-four" style={buttonStyle}>Support Tracker</button>
+                        <button className= "step-five" style={buttonStyle}>I'm not sure where <br/> to start</button>
                         <div style={{display: "inline-block", width: "150px", margin: "5px"}}></div>
-                        <Button className= "step-six" style={buttonStyle}>Preview</Button>
+                        <button className= "step-six" style={buttonStyle}>Preview</button>
                         
                     </div>
                     <br/>
@@ -123,41 +125,37 @@ export default class Q10 extends React.Component {
                         </div>
                         </div>
                         <br />
-                        <Container fluid={true}>
-                            <Row className="justify-content-md-center" style={{ marginLeft: "30px" }}>
-                                <Col md="4" className="joyride-test-2">
-                                    <NextStep
+                        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+                                <div md="4" className="joyride-test-2">
+                                    <NextStep 
                                         imgSrc={giftBox}
                                         headerText={"Add a commemoration gift"}
                                         mainText={"to preserve their memory in a way that is as unique as they are"}
                                     />
-                                </Col>
-
-                                <Col md="4" >
+                                </div>
+                            
                                     <NextStep
                                         imgSrc={handHold}
                                         headerText={"Direct donations"}
                                         mainText={"towards causes they are about to make a difference in their name"}
                                     />
-                                </Col>
-
-                                <Col md="4" >
+                           
+                                
+                             
                                     <NextStep
                                         imgSrc={cashIcon}
                                         headerText={"Create a cash fund"}
                                         mainText={"to support your needs (like paying off medical bills"}
                                     />
-                                </Col>
-                            </Row>
-                        </Container>
+                             
+                        </div>
                     </div>
                  
                 </div>
                 <br/>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button type="primary" onClick={this.props.prev} style={{marginRight: "10px", borderRadius: "10px"}}>Previous</Button>
-                    <Button type="primary" onClick={this.props.cashfund} style={{marginLeft: "10px", borderRadius: "10px"}}>CashFund</Button>
-                    <Button type="primary" onClick={this.props.next} style={{marginLeft: "10px", borderRadius: "10px"}}>Continue</Button>
+                    <Button type="primary" onClick={this.props.prev} style={navButton}>Previous</Button>
+                    <Button type="primary" onClick={this.props.next} style={navButton}>Continue</Button>
                 </div>
             </div>);
     }

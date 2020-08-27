@@ -84,7 +84,7 @@ class Questions extends React.Component {
         else if (this.state.curr === 10)
             return <Q10 cashfund={this.cashfund.bind(this)} prev={this.prev.bind(this)} next={this.next.bind(this)}/>;
         else if (this.state.curr === 10.5)
-            return <Q10_5 cashfundBack={this.cashfundBack.bind(this)}/>;
+            return <Q10_5 cashfundBack={this.cashfundBack.bind(this)} cashfundNext={this.cashfundNext.bind(this)}/>;
 
         else if (this.state.curr === 11)
             return <Q11 next={this.next.bind(this)} prev={this.prev.bind(this)}/>;
@@ -177,18 +177,27 @@ class Questions extends React.Component {
         });
     }
 
+    cashfundNext() {
+        const current = this.state.curr + 0.5;
+        this.setState({
+            curr: current
+        });
+    }
+
     
 
     render() {
+
+        const headerSpace = (this.state.curr === 0 ? <Container fluid={true} style={{height: "30px"}}></Container>: <Container fluid={true} style={{height: "5px"}}></Container>)
         return (
             <PageWrapper content={
                 <div>
-                    <Container fluid={true} className="header-banner"></Container>
+                    {headerSpace}
                     {this.state.curr === 0 ? (
                         <div style={{textAlign: "center", marginTop: "80px"}}>
-                            <h2 style = {{fontWeight: "bold"}}>We're sorry you're here, but happy you found us</h2>
+                            <h2 className="create-text" style = {{fontWeight: "700"}}>We're sorry you're here, but happy you found us</h2>
                             <br/>
-                            <h4> You've taken the first step to capture and preserve your favorite memories</h4>
+                            <h4 className="create-text" style={{fontWeight: "400"}}> You've taken the first step to capture and preserve your favorite memories</h4>
                         </div>
                     ) : (
                             <div style={{height: "50px"}}></div>
